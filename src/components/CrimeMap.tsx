@@ -1,53 +1,59 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { PROVINCES, CATEGORIES, type CrimeCategory, type ProvinceData } from "@/lib/mockData";
+import type { ProvinceData, CrimeCategory } from "@/lib/mockData";
+import { CATEGORIES } from "@/lib/mockData";
 
-// Costa Rica province centroids for marker placement
-const PROVINCE_COORDS: Record<string, [number, number]> = {
-  SJ: [9.934739, -84.087502],
-  AL: [10.39591, -84.438179],
-  CA: [9.864477, -83.919826],
-  HE: [10.473541, -84.016748],
-  GU: [10.634006, -85.443298],
-  PU: [9.981801, -84.831615],
-  LI: [10.005432, -83.036415],
+// Province centroids for map centering
+const PROVINCE_CENTROIDS: Record<string, [number, number]> = {
+  "San José":   [9.93, -84.09],
+  Alajuela:     [10.20, -84.43],
+  Cartago:      [9.87, -83.92],
+  Heredia:      [10.15, -84.10],
+  Guanacaste:   [10.55, -85.45],
+  Puntarenas:   [9.65, -84.85],
+  Limón:        [9.90, -83.03],
 };
 
-// Rough province polygon bounds (simplified rectangles for mock)
-const PROVINCE_BOUNDS: Record<string, [[number, number], [number, number], [number, number], [number, number]]> = {
-  SJ: [[9.6, -84.4], [9.6, -83.7], [10.2, -83.7], [10.2, -84.4]],
-  AL: [[10.0, -84.8], [10.0, -84.0], [10.9, -84.0], [10.9, -84.8]],
-  CA: [[9.5, -84.1], [9.5, -83.6], [10.0, -83.6], [10.0, -84.1]],
-  HE: [[9.95, -84.3], [9.95, -83.8], [10.45, -83.8], [10.45, -84.3]],
-  GU: [[9.9, -86.0], [9.9, -84.9], [11.1, -84.9], [11.1, -86.0]],
-  PU: [[8.3, -85.1], [8.3, -84.3], [10.1, -84.3], [10.1, -85.1]],
-  LI: [[8.5, -83.5], [8.5, -82.5], [11.2, -82.5], [11.2, -83.5]],
-};
+function getIntensityColor(ratio: number): string {
+  // ratio 0–1: green → yellow → orange → red
+  if (ratio > 0.8)  return "#ef4444"; // red-500
+  if (ratio > 0.6)  return "#f97316"; // orange-500
+  if (ratio > 0.4)  return "#eab308"; // yellow-500
+  if (ratio > 0.2)  return "#22d3ee"; // cyan-400
+  return "#22c55e";                    // green-500
+}
 
-function getRateColor(rate: number): string {
-  if (rate > 55) return "#ef4444";
-  if (rate > 45) return "#f97316";
-  if (rate > 35) return "#eab308";
-  return "#22c55e";
+interface GeoJSONFeature {
+  type: "Feature";
+  properties: { name: string; code: string; capital?: string };
+  geometry: { type: string; coordinates: number[][][] | number[][][][] };
 }
 
 interface Props {
   selectedCategory: CrimeCategory;
+  provinces: ProvinceData[];
 }
 
-export default function CrimeMap({ selectedCategory }: Props) {
+export default function CrimeMap({ selectedCategory, provinces }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMapRef = useRef<L.Map | null>(null);
-  const polygonsRef = useRef<L.Polygon[]>([]);
+  const layersRef = useRef<L.Layer[]>([]);
   const [selected, setSelected] = useState<ProvinceData | null>(null);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
+  const [geojson, setGeojson] = useState<GeoJSONFeature[] | null>(null);
 
+  // Load Leaflet + GeoJSON in parallel
   useEffect(() => {
-    import("leaflet").then((leaflet) => {
+    Promise.all([
+      import("leaflet"),
+      fetch("/data/cr-provinces.geojson").then((r) => r.json()),
+    ]).then(([leaflet, geo]) => {
       setL(leaflet);
+      setGeojson(geo.features as GeoJSONFeature[]);
     });
   }, []);
 
+  // Init map
   useEffect(() => {
     if (!L || !mapRef.current || leafletMapRef.current) return;
 
@@ -59,116 +65,172 @@ export default function CrimeMap({ selectedCategory }: Props) {
     });
 
     L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-      attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://openstreetmap.org">OSM</a>',
       subdomains: "abcd",
       maxZoom: 19,
     }).addTo(map);
 
     leafletMapRef.current = map;
-
-    return () => {
-      map.remove();
-      leafletMapRef.current = null;
-    };
+    return () => { map.remove(); leafletMapRef.current = null; };
   }, [L]);
 
+  // Draw choropleth when data/category changes
   useEffect(() => {
-    if (!L || !leafletMapRef.current) return;
+    if (!L || !leafletMapRef.current || !geojson || !provinces.length) return;
     const map = leafletMapRef.current;
 
-    polygonsRef.current.forEach((p) => p.remove());
-    polygonsRef.current = [];
+    // Clear previous layers
+    layersRef.current.forEach((l) => l.remove());
+    layersRef.current = [];
 
-    PROVINCES.forEach((province) => {
-      const coords = PROVINCE_BOUNDS[province.code];
-      if (!coords) return;
+    const values = provinces.map((p) => p.crimes[selectedCategory] ?? 0);
+    const maxVal = Math.max(...values, 1);
 
-      const crimeCount = province.crimes[selectedCategory];
-      const maxInCategory = Math.max(...PROVINCES.map((p) => p.crimes[selectedCategory]));
-      const opacity = 0.2 + (crimeCount / maxInCategory) * 0.6;
-      const color = getRateColor(province.rate);
+    geojson.forEach((feature) => {
+      const provName = feature.properties.name;
+      const prov = provinces.find((p) => p.name === provName);
+      if (!prov) return;
 
-      const polygon = L.polygon(coords, {
-        color: color,
-        fillColor: color,
-        fillOpacity: opacity,
-        weight: 1.5,
-        opacity: 0.8,
-      });
+      const val   = prov.crimes[selectedCategory] ?? 0;
+      const ratio = val / maxVal;
+      const color = getIntensityColor(ratio);
+      const fillOpacity = 0.15 + ratio * 0.6;
+
+      const toLatLng = (rings: number[][][]): L.LatLngExpression[][] =>
+        rings.map((ring) => ring.map(([lng, lat]) => [lat, lng] as [number, number]));
+
+      let layer: L.Layer;
+      if (feature.geometry.type === "MultiPolygon") {
+        const polys = (feature.geometry.coordinates as number[][][][]).map(toLatLng);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        layer = L.polygon(polys as any, {
+          color, fillColor: color, fillOpacity, weight: 2, opacity: 0.9,
+        });
+      } else {
+        const rings = toLatLng(feature.geometry.coordinates as number[][][]);
+        layer = L.polygon(rings, {
+          color, fillColor: color, fillOpacity, weight: 2, opacity: 0.9,
+        });
+      }
 
       const catLabel = CATEGORIES.find((c) => c.key === selectedCategory)?.label ?? selectedCategory;
+      const popHtml = `
+        <div style="min-width:200px;font-family:system-ui">
+          <p style="font-weight:700;font-size:15px;margin:0 0 8px 0;color:#fff">${provName}</p>
+          <p style="margin:3px 0;color:#94a3b8;font-size:12px">${catLabel}:
+            <strong style="color:#f1f5f9">${val.toLocaleString("es-CR")}</strong></p>
+          <p style="margin:3px 0;color:#94a3b8;font-size:12px">Tasa /100k:
+            <strong style="color:#fb923c">${prov.rate}</strong></p>
+          <p style="margin:3px 0;color:#94a3b8;font-size:12px">Variación:
+            <strong style="${prov.trend > 0 ? "color:#f87171" : prov.trend < 0 ? "color:#4ade80" : "color:#94a3b8"}">${prov.trend > 0 ? "+" : ""}${prov.trend}%</strong></p>
+          <p style="margin:3px 0;color:#94a3b8;font-size:12px">Capital: <span style="color:#cbd5e1">${feature.properties.capital ?? ""}</span></p>
+        </div>`;
 
-      polygon.bindPopup(`
-        <div style="min-width:180px">
-          <p style="font-weight:600;font-size:15px;margin:0 0 8px">${province.name}</p>
-          <p style="margin:2px 0;color:#94a3b8;font-size:12px">${catLabel}: <strong style="color:#f1f5f9">${crimeCount.toLocaleString("es-CR")}</strong></p>
-          <p style="margin:2px 0;color:#94a3b8;font-size:12px">Tasa: <strong style="color:#f1f5f9">${province.rate} / 100k hab.</strong></p>
-          <p style="margin:2px 0;color:#94a3b8;font-size:12px">Variación: <strong style="${province.trend > 0 ? "color:#f87171" : "color:#4ade80"}">${province.trend > 0 ? "+" : ""}${province.trend}%</strong></p>
-        </div>
-      `);
+      (layer as L.Polygon).bindPopup(popHtml);
+      (layer as L.Polygon).on("click", () => {
+        setSelected(prov);
+        const cent = PROVINCE_CENTROIDS[provName];
+        if (cent) map.setView(cent, 9, { animate: true });
+      });
+      (layer as L.Polygon).on("mouseover", () => (layer as L.Polygon).setStyle({ weight: 3.5 }));
+      (layer as L.Polygon).on("mouseout",  () => (layer as L.Polygon).setStyle({ weight: 2 }));
 
-      polygon.on("click", () => setSelected(province));
-      polygon.on("mouseover", () => polygon.setStyle({ weight: 3 }));
-      polygon.on("mouseout", () => polygon.setStyle({ weight: 1.5 }));
-
-      polygon.addTo(map);
-      polygonsRef.current.push(polygon);
+      layer.addTo(map);
+      layersRef.current.push(layer);
     });
-  }, [L, selectedCategory]);
+  }, [L, geojson, provinces, selectedCategory]);
 
   const catInfo = CATEGORIES.find((c) => c.key === selectedCategory);
+  const maxVal  = Math.max(...provinces.map((p) => p.crimes[selectedCategory] ?? 0), 1);
+  const sorted  = [...provinces].sort((a, b) => (b.crimes[selectedCategory] ?? 0) - (a.crimes[selectedCategory] ?? 0));
 
   return (
     <div className="relative w-full h-full">
       <div ref={mapRef} className="w-full h-full" />
 
       {/* Legend */}
-      <div className="absolute bottom-6 left-4 z-[1000] bg-slate-900/90 border border-slate-700 rounded-lg p-3 text-xs space-y-1.5">
-        <p className="text-slate-400 font-medium mb-2">Tasa por 100k hab.</p>
+      <div className="absolute bottom-6 left-4 z-[1000] bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-3 text-xs space-y-1.5 shadow-lg">
+        <p className="text-slate-300 font-semibold mb-2">Intensidad relativa</p>
         {[
-          { label: "> 55", color: "#ef4444" },
-          { label: "45 – 55", color: "#f97316" },
-          { label: "35 – 45", color: "#eab308" },
-          { label: "< 35", color: "#22c55e" },
+          { label: "Muy alta", color: "#ef4444" },
+          { label: "Alta",     color: "#f97316" },
+          { label: "Media",    color: "#eab308" },
+          { label: "Baja",     color: "#22d3ee" },
+          { label: "Muy baja", color: "#22c55e" },
         ].map((l) => (
           <div key={l.label} className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-sm flex-shrink-0" style={{ background: l.color }} />
             <span className="text-slate-300">{l.label}</span>
           </div>
         ))}
+        <p className="text-slate-600 text-[10px] pt-1 border-t border-slate-800">
+          Escala relativa al máximo<br />provincial para la categoría
+        </p>
       </div>
 
       {/* Category pill */}
       <div
-        className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] px-3 py-1.5 rounded-full text-xs font-medium border"
-        style={{ borderColor: catInfo?.color, color: catInfo?.color, background: "rgba(15,23,42,0.9)" }}
+        className="absolute top-4 left-1/2 -translate-x-1/2 z-[1000] px-3 py-1.5 rounded-full text-xs font-semibold border shadow-lg"
+        style={{
+          borderColor: catInfo?.color ?? "#64748b",
+          color: catInfo?.color ?? "#94a3b8",
+          background: "rgba(15,23,42,0.92)"
+        }}
       >
-        {catInfo?.label}
+        {catInfo?.label ?? selectedCategory}
+      </div>
+
+      {/* Top-province mini bar */}
+      <div className="absolute top-14 left-4 z-[1000] bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-3 text-xs w-52 shadow-lg hidden sm:block">
+        <p className="text-slate-400 font-medium mb-2 uppercase tracking-wider text-[10px]">Ranking provincial</p>
+        {sorted.map((p, i) => {
+          const v   = p.crimes[selectedCategory] ?? 0;
+          const pct = (v / maxVal) * 100;
+          return (
+            <div key={p.code} className="mb-1.5">
+              <div className="flex items-center justify-between mb-0.5">
+                <span className="text-slate-300">{i + 1}. {p.name}</span>
+                <span className="text-slate-400 tabular-nums">{v.toLocaleString("es-CR")}</span>
+              </div>
+              <div className="w-full h-1 rounded-full bg-slate-800">
+                <div className="h-full rounded-full" style={{ width: `${pct}%`, background: catInfo?.color ?? "#64748b" }} />
+              </div>
+            </div>
+          );
+        })}
       </div>
 
       {/* Selected province panel */}
       {selected && (
-        <div className="absolute top-4 right-4 z-[1000] w-56 bg-slate-900/95 border border-slate-700 rounded-xl p-4 text-sm shadow-xl">
+        <div className="absolute top-4 right-4 z-[1000] w-60 bg-slate-900/95 backdrop-blur border border-slate-700 rounded-xl p-4 text-sm shadow-xl">
           <div className="flex items-center justify-between mb-3">
-            <p className="font-semibold text-white">{selected.name}</p>
-            <button onClick={() => setSelected(null)} className="text-slate-500 hover:text-slate-300 text-lg leading-none">×</button>
+            <p className="font-bold text-white">{selected.name}</p>
+            <button onClick={() => setSelected(null)} className="text-slate-500 hover:text-slate-200 text-xl leading-none px-1">×</button>
           </div>
           <div className="space-y-1.5 text-xs">
             {CATEGORIES.map((cat) => (
-              <div key={cat.key} className="flex justify-between">
+              <div key={cat.key} className="flex justify-between items-center">
                 <span className="text-slate-400">{cat.label}</span>
-                <span className="text-slate-200 font-medium">{selected.crimes[cat.key].toLocaleString("es-CR")}</span>
+                <span className="font-semibold" style={{ color: cat.color }}>
+                  {(selected.crimes[cat.key] ?? 0).toLocaleString("es-CR")}
+                </span>
               </div>
             ))}
-            <div className="border-t border-slate-700 pt-1.5 mt-1.5 flex justify-between">
-              <span className="text-slate-400">Tasa / 100k</span>
-              <span className="text-orange-400 font-semibold">{selected.rate}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-slate-400">Variación</span>
-              <span className={selected.trend > 0 ? "text-red-400" : "text-emerald-400"}>
-                {selected.trend > 0 ? "+" : ""}{selected.trend}%
-              </span>
+            <div className="border-t border-slate-700 pt-2 mt-2 space-y-1.5">
+              <div className="flex justify-between">
+                <span className="text-slate-400">Tasa / 100k hab.</span>
+                <span className="text-orange-400 font-bold">{selected.rate}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-400">Variación anual</span>
+                <span className={selected.trend > 0 ? "text-red-400 font-semibold" : selected.trend < 0 ? "text-emerald-400 font-semibold" : "text-slate-500"}>
+                  {selected.trend !== 0 ? `${selected.trend > 0 ? "+" : ""}${selected.trend}%` : "sin cambio"}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-400">Población</span>
+                <span className="text-slate-300">{selected.population.toLocaleString("es-CR")}</span>
+              </div>
             </div>
           </div>
         </div>

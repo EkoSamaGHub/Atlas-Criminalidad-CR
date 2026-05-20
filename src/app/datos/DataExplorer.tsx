@@ -15,6 +15,7 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
   const [provFilter,   setProvFilter]   = useState<string[]>([]);
   const [crimeFilter,  setCrimeFilter]  = useState<string[]>([]);
   const [periodFilter, setPeriodFilter] = useState<string[]>([]);
+  const [unitFilter,   setUnitFilter]   = useState<string[]>([]);
   const [search,       setSearch]       = useState("");
   const [sortKey,      setSortKey]      = useState<SortKey>("year");
   const [sortAsc,      setSortAsc]      = useState(false);
@@ -24,6 +25,7 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
   const allProvs   = useMemo(() => [...new Set(records.map((r) => r.province))].sort(), [records]);
   const allCrimes  = useMemo(() => [...new Set(records.map((r) => r.crimeType))].sort(), [records]);
   const allPeriods = useMemo(() => [...new Set(records.map((r) => r.period))].sort(), [records]);
+  const allUnits   = useMemo(() => [...new Set(records.map((r) => r.unit ?? "count"))].sort(), [records]);
 
   const filtered = useMemo(() => {
     let r = records;
@@ -31,6 +33,7 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
     if (provFilter.length)   r = r.filter((x) => provFilter.includes(x.province));
     if (crimeFilter.length)  r = r.filter((x) => crimeFilter.includes(x.crimeType));
     if (periodFilter.length) r = r.filter((x) => periodFilter.includes(x.period));
+    if (unitFilter.length)   r = r.filter((x) => unitFilter.includes(x.unit ?? "count"));
     if (search.trim()) {
       const q = search.toLowerCase();
       r = r.filter((x) =>
@@ -65,9 +68,9 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
   };
 
   const exportCSV = useCallback(() => {
-    const header = ["year","period","province","canton","crimeType","count","source"];
+    const header = ["year","period","province","canton","crimeType","count","unit","source"];
     const rows = filtered.map((r) =>
-      [r.year, r.period, `"${r.province}"`, `"${r.canton ?? ""}"`, r.crimeType, r.count, `"${r.source}"`].join(",")
+      [r.year, r.period, `"${r.province}"`, `"${r.canton ?? ""}"`, r.crimeType, r.count, r.unit ?? "count", `"${r.source}"`].join(",")
     );
     const blob = new Blob([header.join(",") + "\n" + rows.join("\n")], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -129,6 +132,18 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
         <FilterGroup label="Período" items={allPeriods} active={periodFilter}
           onToggle={(v) => toggleArr(periodFilter, v, setPeriodFilter)}
           onClear={() => { setPeriodFilter([]); setPage(1); }} />
+
+        {/* Unit filter */}
+        <FilterGroup
+          label="Tipo de dato"
+          items={allUnits.map((u) => u === "rate_per_10k" ? "Tasa /10k hab." : "Conteo real")}
+          active={unitFilter.map((u) => u === "rate_per_10k" ? "Tasa /10k hab." : "Conteo real")}
+          onToggle={(v) => {
+            const unit = v === "Tasa /10k hab." ? "rate_per_10k" : "count";
+            toggleArr(unitFilter, unit, setUnitFilter);
+          }}
+          onClear={() => { setUnitFilter([]); setPage(1); }}
+        />
       </div>
 
       {/* Table */}
@@ -141,7 +156,8 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
               <Th label="Provincia"   k="province" />
               <Th label="Cantón"      k="canton" />
               <Th label="Tipo"        k="crimeType" />
-              <Th label="Cantidad"    k="count" />
+              <Th label="Valor"       k="count" />
+              <th className="px-3 py-3 font-medium whitespace-nowrap text-xs">Unidad</th>
               <Th label="Fuente"      k="source" />
             </tr>
           </thead>
@@ -161,11 +177,20 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
                 <td className="px-3 py-2 font-semibold tabular-nums text-white text-right">
                   {r.count.toLocaleString("es-CR")}
                 </td>
-                <td className="px-3 py-2 text-slate-500 text-xs font-mono truncate max-w-[160px]">{r.source}</td>
+                <td className="px-3 py-2">
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded border ${
+                    (r.unit ?? "count") === "count"
+                      ? "border-emerald-800 text-emerald-400 bg-emerald-950/40"
+                      : "border-amber-800 text-amber-400 bg-amber-950/40"
+                  }`}>
+                    {(r.unit ?? "count") === "count" ? "conteo" : "tasa/10k"}
+                  </span>
+                </td>
+                <td className="px-3 py-2 text-slate-500 text-xs font-mono truncate max-w-[140px]">{r.source}</td>
               </tr>
             ))}
             {visible.length === 0 && (
-              <tr><td colSpan={7} className="px-4 py-8 text-center text-slate-500">No hay registros con los filtros aplicados.</td></tr>
+              <tr><td colSpan={8} className="px-4 py-8 text-center text-slate-500">No hay registros con los filtros aplicados.</td></tr>
             )}
           </tbody>
         </table>

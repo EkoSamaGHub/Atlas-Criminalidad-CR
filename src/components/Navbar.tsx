@@ -11,6 +11,11 @@ const links = [
   { href: "/fuentes",    label: "Fuentes" },
 ];
 
+function isActive(pathname: string, href: string): boolean {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   return (
@@ -24,7 +29,7 @@ export default function Navbar() {
           {links.map((l) => (
             <Link key={l.href} href={l.href}
               className={`px-2.5 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors ${
-                pathname === l.href
+                isActive(pathname, l.href)
                   ? "bg-slate-800 text-white"
                   : "text-slate-400 hover:text-white hover:bg-slate-800/60"
               }`}>

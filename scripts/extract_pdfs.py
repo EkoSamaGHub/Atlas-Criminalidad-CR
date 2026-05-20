@@ -293,6 +293,7 @@ def extract_records_from_table(
                     "canton": None if is_province_row else raw_name,
                     "crimeType": crime_type,
                     "count": val,
+                    "unit": "count",   # PDF Atlas files contain actual crime counts
                     "source": source,
                 }
             )

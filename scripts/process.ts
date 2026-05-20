@@ -42,11 +42,16 @@ const CRIME_ALIASES: Record<string, string> = {
   "hom.": "homicidio",
   robo: "robo",
   robos: "robo",
+  asalto: "robo",            // OIJ "Asalto" = armed robbery
+  "robo de veh": "robo",     // Robo de Vehículo
   hurto: "hurto",
   hurtos: "hurto",
+  "tacha de veh": "hurto",   // Tacha de Vehículo (vehicle theft)
   agresion: "agresion",
   agresión: "agresion",
   agresiones: "agresion",
+  lesiones: "agresion",       // Lesiones (injuries = assaults)
+  "lesiones dolosas": "agresion",
   "viol.": "violacion",
   violacion: "violacion",
   violación: "violacion",
@@ -55,6 +60,11 @@ const CRIME_ALIASES: Record<string, string> = {
   narcotrafico: "narcotrafico",
   droga: "narcotrafico",
   drogas: "narcotrafico",
+  psicotr: "narcotrafico",    // Psicotrópicos (MSP drug offenses)
+  "psicotrópico": "narcotrafico",
+  "violencia dom": "violencia_domestica",
+  "armas y exp": "armas",    // Armas y Explosivos
+  "penaliz": "penalizacion_violencia",
   extorsion: "extorsion",
   extorsión: "extorsion",
 };
@@ -66,6 +76,7 @@ export interface CrimeRecord {
   canton: string | null;
   crimeType: string;
   count: number;
+  unit: "count" | "rate_per_10k";
   source: string;
 }
 
@@ -176,6 +187,7 @@ function processSheet(
         canton: isProvince ? null : label,
         crimeType,
         count,
+        unit: "rate_per_10k",  // All OIJ Excel files are rates per 10,000 inhabitants
         source,
       });
     }
