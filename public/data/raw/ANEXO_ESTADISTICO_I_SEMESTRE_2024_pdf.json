@@ -1,0 +1,839 @@
+[
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 34,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 989,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 378,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 137,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 1236,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 34,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 19,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 1948,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 58,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 39,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 77,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 6,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 21,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 1286,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 66,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 54,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 4,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 19,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 2175,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 14,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 95,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 108,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 32,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 159,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 5,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 18,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 73,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 88,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 21,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 21,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 55,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 4,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 2,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 49,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 612,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 49,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 69,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 207,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 92,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 4,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 1,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 8,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 123,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 2,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 2,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 54,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 3,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 4,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 78,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 25,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 18,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 62,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 2,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "homicidio",
+    "count": 15,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 501,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 87,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 44,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 124,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "violacion",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 77,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 14,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 14,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "hurto",
+    "count": 1,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": null,
+    "crimeType": "robo",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "homicidio",
+    "count": 3,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "hurto",
+    "count": 155,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 19,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 8,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 96,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "violacion",
+    "count": 3,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "hurto",
+    "count": 41,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 8,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 28,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "violacion",
+    "count": 3,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "homicidio",
+    "count": 4,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "hurto",
+    "count": 48,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 16,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 12,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "homicidio",
+    "count": 22,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "hurto",
+    "count": 43,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 5,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 5,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 43,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "hurto",
+    "count": 96,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 35,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 7,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 22,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "robo",
+    "count": 43,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  },
+  {
+    "year": 2024,
+    "period": "I Semestre",
+    "province": "Alajuela",
+    "canton": "ATENAS",
+    "crimeType": "violacion",
+    "count": 22,
+    "source": "ANEXO_ESTADISTICO_I_SEMESTRE_2024"
+  }
+]

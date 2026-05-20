@@ -2,9 +2,8 @@ name: Update Crime Data
 
 on:
   schedule:
-    # Runs every Monday at 6 AM UTC (roughly when MJP publishes new data)
-    - cron: "0 6 * * 1"
-  workflow_dispatch: # allow manual trigger from GitHub UI
+    - cron: "0 6 * * 1"   # Every Monday at 6 AM UTC
+  workflow_dispatch:       # Manual trigger from GitHub UI
 
 jobs:
   scrape-and-process:
@@ -22,13 +21,24 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      - name: Install dependencies
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Node dependencies
         run: npm ci
 
-      - name: Scrape Excel files from Observatorio
+      - name: Install Python dependencies
+        run: pip install pdfplumber requests
+
+      - name: Scrape Excel files
         run: npm run scrape
 
-      - name: Process and normalise data
+      - name: Extract PDF tables
+        run: npm run extract-pdfs
+
+      - name: Normalise and build crimes.json
         run: npm run process
 
       - name: Commit updated data

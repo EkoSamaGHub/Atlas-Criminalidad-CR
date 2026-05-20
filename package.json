@@ -9,7 +9,8 @@
     "lint": "eslint",
     "scrape": "tsx scripts/scrape.ts",
     "process": "tsx scripts/process.ts",
-    "update-data": "tsx scripts/scrape.ts && tsx scripts/process.ts"
+    "extract-pdfs": "python scripts/extract_pdfs.py",
+    "update-data": "tsx scripts/scrape.ts && python scripts/extract_pdfs.py && tsx scripts/process.ts"
   },
   "dependencies": {
     "@types/leaflet": "^1.9.21",
