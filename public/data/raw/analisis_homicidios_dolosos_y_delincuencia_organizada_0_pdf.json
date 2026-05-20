@@ -1,0 +1,101 @@
+[
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "San José",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 1417,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Alajuela",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 728,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Cartago",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 382,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Heredia",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 361,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Guanacaste",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 236,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Puntarenas",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 345,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Limón",
+    "canton": null,
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 260,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Limón",
+    "canton": "Total",
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 3729,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "2015",
+    "district": null,
+    "crimeType": "narcotrafico",
+    "count": 2015,
+    "unit": "count",
+    "source": "analisis_homicidios_dolosos_y_delincuencia_organizada_0"
+  }
+]

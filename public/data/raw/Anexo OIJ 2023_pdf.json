@@ -4,8 +4,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 4,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -13,8 +15,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 529,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -22,8 +26,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 709,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -31,8 +37,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 456,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -40,8 +48,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 19,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -49,8 +59,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 11,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -58,8 +70,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 77,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -67,8 +81,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 99,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -76,8 +92,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 142,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -85,8 +103,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 11,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -94,8 +114,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 9,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -103,8 +125,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 79,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -112,8 +136,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 217,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -121,8 +147,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 170,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -130,8 +158,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 12,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -139,8 +169,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 18,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -148,8 +180,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 126,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -157,8 +191,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 181,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -166,8 +202,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 122,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -175,8 +213,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 10,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -184,8 +224,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 73,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -193,8 +235,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 396,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -202,8 +246,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 177,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -211,8 +257,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 21,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -220,8 +268,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 29,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -229,8 +279,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 190,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -238,8 +290,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 211,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -247,8 +301,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 233,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -256,8 +312,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 15,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -265,8 +323,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 8,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -274,8 +334,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 71,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -283,8 +345,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 87,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -292,8 +356,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 135,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -301,8 +367,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 8,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -310,8 +378,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 6,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -319,8 +389,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 84,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -328,8 +400,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 200,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -337,8 +411,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 156,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -346,8 +422,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 9,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -355,8 +433,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 9,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -364,8 +444,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 39,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -373,8 +455,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 183,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -382,8 +466,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 183,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -391,8 +477,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 4,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -400,8 +488,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 13,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -409,8 +499,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 49,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -418,8 +510,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 231,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -427,8 +521,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 182,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -436,8 +532,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 13,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -445,8 +543,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 29,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -454,8 +554,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 81,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -463,8 +565,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 150,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -472,8 +576,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 90,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -481,8 +587,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 20,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -490,8 +598,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 123,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -499,8 +609,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 245,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -508,8 +620,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 27,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -517,8 +631,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 34,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -526,8 +642,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 316,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -535,8 +653,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 137,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -544,8 +664,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 21,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -553,8 +675,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 64,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -562,8 +686,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 159,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -571,8 +697,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 382,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -580,8 +708,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 12,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -589,8 +719,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 100,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -598,8 +730,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 336,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -607,8 +741,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 299,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -616,8 +752,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 46,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -625,8 +763,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 372,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -634,8 +774,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 302,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -643,8 +785,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 194,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -652,8 +796,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 291,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -661,8 +807,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 22,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -670,8 +818,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 292,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -679,8 +829,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 67,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -688,8 +840,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 26,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -697,8 +851,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 52,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -706,8 +862,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 28,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -715,8 +873,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 280,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -724,8 +884,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 112,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -733,8 +895,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 212,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -742,8 +906,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 42,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -751,8 +917,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 15,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -760,8 +928,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 45,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -769,8 +939,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 119,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -778,8 +950,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 141,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -787,8 +961,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 339,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -796,8 +972,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 149,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -805,8 +983,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 19,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -814,8 +994,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 125,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -823,8 +1005,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 145,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -832,8 +1016,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 72,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -841,8 +1027,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 210,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -850,8 +1038,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 65,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -859,8 +1049,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 20,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -868,8 +1060,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 20,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -877,8 +1071,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 177,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -886,8 +1082,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 138,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -895,8 +1093,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 299,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -904,8 +1104,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 50,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -913,8 +1115,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 182,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -922,8 +1126,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 46,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -931,8 +1137,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 61,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -940,8 +1148,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 366,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -949,8 +1159,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 91,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -958,8 +1170,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 30,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -967,8 +1181,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 146,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -976,8 +1192,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 527,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -985,8 +1203,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 107,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -994,8 +1214,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 10,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1003,8 +1225,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 42,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1012,8 +1236,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 42,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1021,8 +1247,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 212,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1030,8 +1258,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 212,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1039,8 +1269,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 64,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1048,8 +1280,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 255,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1057,8 +1291,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 153,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1066,8 +1302,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 38,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1075,8 +1313,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "homicidio",
     "count": 22,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1084,8 +1324,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 215,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1093,8 +1335,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 488,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1102,8 +1346,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 90,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1111,8 +1357,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "violacion",
     "count": 13,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1120,8 +1368,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 353,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1129,8 +1379,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 118,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1138,8 +1390,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 18,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1147,8 +1401,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 197,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   },
   {
@@ -1156,8 +1412,10 @@
     "period": "Anual",
     "province": "Alajuela",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 161,
+    "unit": "count",
     "source": "Anexo OIJ 2023"
   }
 ]

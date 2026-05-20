@@ -4,8 +4,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 87157,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -13,8 +15,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 26621,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -22,8 +26,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 28749,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -31,8 +37,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 30119,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -40,8 +48,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 1396,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -49,8 +59,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 567,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -58,8 +70,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 5937,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -67,8 +81,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 980,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -76,8 +92,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 5624,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -85,8 +103,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 2451,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -94,8 +114,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 1504,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -103,8 +125,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 3,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -112,8 +136,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 597,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -121,8 +147,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 130,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -130,8 +158,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 488,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -139,8 +169,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 592,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -148,8 +180,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 1464,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -157,8 +191,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 412,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -166,8 +202,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 318,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -175,8 +213,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 104,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -184,8 +224,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 3979,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -193,8 +235,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 568,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -202,8 +246,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 301,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -211,8 +257,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 242,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -220,8 +268,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 1094,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   },
   {
@@ -229,8 +279,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "narcotrafico",
     "count": 483,
+    "unit": "count",
     "source": "ANEXO ESTADÍSTICO ATLAS DE APREHENSIONES MSP 2023"
   }
 ]

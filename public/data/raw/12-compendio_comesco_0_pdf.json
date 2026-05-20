@@ -1,0 +1,24 @@
+[
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "Total",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 37,
+    "unit": "count",
+    "source": "12-compendio_comesco_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "Porcentajes",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 1000,
+    "unit": "count",
+    "source": "12-compendio_comesco_0"
+  }
+]

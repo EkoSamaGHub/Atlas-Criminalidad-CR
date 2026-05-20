@@ -1,0 +1,79 @@
+[
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "407",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 407,
+    "unit": "count",
+    "source": "31-informe12_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "527",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 527,
+    "unit": "count",
+    "source": "31-informe12_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "512",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 512,
+    "unit": "count",
+    "source": "31-informe12_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "351",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 351,
+    "unit": "count",
+    "source": "31-informe12_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "280",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 280,
+    "unit": "count",
+    "source": "31-informe12_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "258",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 258,
+    "unit": "count",
+    "source": "31-informe12_0"
+  },
+  {
+    "year": 2016,
+    "period": "Anual",
+    "province": "Desconocida",
+    "canton": "251",
+    "district": null,
+    "crimeType": "homicidio",
+    "count": 251,
+    "unit": "count",
+    "source": "31-informe12_0"
+  }
+]

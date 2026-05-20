@@ -4,8 +4,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 195908,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -13,8 +15,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 13523,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -22,8 +26,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 87725,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -31,8 +37,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 4161,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -40,8 +48,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 42450,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -49,8 +59,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1667,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -58,8 +70,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 10452,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -67,8 +81,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 577,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -76,8 +92,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 28921,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -85,8 +103,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1191,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -94,8 +114,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 6861,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -103,8 +125,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 986,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -112,8 +136,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 47154,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -121,8 +147,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 2919,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -130,8 +158,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 18214,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -139,8 +169,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1967,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -148,8 +180,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 2715,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -157,8 +191,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 45,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -166,8 +202,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 4344,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -175,8 +213,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 996,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -184,8 +224,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 1511,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -193,8 +235,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 588,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -202,8 +246,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 4280,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -211,8 +257,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 462,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -220,8 +268,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 3345,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -229,8 +279,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 182,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -238,8 +290,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 2526,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -247,8 +301,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 319,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -256,8 +312,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 18008,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -265,8 +323,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1574,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -274,8 +334,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 19681,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -283,8 +345,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1378,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -292,8 +356,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 1712,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -301,8 +367,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 231,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -310,8 +378,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 3633,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -319,8 +389,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 505,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -328,8 +400,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 1090,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -337,8 +411,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 363,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -346,8 +422,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 3702,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -355,8 +433,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 363,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -364,8 +444,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 2832,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -373,8 +455,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 69,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -382,8 +466,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 450,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -391,8 +477,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 242,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -400,8 +488,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 3411,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -409,8 +499,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 68,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -418,8 +510,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 2027,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -427,8 +521,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 304,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -436,8 +532,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 623,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -445,8 +543,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 346,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -454,8 +554,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 4073,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -463,8 +565,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 426,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -472,8 +576,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 2872,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -481,8 +587,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 25,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -490,8 +598,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 786,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -499,8 +609,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 127,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -508,8 +620,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 3035,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -517,8 +631,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1556,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -526,8 +642,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 319,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -535,8 +653,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 659,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -544,8 +664,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 320,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -553,8 +675,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1602,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -562,8 +686,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 214,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -571,8 +697,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 798,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -580,8 +708,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 87,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -589,8 +719,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 2877,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -598,8 +730,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 785,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -607,8 +741,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 801,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -616,8 +752,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 215,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -625,8 +763,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1077,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -634,8 +774,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 1569,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -643,8 +785,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 918,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -652,8 +796,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 393,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -661,8 +807,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "hurto",
     "count": 215,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -670,8 +818,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 620,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -679,8 +829,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1860,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   },
   {
@@ -688,8 +840,10 @@
     "period": "Anual",
     "province": "San José",
     "canton": null,
+    "district": null,
     "crimeType": "robo",
     "count": 1240,
+    "unit": "count",
     "source": "ATLAS 2024_Y_ANEXO_0"
   }
 ]
