@@ -3,10 +3,14 @@
  * Reads raw JSON files produced by scrape.ts and normalises them into
  * a single crimes.json consumed by the Next.js frontend.
  *
- * Heuristic approach because each Excel edition has a different layout:
- *   1. Detect rows that look like province/canton headers.
- *   2. Detect columns that look like crime-type counts.
- *   3. Emit normalised CrimeRecord rows.
+ * Data structure of OIJ/MSP Excel files:
+ *   Row 0-1: Title + "Tasa por 10 mil habitantes"
+ *   Row 2:   Header — col 0 = "Cantón", col 1 = "Distrito", col 2+ = crime types
+ *   Row 3:   Province header — ["San José", null, null, ...]
+ *   Row 4:   First district of first canton — ["San José", "Carmen", rate1, ...]
+ *   Row 5+:  More districts — [null, "Merced", rate1, ...]  (col 0 = null)
+ *
+ * Province name == Canton name == first District name (capital district).
  *
  * Usage: npm run process
  */
@@ -50,20 +54,21 @@ const CRIME_ALIASES: Record<string, string> = {
   agresion: "agresion",
   agresión: "agresion",
   agresiones: "agresion",
-  lesiones: "agresion",       // Lesiones (injuries = assaults)
+  lesiones: "agresion",
   "lesiones dolosas": "agresion",
   "viol.": "violacion",
   violacion: "violacion",
   violación: "violacion",
   violaciones: "violacion",
+  "violacion, estupro": "violacion",  // OIJ exact header phrase
   narcotráfico: "narcotrafico",
   narcotrafico: "narcotrafico",
   droga: "narcotrafico",
   drogas: "narcotrafico",
-  psicotr: "narcotrafico",    // Psicotrópicos (MSP drug offenses)
+  psicotr: "narcotrafico",
   "psicotrópico": "narcotrafico",
   "violencia dom": "violencia_domestica",
-  "armas y exp": "armas",    // Armas y Explosivos
+  "armas y exp": "armas",
   "penaliz": "penalizacion_violencia",
   extorsion: "extorsion",
   extorsión: "extorsion",
@@ -74,6 +79,7 @@ export interface CrimeRecord {
   period: string;
   province: string;
   canton: string | null;
+  district: string | null;
   crimeType: string;
   count: number;
   unit: "count" | "rate_per_10k";
@@ -98,7 +104,7 @@ function detectCrimeType(header: unknown): string | null {
   if (typeof header !== "string") return null;
   const n = normalise(header);
   for (const [alias, canonical] of Object.entries(CRIME_ALIASES)) {
-    if (n.includes(alias)) return canonical;
+    if (n.includes(normalise(alias))) return canonical;
   }
   return null;
 }
@@ -124,7 +130,7 @@ function processSheet(
   const records: CrimeRecord[] = [];
   if (!rows || rows.length < 2) return records;
 
-  // Find header row — the row that has the most crime-type matches
+  // ── Step 1: Find header row (most crime-type column matches) ──────────────
   let headerRowIdx = -1;
   let crimeColMap: Record<number, string> = {};
   let bestScore = 0;
@@ -146,32 +152,89 @@ function processSheet(
 
   if (headerRowIdx === -1 || Object.keys(crimeColMap).length === 0) return records;
 
-  // Find the column that holds province/canton names (first text column)
-  const firstRow = rows[headerRowIdx + 1] ?? [];
-  let nameCol = 0;
-  for (let j = 0; j < firstRow.length; j++) {
-    if (typeof firstRow[j] === "string" && (firstRow[j] as string).length > 2) {
-      nameCol = j;
+  // ── Step 2: Detect column structure ───────────────────────────────────────
+  //  OIJ/MSP files use 2 name columns: col 0 = Canton, col 1 = Distrito
+  //  Detect by looking for a "Distrito" header cell in the header row.
+  const headerRow = rows[headerRowIdx];
+  let districtCol = -1;
+  for (let j = 0; j < headerRow.length; j++) {
+    const h = typeof headerRow[j] === "string" ? normalise(headerRow[j] as string) : "";
+    if (h.includes("distrit") || h === "distrito") {
+      districtCol = j;
       break;
     }
   }
 
+  // For the single-name-column case, find the first text column in data rows
+  let nameCol = 0;
+  if (districtCol < 0) {
+    const firstRow = rows[headerRowIdx + 1] ?? [];
+    for (let j = 0; j < firstRow.length; j++) {
+      if (typeof firstRow[j] === "string" && (firstRow[j] as string).length > 2) {
+        nameCol = j;
+        break;
+      }
+    }
+  }
+  // When using canton+district structure, nameCol = 0 (canton column)
+
+  // ── Step 3: Iterate data rows ─────────────────────────────────────────────
   let currentProvince = "Desconocida";
+  let currentCanton: string | null = null;
 
   for (let i = headerRowIdx + 1; i < rows.length; i++) {
     const row = rows[i];
-    const nameCell = row[nameCol];
-    if (!nameCell) continue;
 
-    const province = detectProvince(nameCell);
-    if (province) {
-      currentProvince = province;
-      continue;
+    let cantonLabel: string | null = null;
+    let districtLabel: string | null = null;
+
+    if (districtCol >= 0) {
+      // ── Canton+District 2-column structure ──────────────────────────────
+      const col0 = row[0];
+      const col1 = row[districtCol];
+
+      if (col0 != null && String(col0).trim().length > 0) {
+        // col 0 has a value: could be province OR canton
+        const prov = detectProvince(col0);
+
+        if (prov && (col1 == null || String(col1).trim().length === 0)) {
+          // Province header row (col 1 is empty)
+          currentProvince = prov;
+          currentCanton = null;
+          continue;
+        }
+
+        // This is a canton row (col 0 = canton, col 1 = first district)
+        // NOTE: province name == canton name (e.g. "San José" canton) is handled here
+        if (prov) currentProvince = prov;
+        currentCanton = String(col0).trim();
+        cantonLabel = currentCanton;
+        districtLabel = col1 != null && String(col1).trim().length > 0
+          ? String(col1).trim() : null;
+
+      } else if (col0 == null || String(col0).trim().length === 0) {
+        // col 0 is empty — this is a subsequent district row
+        if (!currentCanton) continue;
+        if (col1 == null || String(col1).trim().length === 0) continue;
+        cantonLabel = currentCanton;
+        districtLabel = String(col1).trim();
+      }
+
+    } else {
+      // ── Single-name-column structure (fallback) ─────────────────────────
+      const nameCell = row[nameCol];
+      if (!nameCell) continue;
+
+      const prov = detectProvince(nameCell);
+      if (prov) { currentProvince = prov; continue; }
+
+      cantonLabel = typeof nameCell === "string" ? nameCell.trim() : null;
+      if (!cantonLabel) continue;
     }
 
-    const label = typeof nameCell === "string" ? nameCell.trim() : null;
-    if (!label) continue;
+    if (!cantonLabel) continue;
 
+    // Emit a record for each crime type column
     for (const [colStr, crimeType] of Object.entries(crimeColMap)) {
       const col = parseInt(colStr);
       const val = row[col];
@@ -179,15 +242,16 @@ function processSheet(
       const count = toNumber(val);
       if (count <= 0) continue;
 
-      const isProvince = PROVINCES.includes(label);
+      const isProvince = PROVINCES.includes(cantonLabel);
       records.push({
         year,
         period,
-        province: isProvince ? label : currentProvince,
-        canton: isProvince ? null : label,
+        province: isProvince ? cantonLabel : currentProvince,
+        canton:   isProvince ? null : cantonLabel,
+        district: isProvince ? null : districtLabel,
         crimeType,
         count,
-        unit: "rate_per_10k",  // All OIJ Excel files are rates per 10,000 inhabitants
+        unit: "rate_per_10k",  // All OIJ/MSP Excel files are rates per 10,000 inhabitants
         source,
       });
     }
@@ -232,6 +296,9 @@ function main() {
   let fileCount = 0;
 
   for (const entry of manifest.files) {
+    // Skip PDF-extracted files (they have their own pipeline in extract_pdfs.py)
+    if (entry.filename.endsWith("_pdf.json")) continue;
+
     const rawPath = path.join(RAW_DIR, entry.filename);
     if (!fs.existsSync(rawPath)) {
       console.warn(`  ⚠ Missing: ${entry.filename}`);
@@ -256,40 +323,62 @@ function main() {
     if (recordCount > 0) fileCount++;
   }
 
+  // ── Also merge in existing PDF records from crimes.json ───────────────────
+  const existingPath = OUT_FILE;
+  let pdfRecords: CrimeRecord[] = [];
+  if (fs.existsSync(existingPath)) {
+    const existing = JSON.parse(fs.readFileSync(existingPath, "utf-8"));
+    pdfRecords = (existing.records ?? []).filter(
+      (r: CrimeRecord) => r.unit === "count"
+    );
+    console.log(`\n  📄 Keeping ${pdfRecords.length} existing PDF count records`);
+  }
+
+  const finalRecords: CrimeRecord[] = [...allRecords, ...pdfRecords];
+
   // ── Build summary structures for the frontend ─────────────────────────────
 
-  // Province summaries (latest year available per province)
+  // Province summaries — only from province-level records (canton = null)
   const byProvince: Record<string, Record<string, number>> = {};
-  for (const r of allRecords) {
+  const byYearCrime: Record<string, Record<string, number>> = {};
+
+  for (const r of finalRecords) {
+    // Year trend: include all records (rates for historical, counts for recent)
+    const key = String(r.year);
+    if (!byYearCrime[key]) byYearCrime[key] = {};
+    byYearCrime[key][r.crimeType] = (byYearCrime[key][r.crimeType] ?? 0) + r.count;
+  }
+
+  // Province totals from count records only (PDF data, province-level)
+  for (const r of pdfRecords.filter(r => !r.canton)) {
     if (!byProvince[r.province]) byProvince[r.province] = {};
     byProvince[r.province][r.crimeType] =
       (byProvince[r.province][r.crimeType] ?? 0) + r.count;
   }
 
-  // Year × crime-type totals for trend chart
-  const byYearCrime: Record<string, Record<string, number>> = {};
-  for (const r of allRecords) {
-    const key = String(r.year);
-    if (!byYearCrime[key]) byYearCrime[key] = {};
-    byYearCrime[key][r.crimeType] =
-      (byYearCrime[key][r.crimeType] ?? 0) + r.count;
-  }
-
   const output = {
     generatedAt: new Date().toISOString(),
     sourceFiles: fileCount,
-    totalRecords: allRecords.length,
+    totalRecords: finalRecords.length,
     provinces: byProvince,
     yearTrend: byYearCrime,
-    records: allRecords,
+    records: finalRecords,
   };
 
   fs.writeFileSync(OUT_FILE, JSON.stringify(output, null, 2));
 
-  console.log(`\n✅ crimes.json written — ${allRecords.length} records from ${fileCount} file(s)`);
-  if (allRecords.length === 0) {
-    console.log("   ℹ  No records extracted yet — the normaliser may need tuning once you inspect the raw JSON files.");
-  }
+  const districtCount = new Set(
+    allRecords.filter(r => r.district).map(r => `${r.province}/${r.canton}/${r.district}`)
+  ).size;
+  const cantonCount = new Set(
+    allRecords.filter(r => r.canton).map(r => `${r.province}/${r.canton}`)
+  ).size;
+
+  console.log(`\n✅ crimes.json written — ${finalRecords.length} total records`);
+  console.log(`   Excel records (rates):  ${allRecords.length} from ${fileCount} file(s)`);
+  console.log(`   PDF records (counts):   ${pdfRecords.length}`);
+  console.log(`   Districts covered:      ${districtCount}`);
+  console.log(`   Cantons covered:        ${cantonCount}`);
 }
 
 main();

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getAllRecords, getStats, PROVINCE_META } from "@/lib/data";
+import { getAllRecords, getStats, getDistrictRankings, PROVINCE_META } from "@/lib/data";
 import type { CrimeRecord } from "@/lib/data";
 
 const CRIME_COLORS: Record<string, string> = {
@@ -38,6 +38,7 @@ export default async function ProvinciaPage({ params }: { params: Params }) {
   const meta = PROVINCE_META[province];
   const allRecords = getAllRecords();
   const stats = getStats();
+  const districtRankings = getDistrictRankings(province);
 
   const provRecords = allRecords.filter((r) => r.province === province);
   const countRecords = provRecords.filter((r) => r.unit === "count" || r.unit === undefined);
@@ -117,6 +118,7 @@ export default async function ProvinciaPage({ params }: { params: Params }) {
             <p className="text-slate-400 text-sm">
               {meta?.population.toLocaleString("es-CR")} habitantes ·{" "}
               {cantons.length} cantones con datos ·{" "}
+              {districtRankings.length > 0 && <>{districtRankings.length} distritos · </>}
               {years.length} años de cobertura ({years.at(-1)}–{years[0]})
             </p>
             {isRateData && (
@@ -294,6 +296,59 @@ export default async function ProvinciaPage({ params }: { params: Params }) {
         </div>
       )}
 
+      {/* District breakdown table */}
+      {districtRankings.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-base font-semibold text-white">
+              Distritos ({districtRankings.length})
+            </h2>
+            <span className="text-xs text-amber-400/70 border border-amber-900/40 bg-amber-950/20 rounded px-2 py-0.5">
+              Tasas /10k hab. · 2018–2022
+            </span>
+          </div>
+          <div className="rounded-xl border border-slate-800 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-slate-800/60 text-slate-400 text-left sticky top-0">
+                <tr>
+                  <th className="px-3 py-3 font-medium w-8">#</th>
+                  <th className="px-4 py-3 font-medium">Cantón</th>
+                  <th className="px-4 py-3 font-medium">Distrito</th>
+                  {crimeTypes.map((ct) => (
+                    <th key={ct} className="px-3 py-3 font-medium text-center text-xs capitalize"
+                      style={{ color: CRIME_COLORS[ct] ?? "#94a3b8" }}>{ct}</th>
+                  ))}
+                  <th className="px-4 py-3 font-medium text-right">Total</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {districtRankings.map((d, i) => (
+                  <tr key={`${d.canton}-${d.district}`} className="hover:bg-slate-800/30 transition-colors">
+                    <td className="px-3 py-2 text-slate-600 text-xs tabular-nums">{i + 1}</td>
+                    <td className="px-4 py-2 text-slate-400 text-xs">{d.canton}</td>
+                    <td className="px-4 py-2 font-medium text-white text-sm">{d.district}</td>
+                    {crimeTypes.map((ct) => (
+                      <td key={ct} className="px-3 py-2 text-center text-xs tabular-nums text-slate-300">
+                        {(d.crimes[ct] ?? 0) > 0
+                          ? (d.crimes[ct] ?? 0).toLocaleString("es-CR")
+                          : <span className="text-slate-700">—</span>}
+                      </td>
+                    ))}
+                    <td className="px-4 py-2 text-right font-bold text-white tabular-nums text-xs">
+                      {d.total.toLocaleString("es-CR")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-slate-600 mt-1">
+            Datos de Anexos Estadísticos Excel OIJ/MSP (2018–2022) · tasas por 10,000 habitantes.
+            Suma de todos los años disponibles por distrito.
+          </p>
+        </div>
+      )}
+
       {/* All periods available */}
       {hasSemestreData && (
         <div className="rounded-xl border border-slate-800 bg-slate-900/40 p-5">
@@ -312,7 +367,6 @@ export default async function ProvinciaPage({ params }: { params: Params }) {
         <div className="flex flex-wrap gap-2">
           {Object.entries(SLUG_MAP)
             .filter(([, pName]) => pName !== province)
-            .filter(([slug]) => slug !== "limon")  // dedupe
             .map(([slug, pName]) => (
               <Link key={slug} href={`/provincias/${slug}`}
                 className="px-3 py-1.5 rounded-lg border border-slate-700 text-xs text-slate-400 hover:text-white hover:border-slate-500 transition-colors">

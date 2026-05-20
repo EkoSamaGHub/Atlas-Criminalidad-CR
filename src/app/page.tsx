@@ -82,10 +82,11 @@ export default function HomePage() {
 
       {/* ── Coverage strip ───────────────────────────────────────── */}
       <section className="border-b border-slate-800 bg-slate-950">
-        <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
+        <div className="max-w-7xl mx-auto px-6 py-6 grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
           <CoverageItem icon="📅" value={`${stats.years.length} años`} label={`${stats.yearRange[0]} → ${stats.yearRange[1]}`} />
           <CoverageItem icon="📍" value="7 provincias" label="cobertura nacional completa" />
           <CoverageItem icon="🏘️" value={`${stats.cantonCount} cantones`} label="con datos disponibles" />
+          <CoverageItem icon="🗺️" value={`${stats.districtCount > 0 ? stats.districtCount : "473+"} distritos`} label="nivel más granular" />
           <CoverageItem icon="📂" value={`${stats.sourceFiles} publicaciones`} label="del Observatorio de la Violencia" />
         </div>
       </section>

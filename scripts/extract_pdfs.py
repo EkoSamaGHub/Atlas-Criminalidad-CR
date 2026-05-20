@@ -291,6 +291,7 @@ def extract_records_from_table(
                     "period": period,
                     "province": raw_name if is_province_row else current_province,
                     "canton": None if is_province_row else raw_name,
+                    "district": None,   # PDF extractions are province/canton level only
                     "crimeType": crime_type,
                     "count": val,
                     "unit": "count",   # PDF Atlas files contain actual crime counts

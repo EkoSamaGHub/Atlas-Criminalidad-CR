@@ -20,6 +20,7 @@ export interface CrimeRecord {
   period: string;
   province: string;
   canton: string | null;
+  district: string | null;           // district-level data from Excel files
   crimeType: string;
   count: number;
   unit?: "count" | "rate_per_10k";  // undefined = legacy (treat as count)
@@ -64,6 +65,7 @@ export interface DataStats {
   crimeTypes: string[];
   provinces: string[];
   cantonCount: number;
+  districtCount: number;
   sourceFiles: number;
   generatedAt: string | null;
   isReal: boolean;
@@ -133,7 +135,7 @@ export function getStats(): DataStats {
       years: [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
       crimeTypes: ["homicidio", "robo", "hurto", "narcotrafico", "violacion"],
       provinces: Object.keys(PROVINCE_META),
-      cantonCount: 0, sourceFiles: 0, generatedAt: null, isReal: false,
+      cantonCount: 0, districtCount: 0, sourceFiles: 0, generatedAt: null, isReal: false,
     };
   }
   const records = json.records;
@@ -150,6 +152,12 @@ export function getStats(): DataStats {
     records.filter((r) => r.canton).map((r) => r.canton!)
   ).size;
 
+  const districtCount = new Set(
+    records
+      .filter((r) => r.district)
+      .map((r) => `${r.province}/${r.canton}/${r.district}`)
+  ).size;
+
   return {
     totalRecords: json.totalRecords,
     totalCount,
@@ -160,6 +168,7 @@ export function getStats(): DataStats {
     crimeTypes: [...new Set(records.map((r) => r.crimeType))].sort(),
     provinces: Object.keys(PROVINCE_META),
     cantonCount,
+    districtCount,
     sourceFiles: json.sourceFiles,
     generatedAt: json.generatedAt,
     isReal: true,
@@ -271,6 +280,41 @@ export function getCantonRankings(): CantonData[] {
   for (const r of cantonRecs) {
     const key = `${r.province}||${r.canton}`;
     if (!map.has(key)) map.set(key, { canton: r.canton!, province: r.province, crimes: {}, total: 0 });
+    const entry = map.get(key)!;
+    entry.crimes[r.crimeType] = (entry.crimes[r.crimeType] ?? 0) + r.count;
+    entry.total += r.count;
+  }
+  return [...map.values()].sort((a, b) => b.total - a.total);
+}
+
+export interface DistrictData {
+  district: string;
+  canton: string;
+  province: string;
+  crimes: Record<string, number>;
+  total: number;
+}
+
+export function getDistrictRankings(province?: string): DistrictData[] {
+  const json = loadCrimesJson();
+  if (!json) return [];
+
+  // Use rate records (Excel data is where district detail lives)
+  let districtRecs = json.records.filter((r) => r.district && r.canton);
+  if (province) districtRecs = districtRecs.filter((r) => r.province === province);
+
+  const map = new Map<string, DistrictData>();
+  for (const r of districtRecs) {
+    const key = `${r.province}||${r.canton}||${r.district}`;
+    if (!map.has(key)) {
+      map.set(key, {
+        district: r.district!,
+        canton: r.canton!,
+        province: r.province,
+        crimes: {},
+        total: 0,
+      });
+    }
     const entry = map.get(key)!;
     entry.crimes[r.crimeType] = (entry.crimes[r.crimeType] ?? 0) + r.count;
     entry.total += r.count;
