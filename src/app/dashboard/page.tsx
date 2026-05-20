@@ -52,13 +52,21 @@ export default function DashboardPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-8">
 
       {/* Header */}
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 border-b border-slate-800 pb-6">
         <div>
           <h1 className="text-2xl font-bold text-white">Dashboard Estadístico</h1>
           <p className="text-slate-400 text-sm mt-1">
             {stats.yearRange[0]}–{stats.yearRange[1]} · {stats.totalRecords.toLocaleString("es-CR")} registros ·{" "}
-            {grandTotal.toLocaleString("es-CR")} delitos totales · {stats.sourceFiles} publicaciones procesadas
+            {grandTotal.toLocaleString("es-CR")} delitos contabilizados · {stats.sourceFiles} publicaciones
           </p>
+        </div>
+        <div className="flex gap-2 text-xs">
+          <span className="px-2.5 py-1 rounded-full border border-emerald-800 text-emerald-400 bg-emerald-950/40">
+            Conteos reales: 2023–2025
+          </span>
+          <span className="px-2.5 py-1 rounded-full border border-amber-800 text-amber-400 bg-amber-950/40">
+            Tasas /10k: 2018–2022
+          </span>
         </div>
       </div>
 
@@ -75,7 +83,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Year trend line chart */}
-      <ChartCard title="Tendencia Anual por Categoría de Delito" subtitle="Suma de todos los registros disponibles por año">
+      <ChartCard title="Tendencia Anual por Categoría de Delito" subtitle="2018-2022: tasas /10k (Excel) | 2023-2025: conteos reales (PDF Atlas)">
         <div className="flex flex-wrap gap-2 mb-4">
           {Object.keys(CRIME_COLORS).map((ct) => (
             <button key={ct} onClick={() => toggleCrime(ct)}
@@ -200,13 +208,15 @@ export default function DashboardPage() {
                 ))}
                 <th className="px-4 py-3 font-medium text-right">Total</th>
                 <th className="px-4 py-3 font-medium">Var.</th>
+                <th className="px-2 py-3 font-medium w-8" />
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
               {[...provinces].sort((a, b) => b.rate - a.rate).map((p) => {
                 const total = Object.values(p.crimes).reduce((s, v) => s + v, 0);
+                const slug = p.name.toLowerCase().replace(/\s+/g, "-").replace(/[áàä]/g,"a").replace(/[éèë]/g,"e").replace(/[íìï]/g,"i").replace(/[óòö]/g,"o").replace(/[úùü]/g,"u");
                 return (
-                  <tr key={p.code} className="hover:bg-slate-800/30 transition-colors">
+                  <tr key={p.code} className="hover:bg-slate-800/30 transition-colors group">
                     <td className="px-4 py-3 font-medium text-white">{p.name}</td>
                     {CATEGORIES.map((c) => (
                       <td key={c.key} className="px-3 py-3 text-slate-300 text-center text-xs tabular-nums">
@@ -216,6 +226,10 @@ export default function DashboardPage() {
                     <td className="px-4 py-3 font-semibold text-right tabular-nums">{total.toLocaleString("es-CR")}</td>
                     <td className={`px-4 py-3 font-medium text-xs ${p.trend > 0 ? "text-red-400" : p.trend < 0 ? "text-emerald-400" : "text-slate-500"}`}>
                       {p.trend !== 0 ? `${p.trend > 0 ? "+" : ""}${p.trend}%` : "—"}
+                    </td>
+                    <td className="px-2 py-3">
+                      <a href={`/provincias/${slug}`}
+                        className="text-xs text-slate-600 group-hover:text-red-400 transition-colors">→</a>
                     </td>
                   </tr>
                 );
