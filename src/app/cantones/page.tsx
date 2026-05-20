@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getCantonRankings, getStats } from "@/lib/data";
 
 const CRIME_COLORS: Record<string, string> = {
@@ -22,8 +23,14 @@ export default function CantonesPage() {
       <div className="border-b border-slate-800 pb-6">
         <h1 className="text-2xl font-bold text-white mb-1">Rankings por Cantón</h1>
         <p className="text-slate-400 text-sm">
-          {cantons.length} cantones con datos disponibles · {stats.yearRange[0]}–{stats.yearRange[1]} acumulado
+          {cantons.length} cantones con datos disponibles · {stats.yearRange[0]}–{stats.yearRange[1]} · acumulado todas las categorías
         </p>
+        {stats.totalRateRecords > 0 && (
+          <p className="text-xs text-amber-500/70 mt-1">
+            Nota: incluye tasas por 10k hab. (Excel 2018-2022) y conteos reales (PDF 2023+).
+            Los cantones solo aparecen si tienen datos en los archivos Excel provinciales.
+          </p>
+        )}
       </div>
 
       {/* Summary strip */}
@@ -57,7 +64,10 @@ export default function CantonesPage() {
               <tr key={`${c.province}-${c.canton}`} className="hover:bg-slate-800/30 transition-colors">
                 <td className="px-3 py-2.5 text-slate-600 text-xs tabular-nums">{i + 1}</td>
                 <td className="px-4 py-2.5 font-medium text-white">{c.canton}</td>
-                <td className="px-4 py-2.5 text-slate-400 text-xs">{c.province}</td>
+                <td className="px-4 py-2.5 text-slate-400 text-xs">
+                  <Link href={`/provincias/${c.province.toLowerCase().replace(/\s+/g, "-").replace(/[áàä]/g,"a").replace(/[éèë]/g,"e").replace(/[íìï]/g,"i").replace(/[óòö]/g,"o").replace(/[úùü]/g,"u")}`}
+                    className="hover:text-red-400 transition-colors">{c.province}</Link>
+                </td>
                 {crimeTypes.map((ct) => (
                   <td key={ct} className="px-3 py-2.5 text-center text-xs tabular-nums text-slate-300">
                     {(c.crimes[ct] ?? 0) > 0 ? (c.crimes[ct] ?? 0).toLocaleString("es-CR") : <span className="text-slate-700">—</span>}
