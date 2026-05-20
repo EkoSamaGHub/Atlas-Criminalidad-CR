@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw Excel downloads (large binary files — only processed JSON is committed)
+/public/data/raw/*.xls
+/public/data/raw/*.xlsx

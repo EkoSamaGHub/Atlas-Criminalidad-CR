@@ -1,0 +1,106 @@
+{
+  "updatedAt": "2026-05-20T17:11:15.793Z",
+  "count": 10,
+  "files": [
+    {
+      "title": "Anexo estadístico de infracciones MSP. 2022",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_msp_2022.xls",
+      "filename": "anexo_msp_2022.json",
+      "year": 2022,
+      "sheets": [
+        "Anexo MSP 2022"
+      ],
+      "downloadedAt": "2026-05-20T17:11:11.331Z"
+    },
+    {
+      "title": "Anexo Estadístico del atlas de delitos 2022",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_2022.xlsx",
+      "filename": "anexo_estadistico_oij_2022.json",
+      "year": 2022,
+      "sheets": [
+        "Anexo Atlas OIJ 2022"
+      ],
+      "downloadedAt": "2026-05-20T17:11:12.240Z"
+    },
+    {
+      "title": "Anexo Estadístico de delitos 2021",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_2021.xlsx",
+      "filename": "anexo_estadistico_oij_2021.json",
+      "year": 2021,
+      "sheets": [
+        "Anexo "
+      ],
+      "downloadedAt": "2026-05-20T17:11:11.795Z"
+    },
+    {
+      "title": "Anexo Estadístico, Atlas de ocurrencia de Deltios MSP 2021",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_msp_2021_0.xls",
+      "filename": "anexo_msp_2021_0.json",
+      "year": 2021,
+      "sheets": [
+        "Anexo MSP 2021"
+      ],
+      "downloadedAt": "2026-05-20T17:11:12.676Z"
+    },
+    {
+      "title": "Anexo Estadístico Atlas OIJ 2021",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_21_0.xlsx",
+      "filename": "anexo_estadistico_oij_21_0.json",
+      "year": 2021,
+      "sheets": [
+        "Anexo "
+      ],
+      "downloadedAt": "2026-05-20T17:11:13.119Z"
+    },
+    {
+      "title": "Anexo Estadístico del Atlas de delitos 2020",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_2020_0.xlsx",
+      "filename": "anexo_estadistico_oij_2020_0.json",
+      "year": 2020,
+      "sheets": [
+        "Anexo Estadistico"
+      ],
+      "downloadedAt": "2026-05-20T17:11:13.641Z"
+    },
+    {
+      "title": "Anexo Estadístico del Atlas de delitos I Sem. 2020",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_atlas_oij_i_semestre_2020_0.xls",
+      "filename": "anexo_atlas_oij_i_semestre_2020_0.json",
+      "year": 2020,
+      "sheets": [
+        "Anexo Excel"
+      ],
+      "downloadedAt": "2026-05-20T17:11:14.079Z"
+    },
+    {
+      "title": "Anexo Estadístico Atlas de ocurrencia de delitos 2019",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_mapas_de_conglomerados_1.xlsx",
+      "filename": "anexo_mapas_de_conglomerados_1.json",
+      "year": 2019,
+      "sheets": [
+        "Anexo Atlas OIJ 2019"
+      ],
+      "downloadedAt": "2026-05-20T17:11:14.517Z"
+    },
+    {
+      "title": "Anexo estadístico del Atlas MSP 2018",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_msp_2018_0.xlsx",
+      "filename": "anexo_estadistico_msp_2018_0.json",
+      "year": 2018,
+      "sheets": [
+        "Anexo Final MSP 2018"
+      ],
+      "downloadedAt": "2026-05-20T17:11:14.951Z"
+    },
+    {
+      "title": "Anexo al Atlas de Delitos 2018",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_atlas_oij_2018_0.xlsx",
+      "filename": "anexo_atlas_oij_2018_0.json",
+      "year": 2018,
+      "sheets": [
+        "ANEXO ATLAS OIJ 2018"
+      ],
+      "downloadedAt": "2026-05-20T17:11:15.392Z"
+    }
+  ]
+}
