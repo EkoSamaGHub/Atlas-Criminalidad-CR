@@ -179,41 +179,42 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
   const json = loadCrimesJson();
   if (!json || json.totalRecords === 0) return { provinces: MOCK_PROVINCES, isReal: false };
 
-  // Prefer count-based records; fall back to rate-based if no count data
   const countRecs = json.records.filter(isCount);
   const rateRecs  = json.records.filter(isRate);
 
-  const useCount = countRecs.length > 0;
-  const working  = useCount ? countRecs : rateRecs;
+  const pickPool = (recs: CrimeRecord[]) => {
+    const annual = recs.filter((r) => r.period === "Anual");
+    const years = [...new Set(annual.map((r) => r.year))].sort((a, b) => b - a);
+    if (years.length === 0) {
+      const allYears = [...new Set(recs.map((r) => r.year))].sort((a, b) => b - a);
+      const ly = allYears[0]; const py = allYears[1] ?? allYears[0];
+      return { pool: recs.filter((r) => r.year === ly), prevPool: recs.filter((r) => r.year === py), latestYear: ly, prevYear: py };
+    }
+    const latestYear = years[0];
+    const prevYear = years[1] ?? years[0];
+    return {
+      pool: annual.filter((r) => r.year === latestYear),
+      prevPool: annual.filter((r) => r.year === prevYear),
+      latestYear,
+      prevYear,
+    };
+  };
 
-  const annualRecords = working.filter((r) => r.period === "Anual");
-  const semRecords    = working.filter((r) => r.period.includes("Semestre"));
-
-  // Pick best year: prefer annual, else latest semestre
-  const annualYears = [...new Set(annualRecords.map((r) => r.year))].sort((a, b) => b - a);
-  const semYears    = [...new Set(semRecords.map((r) => r.year))].sort((a, b) => b - a);
-  const latestYear  = annualYears[0] ?? semYears[0];
-  const prevYear    = annualYears[1] ?? annualYears[0];
-
-  // Pool: annual records for latestYear; if none, use semestre
-  const pool = annualRecords.filter((r) => r.year === latestYear).length > 0
-    ? annualRecords.filter((r) => r.year === latestYear)
-    : working.filter((r) => r.year === latestYear);
-
-  const prevPool = annualRecords.filter((r) => r.year === prevYear);
-
-  const sumFor = (records: CrimeRecord[], province: string, crime: string) =>
-    records
-      .filter((r) => r.province === province && r.crimeType === crime && !r.canton)
-      .reduce((s, r) => s + r.count, 0);
+  const sumIn = (recs: CrimeRecord[], crime: string) =>
+    recs.filter((r) => r.crimeType === crime && !r.canton).reduce((s, r) => s + r.count, 0);
 
   const provinces: ProvinceData[] = Object.entries(PROVINCE_META).map(([name, meta]) => {
+    // Per-province: prefer count records (PDF 2023+), fall back to rate records (Excel 2018-2022)
+    const provCount = countRecs.filter((r) => r.province === name);
+    const provRate  = rateRecs.filter((r) => r.province === name);
+    const { pool, prevPool, latestYear, prevYear } = pickPool(provCount.length > 0 ? provCount : provRate);
+
     const crimes = {
-      homicidio:    sumFor(pool, name, "homicidio"),
-      robo:         sumFor(pool, name, "robo"),
-      agresion:     sumFor(pool, name, "agresion"),
-      narcotrafico: sumFor(pool, name, "narcotrafico"),
-      hurto:        sumFor(pool, name, "hurto"),
+      homicidio:    sumIn(pool, "homicidio"),
+      robo:         sumIn(pool, "robo"),
+      agresion:     sumIn(pool, "agresion"),
+      narcotrafico: sumIn(pool, "narcotrafico"),
+      hurto:        sumIn(pool, "hurto"),
     };
     const total = Object.values(crimes).reduce((s, v) => s + v, 0);
     const rate = parseFloat(((total / meta.population) * 100000).toFixed(1));
@@ -221,7 +222,7 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
     let trend = 0;
     if (prevYear && prevYear !== latestYear) {
       const prevTotal = (["homicidio","robo","agresion","narcotrafico","hurto"] as const)
-        .reduce((s, ct) => s + sumFor(prevPool, name, ct), 0);
+        .reduce((s, ct) => s + sumIn(prevPool, ct), 0);
       if (prevTotal > 0) trend = parseFloat((((total - prevTotal) / prevTotal) * 100).toFixed(1));
     }
     return { name, code: meta.code, population: meta.population, crimes, rate, trend };
@@ -271,10 +272,8 @@ export function getCantonRankings(): CantonData[] {
   const json = loadCrimesJson();
   if (!json) return [];
 
-  // Prefer canton data from count records, fall back to rate records
-  const countCantonRecs = json.records.filter((r) => r.canton && isCount(r));
-  const rateCantonRecs  = json.records.filter((r) => r.canton && isRate(r));
-  const cantonRecs = countCantonRecs.length > 0 ? countCantonRecs : rateCantonRecs;
+  // Use all canton records — count (PDF 2023+) and rate_per_10k (Excel 2018-2022) are both included
+  const cantonRecs = json.records.filter((r) => r.canton);
 
   const map = new Map<string, CantonData>();
   for (const r of cantonRecs) {
