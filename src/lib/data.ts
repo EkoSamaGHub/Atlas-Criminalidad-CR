@@ -201,31 +201,38 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
     };
   };
 
-  const sumIn = (recs: CrimeRecord[], crime: string) =>
-    recs.filter((r) => r.crimeType === crime && !r.canton).reduce((s, r) => s + r.count, 0);
+  // For each crime type, pick its own latest annual year independently.
+  // This avoids zeros when different crime types come from different source years.
+  const latestForCrime = (recs: CrimeRecord[], crimeType: string): number => {
+    const annual = recs.filter((r) => r.crimeType === crimeType && r.period === "Anual" && !r.canton);
+    const years = [...new Set(annual.map((r) => r.year))].sort((a, b) => b - a);
+    if (!years.length) return 0;
+    return annual.filter((r) => r.year === years[0]).reduce((s, r) => s + r.count, 0);
+  };
+
+  const DISPLAYED: CrimeCategory[] = ["homicidio", "robo", "narcotrafico", "hurto", "violacion"];
 
   const provinces: ProvinceData[] = Object.entries(PROVINCE_META).map(([name, meta]) => {
-    // Per-province: prefer count records (PDF 2023+), fall back to rate records (Excel 2018-2022)
     const provCount = countRecs.filter((r) => r.province === name);
     const provRate  = rateRecs.filter((r) => r.province === name);
-    const { pool, prevPool, latestYear, prevYear } = pickPool(provCount.length > 0 ? provCount : provRate);
+    const pool = provCount.length > 0 ? provCount : provRate;
 
-    const crimes = {
-      homicidio:    sumIn(pool, "homicidio"),
-      robo:         sumIn(pool, "robo"),
-      agresion:     sumIn(pool, "agresion"),
-      narcotrafico: sumIn(pool, "narcotrafico"),
-      hurto:        sumIn(pool, "hurto"),
-    };
+    const crimes = Object.fromEntries(
+      DISPLAYED.map((ct) => [ct, latestForCrime(pool, ct)])
+    ) as Record<CrimeCategory, number>;
+
     const total = Object.values(crimes).reduce((s, v) => s + v, 0);
-    const rate = parseFloat(((total / meta.population) * 100000).toFixed(1));
+    const rate  = parseFloat(((total / meta.population) * 100000).toFixed(1));
 
-    let trend = 0;
-    if (prevYear && prevYear !== latestYear) {
-      const prevTotal = (["homicidio","robo","agresion","narcotrafico","hurto"] as const)
-        .reduce((s, ct) => s + sumIn(prevPool, ct), 0);
-      if (prevTotal > 0) trend = parseFloat((((total - prevTotal) / prevTotal) * 100).toFixed(1));
-    }
+    // Trend: compare two most recent years that share the same dominant crime type
+    const { pool: trendPool, prevPool, latestYear, prevYear } = pickPool(pool);
+    const sumPool = (p: CrimeRecord[]) =>
+      DISPLAYED.reduce((s, ct) => s + p.filter((r) => r.crimeType === ct && !r.canton).reduce((a, r) => a + r.count, 0), 0);
+    const prevTotal = sumPool(prevPool);
+    const trend = prevYear && prevYear !== latestYear && prevTotal > 0
+      ? parseFloat((((sumPool(trendPool) - prevTotal) / prevTotal) * 100).toFixed(1))
+      : 0;
+
     return { name, code: meta.code, population: meta.population, crimes, rate, trend };
   });
 

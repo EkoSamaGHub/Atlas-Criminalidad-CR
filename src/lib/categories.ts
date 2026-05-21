@@ -1,4 +1,4 @@
-export type CrimeCategory = "homicidio" | "robo" | "agresion" | "narcotrafico" | "hurto";
+export type CrimeCategory = "homicidio" | "robo" | "narcotrafico" | "hurto" | "violacion";
 
 export interface ProvinceData {
   name: string;
@@ -12,9 +12,9 @@ export interface ProvinceData {
 export const CATEGORIES: { key: CrimeCategory; label: string; color: string }[] = [
   { key: "homicidio",    label: "Homicidios",   color: "#ef4444" },
   { key: "robo",         label: "Robos",         color: "#f97316" },
-  { key: "agresion",     label: "Agresiones",    color: "#eab308" },
   { key: "narcotrafico", label: "Narcotráfico",  color: "#8b5cf6" },
   { key: "hurto",        label: "Hurtos",        color: "#3b82f6" },
+  { key: "violacion",    label: "Violaciones",   color: "#ec4899" },
 ];
 
 export const CRIME_COLORS: Record<string, string> = {
