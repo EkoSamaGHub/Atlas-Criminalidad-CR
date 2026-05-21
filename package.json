@@ -13,6 +13,7 @@
     "update-data": "tsx scripts/scrape.ts && python scripts/extract_pdfs.py && tsx scripts/process.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.97.1",
     "@types/leaflet": "^1.9.21",
     "leaflet": "^1.9.4",
     "next": "16.2.6",
