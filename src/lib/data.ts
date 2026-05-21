@@ -54,6 +54,7 @@ export interface ManifestEntry {
   year: number | null;
   sheets: string[];
   downloadedAt: string;
+  reference_only?: boolean;
 }
 
 export interface DataStats {

@@ -30,7 +30,17 @@ async function fetchPage(page: number): Promise<string> {
   const url = `${BASE_URL}/recursos/publicaciones?url=recursos/publicaciones&page=${page}`;
   const res = await fetch(url, { headers: { "User-Agent": "OIJ-Atlas-Scraper/1.0" } });
   if (!res.ok) throw new Error(`HTTP ${res.status} on page ${page}`);
-  return res.text();
+  // The Observatorio may serve pages as iso-8859-1 without declaring it in Content-Type.
+  // Read bytes and re-decode to handle the Latin-1 / UTF-8 ambiguity correctly.
+  const bytes = Buffer.from(await res.arrayBuffer());
+  const contentType = res.headers.get("content-type") ?? "";
+  const isLatin1 = /charset=(iso-8859-1|latin-?1|windows-1252)/i.test(contentType);
+  if (isLatin1) return bytes.toString("latin1");
+  // Detect from meta charset in the HTML itself as fallback
+  const preview = bytes.toString("utf8", 0, 2000);
+  if (/charset=["']?(iso-8859-1|latin-?1|windows-1252)/i.test(preview))
+    return bytes.toString("latin1");
+  return bytes.toString("utf8");
 }
 
 function extractExcelLinks(html: string): Array<{ title: string; url: string }> {

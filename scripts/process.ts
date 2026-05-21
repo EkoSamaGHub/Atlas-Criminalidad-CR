@@ -323,6 +323,23 @@ function main() {
     if (recordCount > 0) fileCount++;
   }
 
+  // Deduplicate province-level Excel records (canton === null): multiple sheets
+  // in the same file (or different files for the same year) can report the same
+  // annual province total. Keep the maximum value per (province, year, period, crimeType).
+  const provinceDedupeMap = new Map<string, CrimeRecord>();
+  const cantonRecords: CrimeRecord[] = [];
+  for (const r of allRecords) {
+    if (r.canton !== null) {
+      cantonRecords.push(r);
+    } else {
+      const key = `${r.province}||${r.year}||${r.period}||${r.crimeType}`;
+      const ex = provinceDedupeMap.get(key);
+      if (!ex || r.count > ex.count) provinceDedupeMap.set(key, r);
+    }
+  }
+  const deduplicatedExcel = [...cantonRecords, ...provinceDedupeMap.values()];
+  console.log(`\n  Dedup: ${allRecords.length} → ${deduplicatedExcel.length} Excel records`);
+
   // ── Also merge in existing PDF records from crimes.json ───────────────────
   const existingPath = OUT_FILE;
   let pdfRecords: CrimeRecord[] = [];
@@ -331,10 +348,10 @@ function main() {
     pdfRecords = (existing.records ?? []).filter(
       (r: CrimeRecord) => r.unit === "count"
     );
-    console.log(`\n  📄 Keeping ${pdfRecords.length} existing PDF count records`);
+    console.log(`  📄 Keeping ${pdfRecords.length} existing PDF count records`);
   }
 
-  const finalRecords: CrimeRecord[] = [...allRecords, ...pdfRecords];
+  const finalRecords: CrimeRecord[] = [...deduplicatedExcel, ...pdfRecords];
 
   // ── Build summary structures for the frontend ─────────────────────────────
 
@@ -368,14 +385,14 @@ function main() {
   fs.writeFileSync(OUT_FILE, JSON.stringify(output, null, 2));
 
   const districtCount = new Set(
-    allRecords.filter(r => r.district).map(r => `${r.province}/${r.canton}/${r.district}`)
+    deduplicatedExcel.filter(r => r.district).map(r => `${r.province}/${r.canton}/${r.district}`)
   ).size;
   const cantonCount = new Set(
-    allRecords.filter(r => r.canton).map(r => `${r.province}/${r.canton}`)
+    deduplicatedExcel.filter(r => r.canton).map(r => `${r.province}/${r.canton}`)
   ).size;
 
   console.log(`\n✅ crimes.json written — ${finalRecords.length} total records`);
-  console.log(`   Excel records (rates):  ${allRecords.length} from ${fileCount} file(s)`);
+  console.log(`   Excel records (rates):  ${deduplicatedExcel.length} from ${fileCount} file(s)`);
   console.log(`   PDF records (counts):   ${pdfRecords.length}`);
   console.log(`   Districts covered:      ${districtCount}`);
   console.log(`   Cantons covered:        ${cantonCount}`);
