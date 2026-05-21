@@ -44,7 +44,7 @@ export default function Navbar() {
               <ShieldAlert size={14} className="text-white" />
             </span>
             <span className="font-semibold text-white tracking-tight text-sm">
-              Atlas Criminal <span className="text-red-500">CR</span>
+              Atlas Criminalidad <span className="text-red-500">CR</span>
             </span>
           </Link>
 
@@ -96,7 +96,7 @@ export default function Navbar() {
           </nav>
           <div className="mt-auto px-8 py-6 flex items-center gap-2 text-xs text-slate-600">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            datos actualizados · Atlas Criminal CR
+            datos actualizados · Atlas Criminalidad CR
           </div>
         </div>
       )}

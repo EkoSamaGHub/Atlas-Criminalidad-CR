@@ -89,7 +89,7 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
     );
     const blob = new Blob([header.join(",") + "\n" + rows.join("\n")], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a"); a.href = url; a.download = "oij_atlas_datos.csv";
+    const a = document.createElement("a"); a.href = url; a.download = "atlas_criminalidad_cr_datos.csv";
     a.click(); URL.revokeObjectURL(url);
   }, [filtered]);
 

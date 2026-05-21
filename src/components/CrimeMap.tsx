@@ -1,4 +1,5 @@
 "use client";
+import "leaflet/dist/leaflet.css";
 import { useEffect, useRef, useState } from "react";
 import type { ProvinceData, CrimeCategory } from "@/lib/categories";
 import { CATEGORIES } from "@/lib/categories";

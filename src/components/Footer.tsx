@@ -14,7 +14,7 @@ export default function Footer() {
               <ShieldAlert size={14} className="text-white" />
             </span>
             <span className="font-semibold text-white text-sm">
-              Atlas Criminal <span className="text-red-500">CR</span>
+              Atlas Criminalidad <span className="text-red-500">CR</span>
             </span>
           </Link>
           <p className="text-xs text-slate-500 leading-relaxed">
@@ -89,7 +89,7 @@ export default function Footer() {
           Datos: 2018–2025 · OIJ / Observatorio de la Violencia MJP
         </p>
         <a
-          href="https://github.com/EkoSamaGHub/OIJ-ATLAS"
+          href="https://github.com/EkoSamaGHub/atlas-criminalidad-cr"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors"

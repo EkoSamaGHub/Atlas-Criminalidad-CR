@@ -8,8 +8,8 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 
 export const metadata: Metadata = {
   title: {
-    default: "Atlas Criminal Costa Rica — Datos OIJ 2018-2025",
-    template: "%s | Atlas Criminal CR",
+    default: "Atlas Criminalidad Costa Rica — Datos OIJ 2018-2025",
+    template: "%s | Atlas Criminalidad CR",
   },
   description:
     "Plataforma independiente de análisis geoespacial de la criminalidad en Costa Rica. Más de 23,000 registros del Observatorio de la Violencia del Ministerio de Justicia y Paz — 7 provincias, 126 cantones, 419 distritos, 2013-2025.",
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     "seguridad Costa Rica", "atlas delitos",
   ],
   openGraph: {
-    title: "Atlas Criminal Costa Rica",
+    title: "Atlas Criminalidad Costa Rica",
     description: "Análisis geoespacial de la criminalidad basado en datos oficiales del OIJ y el Ministerio de Justicia y Paz.",
     type: "website",
     locale: "es_CR",
-    siteName: "Atlas Criminal CR",
+    siteName: "Atlas Criminalidad CR",
   },
   robots: { index: true, follow: true },
 };

@@ -55,7 +55,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-[1fr_auto] gap-10 items-start">
             <div>
               <h1 className="text-5xl sm:text-7xl font-black text-white tracking-tight leading-none mb-4">
-                Atlas Criminal<br />
+                Atlas Criminalidad<br />
                 <span className="text-red-500">Costa Rica</span>
               </h1>
               <p className="text-slate-400 text-lg max-w-xl mb-8 leading-relaxed">
