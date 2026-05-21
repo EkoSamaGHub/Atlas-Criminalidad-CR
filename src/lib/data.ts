@@ -159,6 +159,8 @@ export function getStats(): DataStats {
       .map((r) => `${r.province}/${r.canton}/${r.district}`)
   ).size;
 
+  const manifestCount = loadManifest().length;
+
   return {
     totalRecords: json.totalRecords,
     totalCount,
@@ -170,7 +172,7 @@ export function getStats(): DataStats {
     provinces: Object.keys(PROVINCE_META),
     cantonCount,
     districtCount,
-    sourceFiles: json.sourceFiles,
+    sourceFiles: manifestCount || json.sourceFiles,
     generatedAt: json.generatedAt,
     isReal: true,
   };
