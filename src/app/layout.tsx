@@ -11,16 +11,18 @@ export const metadata: Metadata = {
     template: "%s | Atlas Criminal CR",
   },
   description:
-    "Plataforma independiente de análisis geoespacial de la criminalidad en Costa Rica. Datos del Observatorio de la Violencia del Ministerio de Justicia y Paz — 2,566 registros, 7 provincias, 82 cantones, 2018-2025.",
+    "Plataforma independiente de análisis geoespacial de la criminalidad en Costa Rica. Más de 23,000 registros del Observatorio de la Violencia del Ministerio de Justicia y Paz — 7 provincias, 126 cantones, 419 distritos, 2013-2025.",
   keywords: [
     "crimen Costa Rica", "OIJ", "delitos Costa Rica", "homicidios Costa Rica",
     "mapa criminal", "estadísticas criminales", "Observatorio Violencia",
+    "seguridad Costa Rica", "atlas delitos",
   ],
   openGraph: {
     title: "Atlas Criminal Costa Rica",
-    description: "Análisis geoespacial de la criminalidad basado en datos oficiales del OIJ y el Ministerio de Justicia.",
+    description: "Análisis geoespacial de la criminalidad basado en datos oficiales del OIJ y el Ministerio de Justicia y Paz.",
     type: "website",
     locale: "es_CR",
+    siteName: "Atlas Criminal CR",
   },
   robots: { index: true, follow: true },
 };

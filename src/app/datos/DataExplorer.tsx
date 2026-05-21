@@ -1,12 +1,9 @@
 "use client";
 import { useState, useMemo, useCallback } from "react";
 import type { CrimeRecord, DataStats } from "@/lib/data";
+import { CRIME_COLORS } from "@/lib/categories";
 
 const PAGE_SIZE = 100;
-const CRIME_COLORS: Record<string, string> = {
-  homicidio: "#ef4444", robo: "#f97316", hurto: "#3b82f6",
-  narcotrafico: "#8b5cf6", violacion: "#ec4899", agresion: "#eab308",
-};
 
 type SortKey = keyof CrimeRecord;
 

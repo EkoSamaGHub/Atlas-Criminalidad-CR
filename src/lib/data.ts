@@ -8,9 +8,10 @@
  */
 import fs from "fs";
 import path from "path";
-import { PROVINCES as MOCK_PROVINCES, CATEGORIES, type ProvinceData, type CrimeCategory } from "./mockData";
+import { PROVINCES as MOCK_PROVINCES } from "./mockData";
+import { CATEGORIES, type ProvinceData, type CrimeCategory, CRIME_COLORS, provinceSlug } from "./categories";
 
-export { CATEGORIES };
+export { CATEGORIES, CRIME_COLORS, provinceSlug };
 export type { ProvinceData, CrimeCategory };
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -268,13 +269,14 @@ export function getYearTrend(): YearTrendPoint[] {
     .sort((a, b) => a.year - b.year);
 }
 
+let _cantonCache: CantonData[] | undefined;
+
 export function getCantonRankings(): CantonData[] {
+  if (_cantonCache) return _cantonCache;
   const json = loadCrimesJson();
   if (!json) return [];
 
-  // Use all canton records — count (PDF 2023+) and rate_per_10k (Excel 2018-2022) are both included
   const cantonRecs = json.records.filter((r) => r.canton);
-
   const map = new Map<string, CantonData>();
   for (const r of cantonRecs) {
     const key = `${r.province}||${r.canton}`;
@@ -283,7 +285,8 @@ export function getCantonRankings(): CantonData[] {
     entry.crimes[r.crimeType] = (entry.crimes[r.crimeType] ?? 0) + r.count;
     entry.total += r.count;
   }
-  return [...map.values()].sort((a, b) => b.total - a.total);
+  _cantonCache = [...map.values()].sort((a, b) => b.total - a.total);
+  return _cantonCache;
 }
 
 export interface DistrictData {
@@ -321,24 +324,31 @@ export function getDistrictRankings(province?: string): DistrictData[] {
   return [...map.values()].sort((a, b) => b.total - a.total);
 }
 
+let _recordsCache: CrimeRecord[] | undefined;
+
 export function getAllRecords(): CrimeRecord[] {
+  if (_recordsCache) return _recordsCache;
   const json = loadCrimesJson();
-  return json?.records ?? [];
+  _recordsCache = json?.records ?? [];
+  return _recordsCache;
 }
 
 export function getDataSources(): ManifestEntry[] {
   return loadManifest().sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
 
+let _crimeTotalsCache: Record<string, number> | undefined;
+
 export function getCrimeTotals(): Record<string, number> {
+  if (_crimeTotalsCache) return _crimeTotalsCache;
   const json = loadCrimesJson();
   if (!json) return {};
-  // Only sum count-based records
   const totals: Record<string, number> = {};
   for (const r of json.records.filter(isCount)) {
     totals[r.crimeType] = (totals[r.crimeType] ?? 0) + r.count;
   }
-  return totals;
+  _crimeTotalsCache = totals;
+  return _crimeTotalsCache;
 }
 
 /** Province-level count summary for latest available year (count-based records only) */

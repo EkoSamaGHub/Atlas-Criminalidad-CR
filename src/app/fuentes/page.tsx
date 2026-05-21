@@ -1,4 +1,7 @@
+import type { Metadata } from "next";
 import { getDataSources, getStats } from "@/lib/data";
+
+export const metadata: Metadata = { title: "Fuentes" };
 
 export default function FuentesPage() {
   const sources = getDataSources();

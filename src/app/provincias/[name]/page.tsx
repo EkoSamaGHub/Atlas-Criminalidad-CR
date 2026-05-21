@@ -1,17 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getAllRecords, getStats, getDistrictRankings, PROVINCE_META } from "@/lib/data";
+import { getAllRecords, getStats, getDistrictRankings, PROVINCE_META, CRIME_COLORS } from "@/lib/data";
 import type { CrimeRecord } from "@/lib/data";
-
-const CRIME_COLORS: Record<string, string> = {
-  homicidio: "#ef4444",
-  robo: "#f97316",
-  hurto: "#3b82f6",
-  narcotrafico: "#8b5cf6",
-  violacion: "#ec4899",
-  agresion: "#eab308",
-  extorsion: "#f43f5e",
-};
 
 // Slug → canonical province name
 const SLUG_MAP: Record<string, string> = {

@@ -1,10 +1,8 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { getCantonRankings, getStats } from "@/lib/data";
+import { getCantonRankings, getStats, CRIME_COLORS, provinceSlug } from "@/lib/data";
 
-const CRIME_COLORS: Record<string, string> = {
-  homicidio: "#ef4444", robo: "#f97316", hurto: "#3b82f6",
-  narcotrafico: "#8b5cf6", violacion: "#ec4899", agresion: "#eab308",
-};
+export const metadata: Metadata = { title: "Cantones" };
 
 export default function CantonesPage() {
   const cantons = getCantonRankings();
@@ -65,7 +63,7 @@ export default function CantonesPage() {
                 <td className="px-3 py-2.5 text-slate-600 text-xs tabular-nums">{i + 1}</td>
                 <td className="px-4 py-2.5 font-medium text-white">{c.canton}</td>
                 <td className="px-4 py-2.5 text-slate-400 text-xs">
-                  <Link href={`/provincias/${c.province.toLowerCase().replace(/\s+/g, "-").replace(/[áàä]/g,"a").replace(/[éèë]/g,"e").replace(/[íìï]/g,"i").replace(/[óòö]/g,"o").replace(/[úùü]/g,"u")}`}
+                  <Link href={`/provincias/${provinceSlug(c.province)}`}
                     className="hover:text-red-400 transition-colors">{c.province}</Link>
                 </td>
                 {crimeTypes.map((ct) => (

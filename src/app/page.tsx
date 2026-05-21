@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { getStats, getProvinces, getCrimeTotals, getYearTrend, getProvinceCountSummary, PROVINCE_META } from "@/lib/data";
-import { CATEGORIES } from "@/lib/mockData";
+import { getStats, getProvinces, getCrimeTotals, getYearTrend, getProvinceCountSummary, PROVINCE_META, CATEGORIES, provinceSlug } from "@/lib/data";
 
 export default function HomePage() {
   const stats            = getStats();
@@ -194,7 +193,7 @@ export default function HomePage() {
                     </td>
                     <td className="px-2 py-3">
                       <Link
-                        href={`/provincias/${p.name.toLowerCase().replace(/\s+/g, "-").replace(/[áàä]/g,"a").replace(/[éèë]/g,"e").replace(/[íìï]/g,"i").replace(/[óòö]/g,"o").replace(/[úùü]/g,"u")}`}
+                        href={`/provincias/${provinceSlug(p.name)}`}
                         className="text-xs text-slate-600 group-hover:text-red-400 transition-colors whitespace-nowrap"
                       >
                         →
@@ -219,7 +218,7 @@ export default function HomePage() {
           <h2 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Explorar por provincia</h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
             {Object.entries(PROVINCE_META).map(([name, meta]) => {
-              const slug = name.toLowerCase().replace(/\s+/g, "-").replace(/[áàä]/g,"a").replace(/[éèë]/g,"e").replace(/[íìï]/g,"i").replace(/[óòö]/g,"o").replace(/[úùü]/g,"u");
+              const slug = provinceSlug(name);
               return (
                 <Link key={name} href={`/provincias/${slug}`}
                   className="rounded-lg border border-slate-800 bg-slate-900/50 hover:border-red-900/60 hover:bg-slate-800/50 p-3 transition-all group">

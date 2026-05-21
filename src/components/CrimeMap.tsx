@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import type { ProvinceData, CrimeCategory } from "@/lib/mockData";
-import { CATEGORIES } from "@/lib/mockData";
+import type { ProvinceData, CrimeCategory } from "@/lib/categories";
+import { CATEGORIES } from "@/lib/categories";
 
 // Province centroids for map centering
 const PROVINCE_CENTROIDS: Record<string, [number, number]> = {
@@ -141,8 +141,6 @@ export default function CrimeMap({ selectedCategory, provinces }: Props) {
   }, [L, geojson, provinces, selectedCategory]);
 
   const catInfo = CATEGORIES.find((c) => c.key === selectedCategory);
-  const maxVal  = Math.max(...provinces.map((p) => p.crimes[selectedCategory] ?? 0), 1);
-  const sorted  = [...provinces].sort((a, b) => (b.crimes[selectedCategory] ?? 0) - (a.crimes[selectedCategory] ?? 0));
 
   return (
     <div className="relative w-full h-full">
@@ -178,26 +176,6 @@ export default function CrimeMap({ selectedCategory, provinces }: Props) {
         }}
       >
         {catInfo?.label ?? selectedCategory}
-      </div>
-
-      {/* Top-province mini bar */}
-      <div className="absolute top-14 left-4 z-[1000] bg-slate-900/90 backdrop-blur border border-slate-700 rounded-lg p-3 text-xs w-52 shadow-lg hidden sm:block">
-        <p className="text-slate-400 font-medium mb-2 uppercase tracking-wider text-[10px]">Ranking provincial</p>
-        {sorted.map((p, i) => {
-          const v   = p.crimes[selectedCategory] ?? 0;
-          const pct = (v / maxVal) * 100;
-          return (
-            <div key={p.code} className="mb-1.5">
-              <div className="flex items-center justify-between mb-0.5">
-                <span className="text-slate-300">{i + 1}. {p.name}</span>
-                <span className="text-slate-400 tabular-nums">{v.toLocaleString("es-CR")}</span>
-              </div>
-              <div className="w-full h-1 rounded-full bg-slate-800">
-                <div className="h-full rounded-full" style={{ width: `${pct}%`, background: catInfo?.color ?? "#64748b" }} />
-              </div>
-            </div>
-          );
-        })}
       </div>
 
       {/* Selected province panel */}

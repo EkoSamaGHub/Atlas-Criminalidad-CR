@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import type { ProvinceData, CrimeCategory } from "@/lib/mockData";
-import { CATEGORIES } from "@/lib/mockData";
+import type { ProvinceData, CrimeCategory } from "@/lib/categories";
 import type { DataStats } from "@/lib/data";
+import { CATEGORIES, provinceSlug } from "@/lib/categories";
 import Link from "next/link";
 
 const CrimeMap = dynamic(() => import("@/components/CrimeMap"), {
@@ -84,7 +84,7 @@ export default function AtlasClient({ provinces, stats }: Props) {
               return (
                 <Link
                   key={p.code}
-                  href={`/provincias/${encodeURIComponent(p.name.toLowerCase().replace(/\s+/g, "-").replace(/[áàä]/g,"a").replace(/[éèë]/g,"e").replace(/[íìï]/g,"i").replace(/[óòö]/g,"o").replace(/[úùü]/g,"u"))}`}
+                  href={`/provincias/${provinceSlug(p.name)}`}
                   className="block px-3 py-2.5 hover:bg-slate-800/40 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-1.5">
