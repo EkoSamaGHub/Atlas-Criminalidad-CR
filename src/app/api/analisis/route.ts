@@ -86,7 +86,7 @@ Tu análisis debe ser:
   const client = new Anthropic({ apiKey });
 
   const stream = client.messages.stream({
-    model: process.env.ANTHROPIC_MODEL ?? "claude-haiku-4-5-20251001",
+    model: process.env.ANTHROPIC_MODEL ?? "claude-haiku-4-5",
     max_tokens: 1800,
     system: systemPrompt,
     messages: [{ role: "user", content: userMessage }],
