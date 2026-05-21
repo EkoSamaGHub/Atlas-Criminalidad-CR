@@ -223,15 +223,45 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
     };
   };
 
-  // For each crime type, pick its own latest annual year independently.
-  // Use max (not sum) across records for the same year to avoid double-counting
-  // when the same annual total appears in multiple source publications.
-  const latestForCrime = (recs: CrimeRecord[], crimeType: string): number => {
+  // Find the global reference year: the most recent year that has annual count
+  // data for the most provinces.  This ensures the province table compares
+  // like-for-like instead of mixing e.g. 2016 Guanacaste with 2024 San José.
+  const globalYear = (() => {
+    const annualProv = countRecs.filter((r) => r.period === "Anual" && !r.canton);
+    const yearProvMap = new Map<number, Set<string>>();
+    for (const r of annualProv) {
+      if (!yearProvMap.has(r.year)) yearProvMap.set(r.year, new Set());
+      yearProvMap.get(r.year)!.add(r.province);
+    }
+    if (!yearProvMap.size) return null;
+    // Sort: most provinces first, then most recent year as tie-breaker
+    return [...yearProvMap.entries()]
+      .sort((a, b) => b[1].size - a[1].size || b[0] - a[0])[0][0];
+  })();
+
+  // For each crime type, use the global year when the province has data for it,
+  // otherwise fall back to the province's own latest annual year.
+  // Use max (not sum) to avoid double-counting when the same total appears in
+  // multiple source publications.
+  const latestForCrime = (recs: CrimeRecord[], crimeType: string, preferYear: number | null): number => {
     const annual = recs.filter((r) => r.crimeType === crimeType && r.period === "Anual" && !r.canton);
+    if (!annual.length) return 0;
+    if (preferYear) {
+      const forYear = annual.filter((r) => r.year === preferYear);
+      if (forYear.length) return Math.max(...forYear.map((r) => r.count));
+    }
     const years = [...new Set(annual.map((r) => r.year))].sort((a, b) => b - a);
-    if (!years.length) return 0;
     const latest = annual.filter((r) => r.year === years[0]);
     return latest.length === 0 ? 0 : Math.max(...latest.map((r) => r.count));
+  };
+
+  // Determine the effective data year for a province (the year actually used)
+  const effectiveYear = (pool: CrimeRecord[], preferYear: number | null): number | undefined => {
+    const annual = pool.filter((r) => r.period === "Anual" && !r.canton);
+    if (!annual.length) return undefined;
+    if (preferYear && annual.some((r) => r.year === preferYear)) return preferYear;
+    const years = [...new Set(annual.map((r) => r.year))].sort((a, b) => b - a);
+    return years[0];
   };
 
   const DISPLAYED: CrimeCategory[] = ["homicidio", "robo", "narcotrafico", "hurto", "violacion"];
@@ -242,11 +272,12 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
     const pool = provCount.length > 0 ? provCount : provRate;
 
     const crimes = Object.fromEntries(
-      DISPLAYED.map((ct) => [ct, latestForCrime(pool, ct)])
+      DISPLAYED.map((ct) => [ct, latestForCrime(pool, ct, globalYear)])
     ) as Record<CrimeCategory, number>;
 
     const total = Object.values(crimes).reduce((s, v) => s + v, 0);
     const rate  = parseFloat(((total / meta.population) * 100000).toFixed(1));
+    const dataYear = effectiveYear(pool, globalYear);
 
     // Trend: compare two most recent years that share the same dominant crime type
     const { pool: trendPool, prevPool, latestYear, prevYear } = pickPool(pool);
@@ -257,7 +288,7 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
       ? parseFloat((((sumPool(trendPool) - prevTotal) / prevTotal) * 100).toFixed(1))
       : 0;
 
-    return { name, code: meta.code, population: meta.population, crimes, rate, trend };
+    return { name, code: meta.code, population: meta.population, crimes, rate, trend, dataYear };
   });
 
   return { provinces, isReal: true };

@@ -27,17 +27,6 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 701,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "violacion",
     "count": 124,
     "unit": "count",
@@ -68,17 +57,6 @@
   {
     "year": 2025,
     "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 316,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
     "province": "Alajuela",
     "canton": null,
     "district": null,
@@ -95,17 +73,6 @@
     "district": null,
     "crimeType": "robo",
     "count": 365,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 328,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   },
@@ -170,17 +137,6 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 226,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "homicidio",
     "count": 123,
     "unit": "count",
@@ -214,17 +170,6 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 981,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "violacion",
     "count": 123,
     "unit": "count",
@@ -249,17 +194,6 @@
     "district": null,
     "crimeType": "robo",
     "count": 123,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 613,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   },
@@ -368,17 +302,6 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 742,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "violacion",
     "count": 62,
     "unit": "count",
@@ -391,17 +314,6 @@
     "canton": null,
     "district": null,
     "crimeType": "homicidio",
-    "count": 493,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
     "count": 493,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
@@ -445,17 +357,6 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 785,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "violacion",
     "count": 87,
     "unit": "count",
@@ -480,17 +381,6 @@
     "district": null,
     "crimeType": "hurto",
     "count": 1491,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 2982,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   },
@@ -533,17 +423,6 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 627,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "violacion",
     "count": 125,
     "unit": "count",
@@ -566,30 +445,8 @@
     "province": "Alajuela",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 73,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
     "crimeType": "violacion",
     "count": 487,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Cartago",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 364,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   },
@@ -629,17 +486,6 @@
   {
     "year": 2025,
     "period": "I Semestre",
-    "province": "Cartago",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 436,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
     "province": "Alajuela",
     "canton": null,
     "district": null,
@@ -656,17 +502,6 @@
     "district": null,
     "crimeType": "robo",
     "count": 659,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Alajuela",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 494,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   },
@@ -706,17 +541,6 @@
   {
     "year": 2025,
     "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 765,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
     "province": "Cartago",
     "canton": null,
     "district": null,
@@ -750,33 +574,11 @@
   {
     "year": 2025,
     "period": "I Semestre",
-    "province": "Cartago",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 477,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
     "province": "Guanacaste",
     "canton": null,
     "district": null,
     "crimeType": "hurto",
     "count": 317,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 1587,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   },
@@ -827,28 +629,6 @@
   {
     "year": 2025,
     "period": "I Semestre",
-    "province": "Cartago",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 79,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 362,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
     "province": "Guanacaste",
     "canton": null,
     "district": null,
@@ -874,17 +654,6 @@
     "province": "Guanacaste",
     "canton": null,
     "district": null,
-    "crimeType": "robo",
-    "count": 239,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
     "crimeType": "hurto",
     "count": 958,
     "unit": "count",
@@ -898,28 +667,6 @@
     "district": null,
     "crimeType": "robo",
     "count": 479,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 958,
-    "unit": "count",
-    "source": "ATLAS I-2025_y_anexo"
-  },
-  {
-    "year": 2025,
-    "period": "I Semestre",
-    "province": "Guanacaste",
-    "canton": null,
-    "district": null,
-    "crimeType": "robo",
-    "count": 139,
     "unit": "count",
     "source": "ATLAS I-2025_y_anexo"
   }

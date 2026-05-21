@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-05-21T03:00:48.668678Z",
-  "count": 115,
+  "updatedAt": "2026-05-21T08:35:20.225982Z",
+  "count": 121,
   "files": [
     {
       "title": "Anexo estadÃ­stico de infracciones MSP. 2022",
@@ -967,6 +967,57 @@
       "year": 2008,
       "sheets": [],
       "downloadedAt": "2026-05-20T23:04:18.769254Z"
+    },
+    {
+      "title": "Algunos Datos sobre Violencia en el Sector de Juventudes 2016",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0.pdf",
+      "filename": "algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0.pdf",
+      "year": 2016,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-21T08:29:24.301765Z"
+    },
+    {
+      "title": "Homicidios Dolosos Delincuencia Organizada 2010-2016",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/analisis_homicidios_dolosos_y_delincuencia_organizada_0.pdf",
+      "filename": "analisis_homicidios_dolosos_y_delincuencia_organizada_0.pdf",
+      "year": 2016,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-21T08:29:24.301765Z"
+    },
+    {
+      "title": "Informe Estadístico N°12",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/31-informe12_0.pdf",
+      "filename": "31-informe12_0.pdf",
+      "year": 2016,
+      "sheets": [],
+      "downloadedAt": "2026-05-21T08:29:26.215564Z"
+    },
+    {
+      "title": "Informe Estadístico N°11",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/30-informe11_0.pdf",
+      "filename": "30-informe11_0.pdf",
+      "year": 2016,
+      "sheets": [],
+      "downloadedAt": "2026-05-21T08:29:32.934972Z"
+    },
+    {
+      "title": "Compendio de Investigaciones sobre Convivencia y Seguridad Ciudadana",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/12-compendio_comesco_0.pdf",
+      "filename": "12-compendio_comesco_0.pdf",
+      "year": 2016,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-21T08:29:36.130860Z"
+    },
+    {
+      "title": "Informe Estadístico N°10",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/29-informe10_0.pdf",
+      "filename": "29-informe10_0.pdf",
+      "year": 2013,
+      "sheets": [],
+      "downloadedAt": "2026-05-21T08:30:11.333192Z"
     }
   ]
 }

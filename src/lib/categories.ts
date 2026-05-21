@@ -7,6 +7,7 @@ export interface ProvinceData {
   crimes: Record<CrimeCategory, number>;
   rate: number;
   trend: number;
+  dataYear?: number;
 }
 
 export const CATEGORIES: { key: CrimeCategory; label: string; color: string }[] = [

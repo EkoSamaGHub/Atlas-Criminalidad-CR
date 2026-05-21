@@ -206,7 +206,7 @@ export default function HomePage() {
             <h2 className="text-base font-semibold text-white">Resumen por Provincia</h2>
             <p className="text-xs text-slate-500 mt-0.5">
               {provinces[0]?.crimes.homicidio !== undefined
-                ? "Datos del año más reciente disponible por provincia"
+                ? "Año de referencia común cuando hay datos; si no, el más reciente por provincia"
                 : "Datos de muestra"}
             </p>
           </div>
@@ -234,7 +234,12 @@ export default function HomePage() {
                 const total = Object.values(p.crimes).reduce((s, v) => s + v, 0);
                 return (
                   <tr key={p.code} className="hover:bg-slate-800/30 transition-colors group">
-                    <td className="px-4 py-3 font-semibold text-white">{p.name}</td>
+                    <td className="px-4 py-3 font-semibold text-white">
+                      <span>{p.name}</span>
+                      {p.dataYear && (
+                        <span className="ml-2 text-[10px] text-slate-600 font-normal tabular-nums">{p.dataYear}</span>
+                      )}
+                    </td>
                     {CATEGORIES.map((c) => (
                       <td key={c.key} className="px-4 py-2 text-slate-300 text-center text-xs tabular-nums">
                         {(p.crimes[c.key as keyof typeof p.crimes] ?? 0).toLocaleString("es-CR")}

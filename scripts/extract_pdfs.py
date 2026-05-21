@@ -271,7 +271,13 @@ def score_table(table: list[list]) -> int:
 
 
 def find_header_row(table: list[list]) -> tuple[int, dict[int, str]]:
-    """Return (row_index, {col_index: crime_type}) for the best header row."""
+    """Return (row_index, {col_index: crime_type}) for the best header row.
+
+    When multiple columns share a crime type (e.g. sub-category breakdowns or
+    multi-year columns all labelled 'robo'), only the FIRST column for each
+    type is kept.  This avoids inflating province totals by treating every
+    sub-category column as an independent count.
+    """
     best_idx, best_map, best_score = -1, {}, 0
     for i, row in enumerate(table[:15]):
         col_map: dict[int, str] = {}
@@ -280,11 +286,26 @@ def find_header_row(table: list[list]) -> tuple[int, dict[int, str]]:
                 ct = detect_crime_type(str(cell))
                 if ct:
                     col_map[j] = ct
-        if len(col_map) > best_score:
-            best_score = len(col_map)
+        # Score by number of *unique* crime types, not raw column count, so a
+        # row with 5 distinct types beats a row with 57 identical "robo" columns.
+        unique_types = len(set(col_map.values()))
+        if unique_types > best_score:
+            best_score = unique_types
             best_idx = i
             best_map = col_map
-    return best_idx, best_map
+
+    # Deduplicate: keep only the first (lowest column index) occurrence of each
+    # crime type.  Sub-category columns and repeated year columns come after the
+    # primary total column in OIJ/MSP table layouts.
+    seen: set[str] = set()
+    deduped: dict[int, str] = {}
+    for col_idx in sorted(best_map.keys()):
+        ct = best_map[col_idx]
+        if ct not in seen:
+            seen.add(ct)
+            deduped[col_idx] = ct
+
+    return best_idx, deduped
 
 
 def extract_records_from_table(
@@ -498,8 +519,14 @@ def main():
     all_records = list(deduped.values())
     print(f"\n  Deduplication: {len(all_records)} unique records (after cross-PDF dedup)")
 
-    # De-duplicate: drop existing PDF-sourced records, replace with fresh
-    pdf_sources = {e["filename"].replace("_pdf.json", "") for e in manifest_entries}
+    # De-duplicate: drop existing PDF-sourced records, replace with fresh.
+    # Manifest entries use either "name_pdf.json" (data extracted) or "name.pdf"
+    # (no data / reference-only).  Strip both suffixes so the source key always
+    # matches r["source"] which is stored as "name" (no extension).
+    pdf_sources = {
+        e["filename"].replace("_pdf.json", "").replace(".pdf", "")
+        for e in manifest_entries
+    }
     kept = [r for r in existing_records if r.get("source") not in pdf_sources]
     merged = kept + all_records
 
