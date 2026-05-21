@@ -41,15 +41,21 @@ export default function CrimeMap({ selectedCategory, provinces }: Props) {
   const [selected, setSelected] = useState<ProvinceData | null>(null);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
   const [geojson, setGeojson] = useState<GeoJSONFeature[] | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Load Leaflet + GeoJSON in parallel
   useEffect(() => {
     Promise.all([
       import("leaflet"),
-      fetch("/data/cr-provinces.geojson").then((r) => r.json()),
+      fetch("/data/cr-provinces.geojson").then((r) => {
+        if (!r.ok) throw new Error(`No se pudo cargar el mapa (${r.status})`);
+        return r.json();
+      }),
     ]).then(([leaflet, geo]) => {
       setL(leaflet);
       setGeojson(geo.features as GeoJSONFeature[]);
+    }).catch((err: unknown) => {
+      setLoadError(err instanceof Error ? err.message : "Error desconocido al cargar el mapa");
     });
   }, []);
 
@@ -141,6 +147,18 @@ export default function CrimeMap({ selectedCategory, provinces }: Props) {
   }, [L, geojson, provinces, selectedCategory]);
 
   const catInfo = CATEGORIES.find((c) => c.key === selectedCategory);
+
+  if (loadError) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-slate-950">
+        <div className="text-center space-y-2 px-6 max-w-sm">
+          <p className="text-red-400 font-semibold text-sm">No se pudo cargar el mapa</p>
+          <p className="text-slate-500 text-xs">{loadError}</p>
+          <p className="text-slate-600 text-xs">Intenta recargar la página. Los datos provinciales siguen disponibles en el panel lateral.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full h-full">

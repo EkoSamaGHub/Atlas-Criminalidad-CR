@@ -3,6 +3,22 @@ import { useState, useMemo, useCallback } from "react";
 import type { CrimeRecord, DataStats } from "@/lib/data";
 import { CRIME_COLORS } from "@/lib/categories";
 
+const CRIME_LABELS: Record<string, string> = {
+  homicidio: "Homicidio",
+  robo: "Robo",
+  hurto: "Hurto",
+  narcotrafico: "Narcotráfico",
+  violacion: "Violación",
+  agresion: "Agresión",
+  extorsion: "Extorsión",
+  penalizacion_violencia: "Penalización de la violencia",
+  violencia_domestica: "Violencia doméstica",
+};
+
+function crimeLabel(key: string): string {
+  return CRIME_LABELS[key] ?? key.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 const PAGE_SIZE = 100;
 
 type SortKey = keyof CrimeRecord;
@@ -52,7 +68,8 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
   const visible = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-  const filteredTotal = filtered.reduce((s, r) => s + r.count, 0);
+  const countOnlyTotal = filtered.filter((r) => (r.unit ?? "count") === "count").reduce((s, r) => s + r.count, 0);
+  const hasRateRecords = filtered.some((r) => r.unit === "rate_per_10k");
 
   const sort = (key: SortKey) => {
     if (key === sortKey) setSortAsc((v) => !v);
@@ -93,7 +110,8 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
           <p className="text-slate-400 text-sm mt-1">
             {records.length.toLocaleString("es-CR")} registros totales ·{" "}
             {filtered.length.toLocaleString("es-CR")} filtrados ·{" "}
-            {filteredTotal.toLocaleString("es-CR")} delitos en selección
+            {countOnlyTotal.toLocaleString("es-CR")} delitos contabilizados
+            {hasRateRecords && <span className="text-amber-500/80 text-xs ml-1">(excluye tasas /10k)</span>}
           </p>
         </div>
         <button onClick={exportCSV}
@@ -122,7 +140,7 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
           onClear={() => { setProvFilter([]); setPage(1); }} />
 
         {/* Crime type filter */}
-        <FilterGroup label="Tipo de Delito" items={allCrimes} active={crimeFilter}
+        <FilterGroup label="Tipo de Delito" items={allCrimes} labels={crimeLabel} active={crimeFilter}
           onToggle={(v) => toggleArr(crimeFilter, v, setCrimeFilter)}
           onClear={() => { setCrimeFilter([]); setPage(1); }} colors={CRIME_COLORS} />
 
@@ -152,8 +170,8 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
               <Th label="Año"         k="year" />
               <Th label="Período"     k="period" />
               <Th label="Provincia"   k="province" />
-              <Th label="Cantón"      k="canton" />
-              <Th label="Distrito"    k="district" />
+              <Th label="Cantón ¹"    k="canton" />
+              <Th label="Distrito ¹"  k="district" />
               <Th label="Tipo"        k="crimeType" />
               <Th label="Valor"       k="count" />
               <th className="px-3 py-3 font-medium whitespace-nowrap text-xs">Unidad</th>
@@ -169,9 +187,9 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
                 <td className="px-3 py-2 text-slate-300">{r.canton ?? <span className="text-slate-600">—</span>}</td>
                 <td className="px-3 py-2 text-slate-400 text-xs">{r.district ?? <span className="text-slate-700">—</span>}</td>
                 <td className="px-3 py-2">
-                  <span className="px-2 py-0.5 rounded-full text-xs font-medium capitalize"
+                  <span className="px-2 py-0.5 rounded-full text-xs font-medium"
                     style={{ background: (CRIME_COLORS[r.crimeType] ?? "#64748b") + "22", color: CRIME_COLORS[r.crimeType] ?? "#94a3b8" }}>
-                    {r.crimeType}
+                    {crimeLabel(r.crimeType)}
                   </span>
                 </td>
                 <td className="px-3 py-2 font-semibold tabular-nums text-white text-right">
@@ -209,18 +227,20 @@ export default function DataExplorer({ records, stats }: { records: CrimeRecord[
         </div>
       )}
 
-      <p className="text-xs text-slate-600">
-        Datos del Observatorio de la Violencia, Ministerio de Justicia y Paz de Costa Rica.
-        Última actualización: {stats.generatedAt ? new Date(stats.generatedAt).toLocaleDateString("es-CR") : "N/A"}.
-      </p>
+      <div className="text-xs text-slate-600 space-y-0.5">
+        <p>Datos del Observatorio de la Violencia, Ministerio de Justicia y Paz de Costa Rica.
+        Última actualización: {stats.generatedAt ? new Date(stats.generatedAt).toLocaleDateString("es-CR") : "N/A"}.</p>
+        <p><sup>1</sup> Cantón y Distrito solo disponibles en registros con unidad &ldquo;Tasa /10k hab.&rdquo; (Anexos Estadísticos Excel 2018–2022). Los registros PDF muestran datos a nivel provincial.</p>
+      </div>
     </div>
   );
 }
 
-function FilterGroup({ label, items, active, onToggle, onClear, colors }: {
+function FilterGroup({ label, items, active, onToggle, onClear, colors, labels }: {
   label: string; items: string[]; active: string[];
   onToggle: (v: string) => void; onClear: () => void;
   colors?: Record<string, string>;
+  labels?: (key: string) => string;
 }) {
   return (
     <div className="rounded-lg border border-slate-800 bg-slate-900/40 p-3">
@@ -240,7 +260,7 @@ function FilterGroup({ label, items, active, onToggle, onClear, colors }: {
                 isActive ? "text-white" : "text-slate-500 border-slate-700 hover:border-slate-500"
               }`}
               style={isActive && color ? { borderColor: color, background: color + "22", color } : {}}>
-              {item}
+              {labels ? labels(item) : item}
             </button>
           );
         })}

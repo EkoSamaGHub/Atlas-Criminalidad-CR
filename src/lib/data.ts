@@ -115,6 +115,23 @@ export const PROVINCE_META: Record<string, { code: string; population: number }>
   Limón:        { code: "LI", population: 428391 },
 };
 
+const KNOWN_PROVINCES = new Set(Object.keys(PROVINCE_META));
+
+// Artifact names that appear due to PDF parsing (row headers, totals, etc.)
+const JUNK_CANTON_NAMES = new Set(["total", "porcentajes", "subtotal", "grand total", "suma", "totales"]);
+
+function isValidCantonName(name: string): boolean {
+  const t = name.trim().toLowerCase();
+  if (!t) return false;
+  if (/^\d+$/.test(t)) return false;        // purely numeric → junk ID
+  if (JUNK_CANTON_NAMES.has(t)) return false;
+  return true;
+}
+
+function normalizeCanton(name: string): string {
+  return name.trim().toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function isCount(r: CrimeRecord): boolean {
@@ -147,10 +164,12 @@ export function getStats(): DataStats {
   const countYears = [...new Set(countRecs.map((r) => r.year))].sort((a, b) => a - b);
 
   const totalCount = countRecs.reduce((s, r) => s + r.count, 0);
+  const validCantonRecs = (recs: CrimeRecord[]) =>
+    recs.filter((r) => r.canton && isValidCantonName(r.canton) && KNOWN_PROVINCES.has(r.province));
   const cantonCount = new Set(
-    countRecs.filter((r) => r.canton).map((r) => r.canton!)
+    validCantonRecs(countRecs).map((r) => normalizeCanton(r.canton!))
   ).size || new Set(
-    records.filter((r) => r.canton).map((r) => r.canton!)
+    validCantonRecs(records).map((r) => normalizeCanton(r.canton!))
   ).size;
 
   const districtCount = new Set(
@@ -204,12 +223,14 @@ export function getProvinces(): { provinces: ProvinceData[]; isReal: boolean } {
   };
 
   // For each crime type, pick its own latest annual year independently.
-  // This avoids zeros when different crime types come from different source years.
+  // Use max (not sum) across records for the same year to avoid double-counting
+  // when the same annual total appears in multiple source publications.
   const latestForCrime = (recs: CrimeRecord[], crimeType: string): number => {
     const annual = recs.filter((r) => r.crimeType === crimeType && r.period === "Anual" && !r.canton);
     const years = [...new Set(annual.map((r) => r.year))].sort((a, b) => b - a);
     if (!years.length) return 0;
-    return annual.filter((r) => r.year === years[0]).reduce((s, r) => s + r.count, 0);
+    const latest = annual.filter((r) => r.year === years[0]);
+    return latest.length === 0 ? 0 : Math.max(...latest.map((r) => r.count));
   };
 
   const DISPLAYED: CrimeCategory[] = ["homicidio", "robo", "narcotrafico", "hurto", "violacion"];
@@ -285,11 +306,17 @@ export function getCantonRankings(): CantonData[] {
   const json = loadCrimesJson();
   if (!json) return [];
 
-  const cantonRecs = json.records.filter((r) => r.canton);
+  const cantonRecs = json.records.filter((r) =>
+    r.canton &&
+    isValidCantonName(r.canton) &&
+    KNOWN_PROVINCES.has(r.province)
+  );
+
   const map = new Map<string, CantonData>();
   for (const r of cantonRecs) {
-    const key = `${r.province}||${r.canton}`;
-    if (!map.has(key)) map.set(key, { canton: r.canton!, province: r.province, crimes: {}, total: 0 });
+    const normalized = normalizeCanton(r.canton!);
+    const key = `${r.province}||${normalized}`;
+    if (!map.has(key)) map.set(key, { canton: normalized, province: r.province, crimes: {}, total: 0 });
     const entry = map.get(key)!;
     entry.crimes[r.crimeType] = (entry.crimes[r.crimeType] ?? 0) + r.count;
     entry.total += r.count;

@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getCantonRankings, getStats, CRIME_COLORS, provinceSlug } from "@/lib/data";
+import { getCantonRankings, getStats, CRIME_COLORS, PROVINCE_META, provinceSlug } from "@/lib/data";
+
+const KNOWN_PROVINCES = new Set(Object.keys(PROVINCE_META));
+
+const CRIME_LABELS: Record<string, string> = {
+  homicidio: "Homicidio", robo: "Robo", hurto: "Hurto",
+  narcotrafico: "Narcotráfico", violacion: "Violación",
+  agresion: "Agresión", extorsion: "Extorsión",
+};
+function crimeLabel(k: string) {
+  return CRIME_LABELS[k] ?? k.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
 
 export const metadata: Metadata = { title: "Cantones" };
 
@@ -50,8 +61,8 @@ export default function CantonesPage() {
               <th className="px-4 py-3 font-medium">Cantón</th>
               <th className="px-4 py-3 font-medium">Provincia</th>
               {crimeTypes.map((ct) => (
-                <th key={ct} className="px-3 py-3 font-medium text-center text-xs capitalize"
-                  style={{ color: CRIME_COLORS[ct] ?? "#94a3b8" }}>{ct}</th>
+                <th key={ct} className="px-3 py-3 font-medium text-center text-xs"
+                  style={{ color: CRIME_COLORS[ct] ?? "#94a3b8" }}>{crimeLabel(ct)}</th>
               ))}
               <th className="px-4 py-3 font-medium text-right">Total</th>
               <th className="px-4 py-3 font-medium">Barra</th>
@@ -63,8 +74,10 @@ export default function CantonesPage() {
                 <td className="px-3 py-2.5 text-slate-600 text-xs tabular-nums">{i + 1}</td>
                 <td className="px-4 py-2.5 font-medium text-white">{c.canton}</td>
                 <td className="px-4 py-2.5 text-slate-400 text-xs">
-                  <Link href={`/provincias/${provinceSlug(c.province)}`}
-                    className="hover:text-red-400 transition-colors">{c.province}</Link>
+                  {KNOWN_PROVINCES.has(c.province)
+                    ? <Link href={`/provincias/${provinceSlug(c.province)}`}
+                        className="hover:text-red-400 transition-colors">{c.province}</Link>
+                    : <span className="text-slate-600">{c.province}</span>}
                 </td>
                 {crimeTypes.map((ct) => (
                   <td key={ct} className="px-3 py-2.5 text-center text-xs tabular-nums text-slate-300">

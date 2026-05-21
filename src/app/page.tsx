@@ -16,7 +16,15 @@ export default function HomePage() {
   const latestCountYear  = countSummary?.year;
   const latestCountPeriod = countSummary?.period ?? "";
 
-  const grandTotal       = Object.values(crimeTotals).reduce((s, v) => s + v, 0);
+  // KPI totals: use latest annual year's province-level data (not all-time sum)
+  // to match the "Anual YYYY" label shown in the section header.
+  const latestYearTotals: Record<string, number> = countSummary
+    ? Object.values(countSummary.data).reduce((acc, provCrimes) => {
+        Object.entries(provCrimes).forEach(([ct, n]) => { acc[ct] = (acc[ct] ?? 0) + n; });
+        return acc;
+      }, {} as Record<string, number>)
+    : crimeTotals;
+  const grandTotal       = Object.values(latestYearTotals).reduce((s, v) => s + v, 0);
 
   return (
     <div className="flex flex-col">
@@ -69,11 +77,11 @@ export default function HomePage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
               <KpiCard label="Total delitos" value={grandTotal.toLocaleString("es-CR")} sub="todas las categorías" />
-              <KpiCard label="Hurtos" value={(crimeTotals.hurto ?? 0).toLocaleString("es-CR")} sub="delito más frecuente" color="text-blue-400" />
-              <KpiCard label="Robos" value={(crimeTotals.robo ?? 0).toLocaleString("es-CR")} sub="" color="text-orange-400" />
-              <KpiCard label="Narcotráfico" value={(crimeTotals.narcotrafico ?? 0).toLocaleString("es-CR")} sub="" color="text-purple-400" />
-              <KpiCard label="Homicidios" value={(crimeTotals.homicidio ?? 0).toLocaleString("es-CR")} sub="delito más grave" color="text-red-400" />
-              <KpiCard label="Violaciones" value={(crimeTotals.violacion ?? 0).toLocaleString("es-CR")} sub="" color="text-pink-400" />
+              <KpiCard label="Hurtos" value={(latestYearTotals.hurto ?? 0).toLocaleString("es-CR")} sub="delito más frecuente" color="text-blue-400" />
+              <KpiCard label="Robos" value={(latestYearTotals.robo ?? 0).toLocaleString("es-CR")} sub="" color="text-orange-400" />
+              <KpiCard label="Narcotráfico" value={(latestYearTotals.narcotrafico ?? 0).toLocaleString("es-CR")} sub="" color="text-purple-400" />
+              <KpiCard label="Homicidios" value={(latestYearTotals.homicidio ?? 0).toLocaleString("es-CR")} sub="delito más grave" color="text-red-400" />
+              <KpiCard label="Violaciones" value={(latestYearTotals.violacion ?? 0).toLocaleString("es-CR")} sub="" color="text-pink-400" />
             </div>
           </div>
         </section>
@@ -167,7 +175,7 @@ export default function HomePage() {
                 ))}
                 <th className="px-4 py-3 font-medium text-right">Total</th>
                 <th className="px-4 py-3 font-medium">Tasa /100k</th>
-                <th className="px-4 py-3 font-medium">Var. anual</th>
+                <th className="px-4 py-3 font-medium" title="Solo disponible para provincias con dos años anuales consecutivos en la misma fuente">Var. anual</th>
                 <th className="px-4 py-3 font-medium w-8" />
               </tr>
             </thead>
@@ -280,7 +288,7 @@ function MiniBarChart({
             </span>
             <div className={`w-full rounded-t-sm ${color} ${hoverColor} transition-colors`}
               style={{ height: `${Math.max(pct, 4)}%` }} />
-            <span className="text-xs text-slate-500">{String(pt.year).slice(2)}</span>
+            <span className="text-xs text-slate-500">{pt.year}</span>
           </div>
         );
       })}

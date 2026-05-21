@@ -40,7 +40,7 @@ export default function Navbar() {
         </nav>
         <div className="flex items-center gap-1.5 text-xs text-slate-500 shrink-0">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="hidden sm:block">2018–2025</span>
+          <span className="hidden sm:block">datos actualizados</span>
         </div>
       </div>
     </header>
