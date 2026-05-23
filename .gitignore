@@ -44,3 +44,6 @@ next-env.d.ts
 /public/data/raw/*.xls
 /public/data/raw/*.xlsx
 /public/data/pdfs/
+
+# Watchdog escalation report (temp file, deleted after gh issue creation)
+.watchdog-report.md

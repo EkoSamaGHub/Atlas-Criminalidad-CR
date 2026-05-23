@@ -10,6 +10,7 @@
 
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 
 // ── Known-good sets ────────────────────────────────────────────────────────────
 
@@ -36,13 +37,18 @@ const VALID_PERIODS = new Set([
 let criticalCount = 0;
 let warningCount  = 0;
 
+const criticalMessages: string[] = [];
+const warningMessages:  string[] = [];
+
 function critical(msg: string) {
   console.error(`  [CRITICAL] ${msg}`);
+  criticalMessages.push(msg);
   criticalCount++;
 }
 
 function warn(msg: string) {
   console.warn(`  [WARNING]  ${msg}`);
+  warningMessages.push(msg);
   warningCount++;
 }
 
@@ -56,7 +62,8 @@ function ok(msg: string) {
 
 // ── Load files ─────────────────────────────────────────────────────────────────
 
-const ROOT = path.join(process.cwd(), "public", "data");
+const ROOT          = path.join(process.cwd(), "public", "data");
+const RAW_DIR       = path.join(ROOT, "raw");
 const CRIMES_PATH   = path.join(ROOT, "crimes.json");
 const MANIFEST_PATH = path.join(ROOT, "manifest.json");
 
@@ -526,14 +533,323 @@ if (countBySource.size === 0) {
   info("No count records found — site is running on rate data only (2018–2022 Excel)");
 }
 
+// ── 13. Source file → crimes.json reconciliation ──────────────────────────────
+
+console.log("\n§13 Source file reconciliation");
+
+if (!fs.existsSync(RAW_DIR)) {
+  warn("public/data/raw/ directory not found — cannot verify source-to-database mapping");
+} else {
+  const rawFiles = fs.readdirSync(RAW_DIR).filter((f) => f.endsWith(".json"));
+  const excelFiles = rawFiles.filter((f) => !f.endsWith("_pdf.json") && f !== "manifest.json");
+  const pdfFiles   = rawFiles.filter((f) => f.endsWith("_pdf.json"));
+
+  // ── Excel raw files → crimes.json ──────────────────────────────────────────
+  info(`Excel raw files: ${excelFiles.length}  |  PDF raw files: ${pdfFiles.length}`);
+
+  for (const f of excelFiles) {
+    const inCrimes = records.filter((r) => r.source === f);
+    if (inCrimes.length === 0) {
+      critical(
+        `Excel raw "${f}" has no records in crimes.json — ` +
+        `run 'npm run process' or check manifest.json includes this file`
+      );
+    } else {
+      const years  = [...new Set(inCrimes.map((r) => r.year))].sort((a, b) => a - b);
+      const provs  = new Set(inCrimes.filter((r) => !r.canton).map((r) => r.province));
+      const types  = new Set(inCrimes.map((r) => r.crimeType));
+      ok(`Excel raw "${f}": ${inCrimes.length} records · years ${years.join(",")} · ${provs.size}/7 provinces · crime types: [${[...types].join(",")}]`);
+    }
+  }
+
+  // ── PDF raw files → crimes.json ────────────────────────────────────────────
+  for (const f of pdfFiles) {
+    const rawPath = path.join(RAW_DIR, f);
+    let rawRecords: CrimeRecord[] = [];
+    try {
+      rawRecords = Object.values(
+        JSON.parse(fs.readFileSync(rawPath, "utf-8"))
+      ) as CrimeRecord[];
+    } catch {
+      warn(`Could not parse PDF raw file "${f}"`);
+      continue;
+    }
+
+    if (rawRecords.length === 0) {
+      info(`PDF raw "${f}": empty — no tables extracted from PDF`);
+      continue;
+    }
+
+    const sourceName = f.replace("_pdf.json", "");
+    const inCrimes   = records.filter((r) => r.source === sourceName);
+    const rawProvs   = [...new Set(rawRecords.map((r) => r.province))];
+
+    if (inCrimes.length === 0) {
+      // Diagnose why it was excluded
+      if (rawProvs.length === 1 && rawRecords.length > 10) {
+        critical(
+          `PDF raw "${f}": ${rawRecords.length} records extracted but EXCLUDED from crimes.json ` +
+          `— all assigned to "${rawProvs[0]}" only (province detection failed during PDF extraction). ` +
+          `This data is unreliable; fix extract_pdfs.py province detection and re-run.`
+        );
+      } else if (rawRecords.some((r) => r.crimeType === "homicidio" && r.count < 30 && r.unit === "count")) {
+        critical(
+          `PDF raw "${f}": excluded — homicidio count values are implausibly small (likely rates ` +
+          `misclassified as counts). Fix extract_pdfs.py and re-run.`
+        );
+      } else {
+        warn(`PDF raw "${f}": ${rawRecords.length} records in raw file but 0 in crimes.json`);
+      }
+    } else {
+      const inProvs = new Set(inCrimes.map((r) => r.province));
+      const missed  = rawProvs.filter((p) => !inProvs.has(p));
+      if (missed.length > 0) {
+        warn(`PDF raw "${f}": provinces ${missed.join(", ")} present in raw file but missing in crimes.json`);
+      } else {
+        ok(`PDF raw "${f}": ${inCrimes.length}/${rawRecords.length} records loaded · ${inProvs.size} province(s)`);
+      }
+    }
+  }
+
+  // ── Orphan sources in crimes.json (no matching raw file) ───────────────────
+  const knownSources = new Set([
+    ...excelFiles,
+    ...pdfFiles.map((f) => f.replace("_pdf.json", "")),
+  ]);
+  const orphans = [...new Set(records.map((r) => r.source))].filter(
+    (s) => !knownSources.has(s) && !knownSources.has(s + ".json")
+  );
+  if (orphans.length > 0) {
+    warn(
+      `${orphans.length} source(s) appear in crimes.json but have no corresponding raw file ` +
+      `(data cannot be traced back to source): ${orphans.join(", ")}`
+    );
+  } else {
+    ok("All crime records in crimes.json are traceable to a raw source file");
+  }
+}
+
+// ── 14. Website display verification (crimes.json → UI) ───────────────────────
+
+console.log("\n§14 Website display verification");
+
+// Find the best rate year (same algorithm as data.ts getRateSummaryYear)
+const annualProvRates = rateRecs.filter(
+  (r) => !r.canton && r.period === "Anual" && KNOWN_PROVINCES.has(r.province)
+);
+const ypMap = new Map<number, Set<string>>();
+for (const r of annualProvRates) {
+  if (!ypMap.has(r.year)) ypMap.set(r.year, new Set());
+  ypMap.get(r.year)!.add(r.province);
+}
+const bestRateYear = ypMap.size > 0
+  ? [...ypMap.entries()].sort((a, b) => b[1].size - a[1].size || b[0] - a[0])[0][0]
+  : null;
+
+// ── Province table (getProvinceAggregateCrimes) ─────────────────────────────
+if (!bestRateYear) {
+  critical("Website province table: no annual province-level rate data — table will be empty");
+} else {
+  const displayedRates = annualProvRates.filter((r) => r.year === bestRateYear);
+  const displayedProvs = new Set(displayedRates.map((r) => r.province));
+  const missingProvs   = [...KNOWN_PROVINCES].filter((p) => !displayedProvs.has(p));
+
+  if (missingProvs.length > 0) {
+    warn(
+      `Website province table (year=${bestRateYear}): ` +
+      `${missingProvs.join(", ")} will show all-zero — no rate records for those provinces`
+    );
+  } else {
+    ok(`Website province table: all 7 provinces have data for year ${bestRateYear}`);
+  }
+
+  // Verify each displayed value is traceable to an exact record in crimes.json
+  let traceFailures = 0;
+  for (const r of displayedRates) {
+    const match = records.find(
+      (x) =>
+        x.province === r.province &&
+        x.crimeType === r.crimeType &&
+        x.year === r.year &&
+        x.period === r.period &&
+        x.count === r.count &&
+        !x.canton
+    );
+    if (!match) {
+      traceFailures++;
+      critical(
+        `Website value NOT traceable: ${r.province} / ${r.crimeType} / ${r.year} = ${r.count} — ` +
+        `record exists in filter but not in full records array (data corruption)`
+      );
+    }
+  }
+  if (traceFailures === 0) {
+    ok(`All ${displayedRates.length} province table values are traceable to exact records in crimes.json`);
+  }
+}
+
+// ── KPI cards (getCrimeTotals) ───────────────────────────────────────────────
+const countRecsForKPI = records.filter((r) => (r.unit === "count" || r.unit === undefined) && !r.canton);
+if (countRecsForKPI.length > 0) {
+  ok(`KPI cards: using absolute counts (${countRecsForKPI.length} province-level count records)`);
+} else if (bestRateYear) {
+  const kpiSource = annualProvRates.filter((r) => r.year === bestRateYear);
+  for (const ct of [...UI_CRIME_TYPES]) {
+    const vals = kpiSource.filter((r) => r.crimeType === ct).map((r) => r.count);
+    if (vals.length === 0) {
+      warn(`KPI card "${ct}": no data for year ${bestRateYear} — will show 0`);
+    }
+  }
+  ok(`KPI cards: falling back to rate /10k from ${bestRateYear} — all traceable to crimes.json`);
+} else {
+  critical("KPI cards: no data source available — all cards will show 0");
+}
+
+// ── Year trend chart (getYearTrend) ─────────────────────────────────────────
+const trendYears = [...new Set(records.filter((r) => !r.canton).map((r) => r.year))].sort(
+  (a, b) => a - b
+);
+if (trendYears.length === 0) {
+  critical("Website year trend chart: no data — chart will be empty");
+} else {
+  // Check for gaps > 1 year
+  const gaps: string[] = [];
+  for (let i = 1; i < trendYears.length; i++) {
+    if (trendYears[i] - trendYears[i - 1] > 1) {
+      gaps.push(`${trendYears[i - 1]}→${trendYears[i]}`);
+    }
+  }
+  if (gaps.length > 0) warn(`Year trend chart has gaps: ${gaps.join(", ")}`);
+  else ok(`Year trend chart: continuous data ${trendYears[0]}–${trendYears[trendYears.length - 1]}`);
+}
+
+// ── Canton rankings (getCantonRankings) ─────────────────────────────────────
+const cantonRateRecs = rateRecs.filter(
+  (r) => r.canton && KNOWN_PROVINCES.has(r.province)
+);
+if (cantonRateRecs.length === 0) {
+  critical("Website canton rankings: no canton-level rate data — rankings will be empty");
+} else {
+  const uniqueCantons = new Set(
+    cantonRateRecs.map((r) => `${r.province}||${r.canton}`)
+  );
+  const cantonProvCoverage = new Set(cantonRateRecs.map((r) => r.province));
+  const missingCantonProvs = [...KNOWN_PROVINCES].filter((p) => !cantonProvCoverage.has(p));
+  if (missingCantonProvs.length > 0) {
+    warn(`Canton rankings: no canton data for provinces: ${missingCantonProvs.join(", ")}`);
+  }
+  ok(`Canton rankings: ${uniqueCantons.size} distinct cantons across ${cantonProvCoverage.size}/7 provinces`);
+}
+
+// ── Impossible / inaccurate values ──────────────────────────────────────────
+let impossibleRates = 0;
+for (const r of rateRecs) {
+  if (r.count > 10_000) {
+    impossibleRates++;
+    critical(
+      `Impossible rate: ${r.province}/${r.canton ?? "—"}/${r.crimeType}/${r.year} = ${r.count}/10k ` +
+      `(>100% of population — likely raw count stored as rate)`
+    );
+  }
+}
+if (impossibleRates === 0) ok("No impossible rate values (all ≤ 10,000 /10k)");
+
+// ── Year-over-year spikes (province level) ──────────────────────────────────
+const provCrimYearMap = new Map<string, { year: number; count: number }[]>();
+for (const r of annualProvRates) {
+  const key = `${r.province}||${r.crimeType}`;
+  if (!provCrimYearMap.has(key)) provCrimYearMap.set(key, []);
+  provCrimYearMap.get(key)!.push({ year: r.year, count: r.count });
+}
+let spikeCount = 0;
+for (const [key, entries] of provCrimYearMap) {
+  entries.sort((a, b) => a.year - b.year);
+  for (let i = 1; i < entries.length; i++) {
+    const prev = entries[i - 1].count;
+    const curr = entries[i].count;
+    if (prev > 0 && curr / prev > 10) {
+      spikeCount++;
+      warn(`Suspicious 10× spike in ${key}: ${prev} (${entries[i-1].year}) → ${curr} (${entries[i].year})`);
+    }
+  }
+}
+if (spikeCount === 0) ok("No suspicious year-over-year spikes detected (>10×)");
+
 // ── Summary ────────────────────────────────────────────────────────────────────
 
 console.log("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
 console.log(`  Result: ${criticalCount} critical issue(s), ${warningCount} warning(s)`);
 console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 
+// ── 15. Human escalation — GitHub issue ───────────────────────────────────────
+
 if (criticalCount > 0) {
   console.error("  FAIL — fix critical issues before publishing data.\n");
+
+  const reportDate = new Date().toISOString();
+  const issueTitle = `🚨 Data Watchdog: ${criticalCount} critical issue(s) — ${reportDate.split("T")[0]}`;
+
+  const issueBody = `## Atlas Criminalidad CR — Data Watchdog Alert
+
+**Date:** ${reportDate}
+**Result:** ${criticalCount} critical issue(s), ${warningCount} warning(s)
+
+---
+
+## Critical Issues
+
+${criticalMessages.map((m, i) => `${i + 1}. ${m}`).join("\n")}
+
+---
+
+## Warnings
+
+${warningMessages.length > 0 ? warningMessages.map((m, i) => `${i + 1}. ${m}`).join("\n") : "_None_"}
+
+---
+
+## What to check
+
+1. Run \`npm run validate\` locally to reproduce this report
+2. Inspect \`public/data/crimes.json\` for the flagged records
+3. Inspect \`public/data/raw/\` for source files mentioned in §13
+4. If PDF province detection failed: fix \`scripts/extract_pdfs.py\` and re-run \`python scripts/extract_pdfs.py\`
+5. If Excel extraction dropped records: fix \`scripts/process.ts\` and re-run \`npm run process\`
+6. After fixing, re-run \`npm run validate\` to confirm all critical issues are resolved
+
+## Checklist
+
+- [ ] All critical issues reviewed
+- [ ] Root cause identified for each
+- [ ] Fix implemented and tested
+- [ ] \`npm run validate\` passes with 0 critical issues
+- [ ] Fixed \`public/data/crimes.json\` committed and deployed
+
+> Auto-generated by \`npm run validate\` (scripts/validate-data.ts)
+`;
+
+  // Write body to temp file to avoid shell quoting issues
+  const reportFile = path.join(process.cwd(), ".watchdog-report.md");
+  fs.writeFileSync(reportFile, issueBody, "utf-8");
+
+  let issueCreated = false;
+  try {
+    const out = execSync(
+      `gh issue create --title "${issueTitle.replace(/"/g, '\\"')}" --body-file "${reportFile}"`,
+      { encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"] }
+    ).trim();
+    console.error(`  Escalation: GitHub issue created → ${out}\n`);
+    issueCreated = true;
+  } catch {
+    console.error("  Escalation: gh CLI unavailable or not authenticated.");
+    console.error("  ── Full report saved to .watchdog-report.md ──");
+    console.error("  Manually open a GitHub issue with the contents of that file.\n");
+  } finally {
+    if (issueCreated && fs.existsSync(reportFile)) {
+      try { fs.unlinkSync(reportFile); } catch { /* ignore */ }
+    }
+  }
+
   process.exit(1);
 } else if (warningCount > 0) {
   console.log("  PASS with warnings — review warnings above.\n");
