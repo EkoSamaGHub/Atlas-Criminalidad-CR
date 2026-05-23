@@ -419,6 +419,35 @@ export function getCrimeTotals(): Record<string, number> {
   return _crimeTotalsCache;
 }
 
+/** All-time province crime totals — sums max-per-year per crime type to avoid double-counting */
+export function getProvinceAggregateCrimes(): Record<string, Record<string, number>> {
+  const json = loadCrimesJson();
+  if (!json) return {};
+
+  const countRecs = json.records.filter(isCount).filter(
+    (r) => !r.canton && KNOWN_PROVINCES.has(r.province)
+  );
+
+  // For each province × crimeType × year, take the max (dedup within year)
+  // then sum across years
+  const map: Record<string, Record<string, Record<number, number>>> = {};
+  for (const r of countRecs) {
+    if (!map[r.province]) map[r.province] = {};
+    if (!map[r.province][r.crimeType]) map[r.province][r.crimeType] = {};
+    const cur = map[r.province][r.crimeType][r.year] ?? 0;
+    map[r.province][r.crimeType][r.year] = Math.max(cur, r.count);
+  }
+
+  const result: Record<string, Record<string, number>> = {};
+  for (const [prov, crimes] of Object.entries(map)) {
+    result[prov] = {};
+    for (const [ct, yearMap] of Object.entries(crimes)) {
+      result[prov][ct] = Object.values(yearMap).reduce((s, v) => s + v, 0);
+    }
+  }
+  return result;
+}
+
 /** Province data keyed by year — includes both count years and rate years with good coverage */
 export function getProvincesByYear(): Record<number, ProvinceData[]> {
   const json = loadCrimesJson();

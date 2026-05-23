@@ -13,6 +13,7 @@ interface Props {
   cantons: CantonData[];
   provinces: ProvinceData[];
   crimeTotals: Record<string, number>;
+  provinceAggregates: Record<string, Record<string, number>>;
   stats: { totalRecords: number; totalCount: number; sourceFiles: number; yearRange: [number, number]; cantonCount: number };
 }
 
@@ -22,7 +23,7 @@ const tt = {
   cursor: { fill: "rgba(255,255,255,0.03)" },
 };
 
-export default function DashboardClient({ trend, cantons, provinces, crimeTotals, stats }: Props) {
+export default function DashboardClient({ trend, cantons, provinces, crimeTotals, provinceAggregates, stats }: Props) {
   const [selectedCrimes, setSelectedCrimes] = useState<string[]>(["homicidio", "robo", "hurto", "narcotrafico"]);
 
   const grandTotal   = stats.totalCount;
@@ -286,9 +287,14 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
         </ChartCard>
       </div>
 
-      {/* Province × crime-type table */}
+      {/* Province × crime-type table — all-time aggregates */}
       <div>
-        <h2 className="text-sm font-semibold text-white uppercase tracking-wider mb-3">Desglose Completo por Provincia y Categoría</h2>
+        <div className="flex items-center justify-between mb-3">
+          <h2 className="text-sm font-semibold text-white uppercase tracking-wider">Desglose Completo por Provincia y Categoría</h2>
+          <span className="text-[10px] px-2 py-0.5 rounded-full border border-emerald-800 text-emerald-400 bg-emerald-950/40">
+            Acumulado {stats.yearRange[0]}–{stats.yearRange[1]}
+          </span>
+        </div>
         <div className="rounded-xl border border-slate-800 overflow-x-auto">
           <table className="w-full text-sm min-w-[600px]">
             <thead className="bg-slate-800/60 text-slate-400 text-left">
@@ -298,35 +304,41 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
                   <th key={c.key} className="px-3 py-3 font-medium text-center" style={{ color: c.color }}>{c.label}</th>
                 ))}
                 <th className="px-4 py-3 font-medium text-right">Total</th>
-                <th className="px-4 py-3 font-medium">Var.</th>
                 <th className="px-2 py-3 font-medium w-8" />
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-800">
-              {[...provinces].sort((a, b) => b.rate - a.rate).map((p) => {
-                const total = Object.values(p.crimes).reduce((s, v) => s + v, 0);
-                return (
-                  <tr key={p.code} className="hover:bg-slate-800/30 transition-colors group">
-                    <td className="px-4 py-3 font-medium text-white">{p.name}</td>
-                    {CATEGORIES.map((c) => (
-                      <td key={c.key} className="px-3 py-3 text-slate-300 text-center text-xs tabular-nums">
-                        {(p.crimes[c.key as keyof typeof p.crimes] ?? 0).toLocaleString("es-CR")}
+              {[...provinces]
+                .sort((a, b) => {
+                  const aTotal = Object.values(provinceAggregates[a.name] ?? {}).reduce((s, v) => s + v, 0);
+                  const bTotal = Object.values(provinceAggregates[b.name] ?? {}).reduce((s, v) => s + v, 0);
+                  return bTotal - aTotal;
+                })
+                .map((p) => {
+                  const agg = provinceAggregates[p.name] ?? {};
+                  const total = Object.values(agg).reduce((s, v) => s + v, 0);
+                  return (
+                    <tr key={p.code} className="hover:bg-slate-800/30 transition-colors group">
+                      <td className="px-4 py-3 font-medium text-white">{p.name}</td>
+                      {CATEGORIES.map((c) => (
+                        <td key={c.key} className="px-3 py-3 text-slate-300 text-center text-xs tabular-nums">
+                          {(agg[c.key] ?? 0).toLocaleString("es-CR")}
+                        </td>
+                      ))}
+                      <td className="px-4 py-3 font-semibold text-right tabular-nums">{total.toLocaleString("es-CR")}</td>
+                      <td className="px-2 py-3">
+                        <Link href={`/provincias/${provinceSlug(p.name)}`}
+                          className="text-xs text-slate-600 group-hover:text-red-400 transition-colors">→</Link>
                       </td>
-                    ))}
-                    <td className="px-4 py-3 font-semibold text-right tabular-nums">{total.toLocaleString("es-CR")}</td>
-                    <td className={`px-4 py-3 font-medium text-xs ${p.trend > 0 ? "text-red-400" : p.trend < 0 ? "text-emerald-400" : "text-slate-500"}`}>
-                      {p.trend !== 0 ? `${p.trend > 0 ? "+" : ""}${p.trend}%` : "—"}
-                    </td>
-                    <td className="px-2 py-3">
-                      <Link href={`/provincias/${provinceSlug(p.name)}`}
-                        className="text-xs text-slate-600 group-hover:text-red-400 transition-colors">→</Link>
-                    </td>
-                  </tr>
-                );
-              })}
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>
+        <p className="text-xs text-slate-600 mt-2">
+          Totales acumulados de todos los años disponibles · máximo anual por fuente para evitar doble conteo.
+        </p>
       </div>
 
     </div>
