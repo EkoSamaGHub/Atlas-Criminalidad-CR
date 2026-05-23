@@ -299,25 +299,40 @@ export function getYearTrend(): YearTrendPoint[] {
   const json = loadCrimesJson();
   if (!json) return [];
 
-  // Group by year, respecting unit type.
-  // Exclude canton-level records: province-level totals already include them.
-  const byYear = new Map<number, { counts: Record<string, number>; rates: Record<string, number> }>();
+  // Deduplicate per (year, province, crimeType), then sum across provinces.
+  // Rate records are converted to estimated national counts (rate × pop / 10k)
+  // so values are additive and meaningful across provinces.
+  const byYear = new Map<number, {
+    countMap: Map<string, number>;   // "province||crimeType" → count
+    rateMap:  Map<string, number>;   // "province||crimeType" → estimated count
+  }>();
 
-  for (const r of json.records.filter((r) => !r.canton)) {
-    if (!byYear.has(r.year)) byYear.set(r.year, { counts: {}, rates: {} });
+  for (const r of json.records) {
+    if (r.canton) continue;
+    if (!KNOWN_PROVINCES.has(r.province)) continue;
+    if (!byYear.has(r.year)) byYear.set(r.year, { countMap: new Map(), rateMap: new Map() });
     const entry = byYear.get(r.year)!;
+    const key = `${r.province}||${r.crimeType}`;
     if (isCount(r)) {
-      entry.counts[r.crimeType] = (entry.counts[r.crimeType] ?? 0) + r.count;
+      entry.countMap.set(key, Math.max(entry.countMap.get(key) ?? 0, r.count));
     } else {
-      entry.rates[r.crimeType] = (entry.rates[r.crimeType] ?? 0) + r.count;
+      const pop = PROVINCE_META[r.province]?.population ?? 0;
+      const est = Math.round(r.count * pop / 10000);
+      entry.rateMap.set(key, Math.max(entry.rateMap.get(key) ?? 0, est));
     }
   }
 
+  const collapseMap = (m: Map<string, number>): Record<string, number> => {
+    const t: Record<string, number> = {};
+    for (const [k, v] of m) { const ct = k.split("||")[1]; t[ct] = (t[ct] ?? 0) + v; }
+    return t;
+  };
+
   return [...byYear.entries()]
-    .map(([year, { counts, rates }]) => {
-      const hasCount = Object.keys(counts).length > 0;
-      const hasRate  = Object.keys(rates).length > 0;
-      const src = hasCount ? counts : rates;
+    .map(([year, { countMap, rateMap }]) => {
+      const hasCount = countMap.size > 0;
+      const hasRate  = rateMap.size > 0;
+      const src = hasCount ? collapseMap(countMap) : collapseMap(rateMap);
       return {
         year,
         homicidio:    src.homicidio    ?? 0,
@@ -623,4 +638,153 @@ export function getProvinceCountSummary(): {
     data[r.province][r.crimeType] = (data[r.province][r.crimeType] ?? 0) + r.count;
   }
   return { year, period, data };
+}
+
+// ── Data health (admin) ───────────────────────────────────────────────────────
+
+export interface DataHealthWarning {
+  level: "error" | "warning" | "info";
+  message: string;
+}
+
+export interface DataHealth {
+  checkedAt: string;
+  crimesJson: {
+    exists: boolean;
+    totalRecords: number;
+    byUnit: Record<string, number>;
+    yearRange: [number, number] | null;
+    generatedAt: string | null;
+    sources: number;
+  };
+  excel: {
+    manifestTotal: number;
+    rawFilesFound: number;
+    rawFilesMissing: { title: string; year: number | null; filename: string }[];
+    yearsInCrimesJson: number[];
+  };
+  pdf: {
+    manifestTotal: number;
+    extracted: { filename: string; records: number; years: number[] }[];
+    notExtracted: { title: string; year: number | null; filename: string }[];
+    inCrimesJson: number;
+  };
+  warnings: DataHealthWarning[];
+}
+
+export function getDataHealth(): DataHealth {
+  const warnings: DataHealthWarning[] = [];
+  const json   = loadCrimesJson();
+  const manifest = loadManifest();
+  const rawDir = path.join(process.cwd(), "public", "data", "raw");
+
+  let rawFiles: string[] = [];
+  try { rawFiles = fs.readdirSync(rawDir); } catch { /* no raw dir yet */ }
+
+  const rawExcel = rawFiles.filter((f) => f.endsWith(".json") && !f.endsWith("_pdf.json"));
+  const rawPdf   = rawFiles.filter((f) => f.endsWith("_pdf.json"));
+
+  // crimes.json summary
+  const byUnit: Record<string, number> = {};
+  if (json) {
+    for (const r of json.records) {
+      const u = r.unit ?? "undefined";
+      byUnit[u] = (byUnit[u] ?? 0) + 1;
+    }
+  }
+  const allYears = json ? [...new Set(json.records.map((r) => r.year))].sort((a, b) => a - b) : [];
+  const crimesJson = {
+    exists:       !!json,
+    totalRecords: json?.totalRecords ?? 0,
+    byUnit,
+    yearRange:    allYears.length ? ([allYears[0], allYears[allYears.length - 1]] as [number, number]) : null,
+    generatedAt:  json?.generatedAt ?? null,
+    sources:      json?.sourceFiles ?? 0,
+  };
+
+  // Excel pipeline
+  const excelManifest = manifest.filter((e) => !e.originalUrl?.match(/\.pdf$/i));
+  const rawExcelSet   = new Set(rawExcel);
+  const excel = {
+    manifestTotal:    excelManifest.length,
+    rawFilesFound:    rawExcel.length,
+    rawFilesMissing:  excelManifest
+      .filter((e) => !rawExcelSet.has(e.filename))
+      .map((e) => ({ title: e.title, year: e.year, filename: e.filename })),
+    yearsInCrimesJson: json
+      ? [...new Set(json.records.filter(isRate).map((r) => r.year))].sort((a, b) => a - b)
+      : [],
+  };
+
+  // PDF pipeline
+  const pdfManifest      = manifest.filter((e) => e.originalUrl?.match(/\.pdf$/i) && !e.reference_only);
+  const extractedSet     = new Set(rawPdf);
+  const pdfExtracted     = rawPdf.map((filename) => {
+    try {
+      const data = JSON.parse(fs.readFileSync(path.join(rawDir, filename), "utf-8")) as CrimeRecord[];
+      return { filename, records: data.length, years: [...new Set(data.map((r) => r.year))].sort((a, b) => a - b) };
+    } catch { return { filename, records: 0, years: [] }; }
+  });
+  const pdf = {
+    manifestTotal: pdfManifest.length,
+    extracted:     pdfExtracted,
+    notExtracted:  pdfManifest
+      .filter((e) => !extractedSet.has(e.filename))
+      .map((e) => ({ title: e.title, year: e.year, filename: e.filename })),
+    inCrimesJson:  json?.records.filter((r) => r.unit === "count").length ?? 0,
+  };
+
+  // Warnings
+  if (!json) {
+    warnings.push({ level: "error", message: "crimes.json no existe — ejecutar npm run process" });
+  }
+  if (excel.rawFilesMissing.length > 0) {
+    warnings.push({ level: "warning", message: `${excel.rawFilesMissing.length} archivo(s) Excel del manifest sin raw JSON (ejecutar npm run scrape)` });
+  }
+  if (pdf.inCrimesJson > 0) {
+    warnings.push({ level: "error", message: `${pdf.inCrimesJson} registros PDF (unit=count) detectados en crimes.json — se mezclan con Excel en dashboards. Limpiar con npm run process` });
+  }
+  const emptyPdfs = pdfExtracted.filter((f) => f.records === 0);
+  if (emptyPdfs.length > 0) {
+    warnings.push({ level: "warning", message: `${emptyPdfs.length} PDF(s) extraídos están vacíos (extracción falló): ${emptyPdfs.map((f) => f.filename).join(", ")}` });
+  }
+  if (pdf.notExtracted.length > 0) {
+    warnings.push({ level: "info", message: `${pdf.notExtracted.length} PDFs del manifest aún no extraídos (pipeline PDF incompleto)` });
+  }
+  if (json && crimesJson.yearRange && crimesJson.yearRange[1] < 2023) {
+    warnings.push({ level: "info", message: `Datos más recientes en crimes.json son del ${crimesJson.yearRange[1]}. PDFs 2023-2025 no integrados (intencional)` });
+  }
+
+  return { checkedAt: new Date().toISOString(), crimesJson, excel, pdf, warnings };
+}
+
+// ── PDF raw records (separate from Excel dashboards) ─────────────────────────
+
+export interface PdfRawRecord extends CrimeRecord {
+  sourceFile: string;
+}
+
+export interface PdfRawResult {
+  records: PdfRawRecord[];
+  files: { filename: string; records: number; years: number[] }[];
+}
+
+export function getPdfRawRecords(): PdfRawResult {
+  const rawDir = path.join(process.cwd(), "public", "data", "raw");
+  let rawFiles: string[] = [];
+  try { rawFiles = fs.readdirSync(rawDir).filter((f) => f.endsWith("_pdf.json")); } catch { return { records: [], files: [] }; }
+
+  const allRecords: PdfRawRecord[] = [];
+  const files: PdfRawResult["files"] = [];
+
+  for (const filename of rawFiles) {
+    try {
+      const data = JSON.parse(fs.readFileSync(path.join(rawDir, filename), "utf-8")) as CrimeRecord[];
+      const valid = data.filter((r) => r.province && r.crimeType && r.count >= 0);
+      files.push({ filename, records: valid.length, years: [...new Set(valid.map((r) => r.year))].sort((a, b) => a - b) });
+      allRecords.push(...valid.map((r) => ({ ...r, sourceFile: filename })));
+    } catch { /* skip */ }
+  }
+
+  return { records: allRecords, files };
 }

@@ -47,6 +47,7 @@ export default function Footer() {
               { href: "/datos",       label: "Explorador de Datos" },
               { href: "/metodologia", label: "Metodología" },
               { href: "/fuentes",     label: "Fuentes de Datos" },
+              { href: "/pdfs",        label: "Datos PDF (Experimental)" },
             ].map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="text-xs text-slate-400 hover:text-white transition-colors">
@@ -168,6 +169,12 @@ export default function Footer() {
           >
             <Code2 size={12} />
             Código abierto en GitHub
+          </a>
+          <a
+            href="/admin"
+            className="flex items-center gap-1.5 text-[10px] text-slate-700 hover:text-slate-500 transition-colors"
+          >
+            Admin
           </a>
         </div>
       </div>

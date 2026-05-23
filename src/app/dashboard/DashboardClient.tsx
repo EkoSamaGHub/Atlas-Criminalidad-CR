@@ -122,9 +122,9 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
       {/* Rate trend — historical tasas (2018-2022) */}
       {rateTrend.length > 0 && (
         <ChartCard
-          title="Tendencia por Categoría · Tasas históricas"
-          subtitle="Tasas por 10,000 hab. de Anexos Estadísticos Excel OIJ (2018–2022) — no comparables con conteos"
-          badge={{ label: "Tasas /10k — no comparar con arriba", cls: "border-amber-800 text-amber-400 bg-amber-950/40" }}
+          title="Tendencia por Categoría · Estimado nacional 2018–2022"
+          subtitle="Estimado: tasa /10k × población provincial (Anexos Excel OIJ). Valores comparables entre años, no con conteos reales."
+          badge={{ label: "Estimado basado en tasas Excel", cls: "border-amber-800 text-amber-400 bg-amber-950/40" }}
         >
           <div className="flex flex-wrap gap-2 mb-4">
             {Object.keys(CRIME_COLORS).filter(ct => ct !== "extorsion").map((ct) => (
@@ -142,7 +142,7 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
               <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
               <XAxis dataKey="year" tick={{ fill: "#64748b", fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "#64748b", fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip {...tt} formatter={(v, name) => [`${v} /10k`, name]} />
+              <Tooltip {...tt} formatter={(v, name) => [`~${Number(v).toLocaleString("es-CR")} est.`, name]} />
               {selectedCrimes.map((ct) => (
                 <Line key={ct} type="monotone" dataKey={ct} stroke={CRIME_COLORS[ct] + "99"} strokeWidth={1.5}
                   strokeDasharray="4 2" dot={{ fill: CRIME_COLORS[ct], r: 2.5 }} name={ct} connectNulls />
@@ -169,8 +169,8 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
         </ResponsiveContainer>
         <p className="text-xs text-slate-600 mt-2">
           {hasCountData
-            ? "Barras rojas = conteos reales (2023+, Atlas PDF). Barras grises = tasas /10k (2018-2022, Anexos Excel) — escalas distintas."
-            : "Tasas por 10,000 habitantes — Anexos Estadísticos Excel OIJ (2018–2022)."}
+            ? "Barras rojas = conteos reales (Atlas PDF). Barras grises = estimado nacional basado en tasas Excel (tasa × población)."
+            : "Estimado nacional: tasa /10k × población provincial — Anexos Estadísticos Excel OIJ (2018–2022)."}
         </p>
       </ChartCard>
 

@@ -11,6 +11,7 @@ const links = [
   { href: "/cantones",   label: "Cantones" },
   { href: "/analisis",   label: "Análisis IA" },
   { href: "/datos",      label: "Datos" },
+  { href: "/pdfs",       label: "Datos PDF" },
   { href: "/fuentes",    label: "Fuentes" },
   { href: "/metodologia", label: "Metodología" },
 ];
