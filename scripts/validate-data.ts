@@ -464,6 +464,68 @@ if (rateYears.length === 0) {
   }
 }
 
+// ── 12. PDF extraction quality — province coverage per source ──────────────────
+
+console.log("\n§12 PDF extraction quality");
+
+// Group count records by source file
+const countBySource = new Map<string, CrimeRecord[]>();
+for (const r of countRecs) {
+  if (!countBySource.has(r.source)) countBySource.set(r.source, []);
+  countBySource.get(r.source)!.push(r);
+}
+
+for (const [src, recs] of countBySource) {
+  const provs = new Set(recs.filter((r) => !r.canton).map((r) => r.province));
+  const totalRecs = recs.length;
+
+  // Flag 1: all records from a multi-province PDF assigned to a single province
+  if (provs.size === 1 && totalRecs > 10) {
+    critical(
+      `Source "${src}": ${totalRecs} count records all assigned to "${[...provs][0]}" only ` +
+      `— province detection likely failed during PDF extraction (should cover all 7 provinces)`
+    );
+  }
+
+  // Flag 2: implausibly small province-level counts (likely misclassified rates)
+  const provRecs = recs.filter((r) => !r.canton);
+  for (const r of provRecs) {
+    if (r.crimeType === "homicidio" && r.count < 30 && r.period === "Anual") {
+      critical(
+        `Source "${src}": province-level annual homicidio count = ${r.count} for ${r.province} ${r.year} ` +
+        `— below plausible minimum (30); likely a rate value misclassified as count`
+      );
+    }
+    if ((r.crimeType === "robo" || r.crimeType === "hurto") && r.count < 100 && r.period === "Anual") {
+      critical(
+        `Source "${src}": province-level annual ${r.crimeType} count = ${r.count} for ${r.province} ${r.year} ` +
+        `— below plausible minimum (100); likely a rate value misclassified as count`
+      );
+    }
+  }
+
+  // Flag 3: multiple province-level records for same province/year/crimeType in same source
+  const provLevelKeys = new Map<string, number>();
+  for (const r of provRecs) {
+    const key = `${r.province}||${r.year}||${r.period}||${r.crimeType}`;
+    provLevelKeys.set(key, (provLevelKeys.get(key) ?? 0) + 1);
+  }
+  const multiProvLevel = [...provLevelKeys.entries()].filter(([, n]) => n > 1);
+  if (multiProvLevel.length > 0) {
+    critical(
+      `Source "${src}": ${multiProvLevel.length} province/year/crimeType combinations have >1 record ` +
+      `— canton-level rows are being stored as province-level (canton=null)`
+    );
+    multiProvLevel.slice(0, 3).forEach(([k, n]) =>
+      console.error(`           ×${n}  ${k}`)
+    );
+  }
+}
+
+if (countBySource.size === 0) {
+  info("No count records found — site is running on rate data only (2018–2022 Excel)");
+}
+
 // ── Summary ────────────────────────────────────────────────────────────────────
 
 console.log("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");

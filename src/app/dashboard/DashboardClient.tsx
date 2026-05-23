@@ -14,6 +14,8 @@ interface Props {
   provinces: ProvinceData[];
   crimeTotals: Record<string, number>;
   provinceAggregates: Record<string, Record<string, number>>;
+  hasCountData: boolean;
+  rateSummaryYear: number | null;
   stats: { totalRecords: number; totalCount: number; sourceFiles: number; yearRange: [number, number]; cantonCount: number };
 }
 
@@ -23,7 +25,7 @@ const tt = {
   cursor: { fill: "rgba(255,255,255,0.03)" },
 };
 
-export default function DashboardClient({ trend, cantons, provinces, crimeTotals, provinceAggregates, stats }: Props) {
+export default function DashboardClient({ trend, cantons, provinces, crimeTotals, provinceAggregates, hasCountData, rateSummaryYear, stats }: Props) {
   const [selectedCrimes, setSelectedCrimes] = useState<string[]>(["homicidio", "robo", "hurto", "narcotrafico"]);
 
   const grandTotal   = stats.totalCount;
@@ -45,16 +47,27 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
           <h1 className="text-2xl font-bold text-white">Dashboard Estadístico</h1>
           <p className="text-slate-400 text-sm mt-1">
             {stats.yearRange[0]}–{stats.yearRange[1]} · {stats.totalRecords.toLocaleString("es-CR")} registros ·{" "}
-            {grandTotal.toLocaleString("es-CR")} delitos contabilizados · {stats.sourceFiles} publicaciones
+            {hasCountData
+              ? `${grandTotal.toLocaleString("es-CR")} delitos contabilizados`
+              : `tasas /10k · año de referencia ${rateSummaryYear ?? stats.yearRange[1]}`}{" "}
+            · {stats.sourceFiles} publicaciones
           </p>
         </div>
         <div className="flex gap-2 text-xs flex-wrap">
-          <span className="px-2.5 py-1 rounded-full border border-emerald-800 text-emerald-400 bg-emerald-950/40">
-            Conteos reales: 2023–2025
-          </span>
-          <span className="px-2.5 py-1 rounded-full border border-amber-800 text-amber-400 bg-amber-950/40">
-            Tasas /10k: 2018–2022
-          </span>
+          {hasCountData ? (
+            <>
+              <span className="px-2.5 py-1 rounded-full border border-emerald-800 text-emerald-400 bg-emerald-950/40">
+                Conteos reales: 2023–2025
+              </span>
+              <span className="px-2.5 py-1 rounded-full border border-amber-800 text-amber-400 bg-amber-950/40">
+                Tasas /10k: 2018–2022
+              </span>
+            </>
+          ) : (
+            <span className="px-2.5 py-1 rounded-full border border-amber-800 text-amber-400 bg-amber-950/40">
+              Tasas /10k · Anexos Excel OIJ 2018–2022
+            </span>
+          )}
         </div>
       </div>
 
@@ -66,6 +79,9 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
             <p className="text-lg font-bold tabular-nums" style={{ color: CRIME_COLORS[ct] ?? "#fff" }}>
               {count.toLocaleString("es-CR")}
             </p>
+            {!hasCountData && (
+              <p className="text-[9px] text-slate-600 mt-0.5">tasa /10k · {rateSummaryYear}</p>
+            )}
           </div>
         ))}
       </div>
@@ -152,13 +168,15 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
           </BarChart>
         </ResponsiveContainer>
         <p className="text-xs text-slate-600 mt-2">
-          Barras rojas = conteos reales (2023+, Atlas PDF). Barras grises = tasas /10k (2018-2022, Anexos Excel) — escalas distintas.
+          {hasCountData
+            ? "Barras rojas = conteos reales (2023+, Atlas PDF). Barras grises = tasas /10k (2018-2022, Anexos Excel) — escalas distintas."
+            : "Tasas por 10,000 habitantes — Anexos Estadísticos Excel OIJ (2018–2022)."}
         </p>
       </ChartCard>
 
       {/* Crime breakdown + Province comparison */}
       <div className="grid lg:grid-cols-2 gap-6">
-        <ChartCard title="Distribución por Tipo de Delito" subtitle="Total acumulado · solo conteos reales">
+        <ChartCard title="Distribución por Tipo de Delito" subtitle={hasCountData ? "Total acumulado · solo conteos reales" : `Tasa máxima por provincia · ${rateSummaryYear ?? ""}`}>
           <ResponsiveContainer width="100%" height={240}>
             <BarChart data={crimeList.map(([name, value]) => ({ name, value }))}
               margin={{ left: -10, right: 10, top: 4, bottom: 0 }}>
@@ -184,9 +202,12 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
               <YAxis type="category" dataKey="name" tick={{ fill: "#94a3b8", fontSize: 11 }} axisLine={false} tickLine={false} />
               <Tooltip {...tt} formatter={(v) => [`${v}`, "Tasa /100k"]} />
               <Bar dataKey="rate" radius={[0, 4, 4, 0]}>
-                {[...provinces].sort((a, b) => b.rate - a.rate).map((p) => (
-                  <Cell key={p.code} fill={p.rate > 2000 ? "#ef4444" : p.rate > 1500 ? "#f97316" : "#22c55e"} fillOpacity={0.85} />
-                ))}
+                {[...provinces].sort((a, b) => b.rate - a.rate).map((p, i, arr) => {
+                  const max = arr[0]?.rate ?? 1;
+                  const pct = p.rate / max;
+                  const fill = pct > 0.75 ? "#ef4444" : pct > 0.5 ? "#f97316" : "#22c55e";
+                  return <Cell key={p.code} fill={fill} fillOpacity={0.85} />;
+                })}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -291,8 +312,8 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
       <div>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-white uppercase tracking-wider">Desglose Completo por Provincia y Categoría</h2>
-          <span className="text-[10px] px-2 py-0.5 rounded-full border border-emerald-800 text-emerald-400 bg-emerald-950/40">
-            Acumulado {stats.yearRange[0]}–{stats.yearRange[1]}
+          <span className={`text-[10px] px-2 py-0.5 rounded-full border ${hasCountData ? "border-emerald-800 text-emerald-400 bg-emerald-950/40" : "border-amber-800 text-amber-400 bg-amber-950/40"}`}>
+            {hasCountData ? `Acumulado ${stats.yearRange[0]}–${stats.yearRange[1]}` : `Tasa /10k · ${rateSummaryYear ?? stats.yearRange[1]}`}
           </span>
         </div>
         <div className="rounded-xl border border-slate-800 overflow-x-auto">
@@ -337,7 +358,9 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
           </table>
         </div>
         <p className="text-xs text-slate-600 mt-2">
-          Totales acumulados de todos los años disponibles · máximo anual por fuente para evitar doble conteo.
+          {hasCountData
+            ? "Totales acumulados de todos los años disponibles · máximo anual por fuente para evitar doble conteo."
+            : `Tasas por 10,000 habitantes · Anexos Estadísticos Excel OIJ ${rateSummaryYear ?? ""} · los conteos absolutos por extracción PDF están pendientes de corrección.`}
         </p>
       </div>
 

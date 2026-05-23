@@ -413,22 +413,73 @@ export function getDataSources(): ManifestEntry[] {
   return loadManifest().sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 }
 
+/** Returns the year with the best province coverage in annual rate records. */
+function bestRateYear(recs: CrimeRecord[]): number | null {
+  const annual = recs.filter((r) => r.period === "Anual" && !r.canton && KNOWN_PROVINCES.has(r.province));
+  if (!annual.length) return null;
+  const ypMap = new Map<number, Set<string>>();
+  for (const r of annual) {
+    if (!ypMap.has(r.year)) ypMap.set(r.year, new Set());
+    ypMap.get(r.year)!.add(r.province);
+  }
+  return [...ypMap.entries()].sort((a, b) => b[1].size - a[1].size || b[0] - a[0])[0][0];
+}
+
+/** Returns the year currently used for rate-based province summaries. */
+export function getRateSummaryYear(): number | null {
+  const json = loadCrimesJson();
+  if (!json) return null;
+  return bestRateYear(json.records.filter(isRate));
+}
+
+/** Returns true when the dataset has verified absolute crime counts (not just rates). */
+export function hasCrimeCountData(): boolean {
+  const json = loadCrimesJson();
+  if (!json) return false;
+  return json.records.some(isCount);
+}
+
 let _crimeTotalsCache: Record<string, number> | undefined;
 
+/**
+ * Crime totals for KPI display.
+ * Uses absolute counts when available; falls back to rate_per_10k values
+ * from the most recent annual year with full province coverage.
+ */
 export function getCrimeTotals(): Record<string, number> {
   if (_crimeTotalsCache) return _crimeTotalsCache;
   const json = loadCrimesJson();
   if (!json) return {};
   const totals: Record<string, number> = {};
-  // Exclude canton records: province-level totals already include them.
-  for (const r of json.records.filter((r) => isCount(r) && !r.canton)) {
-    totals[r.crimeType] = (totals[r.crimeType] ?? 0) + r.count;
+
+  const countRecs = json.records.filter((r) => isCount(r) && !r.canton);
+  if (countRecs.length > 0) {
+    for (const r of countRecs) {
+      totals[r.crimeType] = (totals[r.crimeType] ?? 0) + r.count;
+    }
+  } else {
+    // Fall back to rates from the most representative year.
+    // Use the max value across provinces per crime type so the KPI reflects
+    // the highest observed provincial rate (a meaningful headline figure).
+    const rateRecs = json.records.filter(isRate);
+    const year = bestRateYear(rateRecs);
+    if (year) {
+      const forYear = rateRecs.filter((r) => r.year === year && !r.canton && r.period === "Anual");
+      for (const r of forYear) {
+        totals[r.crimeType] = Math.max(totals[r.crimeType] ?? 0, r.count);
+      }
+    }
   }
+
   _crimeTotalsCache = totals;
   return _crimeTotalsCache;
 }
 
-/** All-time province crime totals — sums max-per-year per crime type to avoid double-counting */
+/**
+ * Province crime summary table.
+ * Uses absolute counts when available; falls back to rate_per_10k records
+ * from the most recent annual year with full province coverage.
+ */
 export function getProvinceAggregateCrimes(): Record<string, Record<string, number>> {
   const json = loadCrimesJson();
   if (!json) return {};
@@ -437,22 +488,37 @@ export function getProvinceAggregateCrimes(): Record<string, Record<string, numb
     (r) => !r.canton && KNOWN_PROVINCES.has(r.province)
   );
 
-  // For each province × crimeType × year, take the max (dedup within year)
-  // then sum across years
-  const map: Record<string, Record<string, Record<number, number>>> = {};
-  for (const r of countRecs) {
-    if (!map[r.province]) map[r.province] = {};
-    if (!map[r.province][r.crimeType]) map[r.province][r.crimeType] = {};
-    const cur = map[r.province][r.crimeType][r.year] ?? 0;
-    map[r.province][r.crimeType][r.year] = Math.max(cur, r.count);
+  if (countRecs.length > 0) {
+    // For each province × crimeType × year, take the max (dedup within year)
+    // then sum across years
+    const map: Record<string, Record<string, Record<number, number>>> = {};
+    for (const r of countRecs) {
+      if (!map[r.province]) map[r.province] = {};
+      if (!map[r.province][r.crimeType]) map[r.province][r.crimeType] = {};
+      const cur = map[r.province][r.crimeType][r.year] ?? 0;
+      map[r.province][r.crimeType][r.year] = Math.max(cur, r.count);
+    }
+    const result: Record<string, Record<string, number>> = {};
+    for (const [prov, crimes] of Object.entries(map)) {
+      result[prov] = {};
+      for (const [ct, yearMap] of Object.entries(crimes)) {
+        result[prov][ct] = Object.values(yearMap).reduce((s, v) => s + v, 0);
+      }
+    }
+    return result;
   }
 
+  // Fall back to rate records from the best annual year
+  const rateProvRecs = json.records.filter(
+    (r) => isRate(r) && !r.canton && r.period === "Anual" && KNOWN_PROVINCES.has(r.province)
+  );
+  const year = bestRateYear(rateProvRecs);
+  if (!year) return {};
+
   const result: Record<string, Record<string, number>> = {};
-  for (const [prov, crimes] of Object.entries(map)) {
-    result[prov] = {};
-    for (const [ct, yearMap] of Object.entries(crimes)) {
-      result[prov][ct] = Object.values(yearMap).reduce((s, v) => s + v, 0);
-    }
+  for (const r of rateProvRecs.filter((r) => r.year === year)) {
+    if (!result[r.province]) result[r.province] = {};
+    result[r.province][r.crimeType] = Math.max(result[r.province][r.crimeType] ?? 0, r.count);
   }
   return result;
 }
