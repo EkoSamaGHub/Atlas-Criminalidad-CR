@@ -299,40 +299,25 @@ export function getYearTrend(): YearTrendPoint[] {
   const json = loadCrimesJson();
   if (!json) return [];
 
-  // Deduplicate per (year, province, crimeType), then sum across provinces.
-  // Rate records are converted to estimated national counts (rate × pop / 10k)
-  // so values are additive and meaningful across provinces.
-  const byYear = new Map<number, {
-    countMap: Map<string, number>;   // "province||crimeType" → count
-    rateMap:  Map<string, number>;   // "province||crimeType" → estimated count
-  }>();
+  // Group by year, respecting unit type.
+  // Exclude canton-level records: province-level totals already include them.
+  const byYear = new Map<number, { counts: Record<string, number>; rates: Record<string, number> }>();
 
-  for (const r of json.records) {
-    if (r.canton) continue;
-    if (!KNOWN_PROVINCES.has(r.province)) continue;
-    if (!byYear.has(r.year)) byYear.set(r.year, { countMap: new Map(), rateMap: new Map() });
+  for (const r of json.records.filter((r) => !r.canton)) {
+    if (!byYear.has(r.year)) byYear.set(r.year, { counts: {}, rates: {} });
     const entry = byYear.get(r.year)!;
-    const key = `${r.province}||${r.crimeType}`;
     if (isCount(r)) {
-      entry.countMap.set(key, Math.max(entry.countMap.get(key) ?? 0, r.count));
+      entry.counts[r.crimeType] = (entry.counts[r.crimeType] ?? 0) + r.count;
     } else {
-      const pop = PROVINCE_META[r.province]?.population ?? 0;
-      const est = Math.round(r.count * pop / 10000);
-      entry.rateMap.set(key, Math.max(entry.rateMap.get(key) ?? 0, est));
+      entry.rates[r.crimeType] = (entry.rates[r.crimeType] ?? 0) + r.count;
     }
   }
 
-  const collapseMap = (m: Map<string, number>): Record<string, number> => {
-    const t: Record<string, number> = {};
-    for (const [k, v] of m) { const ct = k.split("||")[1]; t[ct] = (t[ct] ?? 0) + v; }
-    return t;
-  };
-
   return [...byYear.entries()]
-    .map(([year, { countMap, rateMap }]) => {
-      const hasCount = countMap.size > 0;
-      const hasRate  = rateMap.size > 0;
-      const src = hasCount ? collapseMap(countMap) : collapseMap(rateMap);
+    .map(([year, { counts, rates }]) => {
+      const hasCount = Object.keys(counts).length > 0;
+      const hasRate  = Object.keys(rates).length > 0;
+      const src = hasCount ? counts : rates;
       return {
         year,
         homicidio:    src.homicidio    ?? 0,
