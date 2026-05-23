@@ -419,6 +419,72 @@ export function getCrimeTotals(): Record<string, number> {
   return _crimeTotalsCache;
 }
 
+/** Province data keyed by year — includes both count years and rate years with good coverage */
+export function getProvincesByYear(): Record<number, ProvinceData[]> {
+  const json = loadCrimesJson();
+  if (!json) return {};
+
+  const DISPLAYED: CrimeCategory[] = ["homicidio", "robo", "narcotrafico", "hurto", "violacion"];
+
+  // Build province data for a pool of records for a specific year
+  const buildProvinces = (pool: CrimeRecord[], year: number) =>
+    Object.entries(PROVINCE_META).map(([name, meta]) => {
+      const pRecs = pool.filter((r) => r.province === name);
+      const crimes = Object.fromEntries(
+        DISPLAYED.map((ct) => {
+          const vals = pRecs.filter((r) => r.crimeType === ct).map((r) => r.count);
+          return [ct, vals.length > 0 ? Math.max(...vals) : 0];
+        })
+      ) as Record<CrimeCategory, number>;
+      const total = Object.values(crimes).reduce((s, v) => s + v, 0);
+      const rate = parseFloat(((total / meta.population) * 100000).toFixed(1));
+      return { name, code: meta.code, population: meta.population, crimes, rate, trend: 0, dataYear: year };
+    });
+
+  const result: Record<number, ProvinceData[]> = {};
+
+  // Count records first (province-level annual)
+  const countProvRecs = json.records.filter((r) =>
+    isCount(r) && !r.canton && r.period === "Anual" && KNOWN_PROVINCES.has(r.province)
+  );
+  const countYears = [...new Set(countProvRecs.map((r) => r.year))];
+  for (const year of countYears) {
+    const pool = countProvRecs.filter((r) => r.year === year);
+    const provinces = buildProvinces(pool, year);
+    if (provinces.filter((p) => Object.values(p.crimes).some((v) => v > 0)).length >= 5) {
+      result[year] = provinces;
+    }
+  }
+
+  // Rate records (province-level annual) — add years not already covered
+  const rateProvRecs = json.records.filter((r) =>
+    isRate(r) && !r.canton && r.period === "Anual" && KNOWN_PROVINCES.has(r.province)
+  );
+  const rateYears = [...new Set(rateProvRecs.map((r) => r.year))];
+  for (const year of rateYears) {
+    if (result[year]) continue; // prefer count data when available
+    const pool = rateProvRecs.filter((r) => r.year === year);
+    const provinces = buildProvinces(pool, year);
+    if (provinces.filter((p) => Object.values(p.crimes).some((v) => v > 0)).length >= 5) {
+      result[year] = provinces;
+    }
+  }
+
+  return result;
+}
+
+/** Years that have rate-per-10k data (not count-based) in getProvincesByYear */
+export function getRateYears(): Set<number> {
+  const json = loadCrimesJson();
+  if (!json) return new Set();
+  const rateYears = new Set(
+    json.records
+      .filter((r) => isRate(r) && !r.canton && r.period === "Anual" && KNOWN_PROVINCES.has(r.province))
+      .map((r) => r.year)
+  );
+  return rateYears;
+}
+
 /** Province-level count summary for latest available year (count-based records only) */
 export function getProvinceCountSummary(): {
   year: number;

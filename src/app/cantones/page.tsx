@@ -1,26 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getCantonRankings, getStats, CRIME_COLORS, PROVINCE_META, provinceSlug } from "@/lib/data";
-
-const KNOWN_PROVINCES = new Set(Object.keys(PROVINCE_META));
-
-const CRIME_LABELS: Record<string, string> = {
-  homicidio: "Homicidio", robo: "Robo", hurto: "Hurto",
-  narcotrafico: "Narcotráfico", violacion: "Violación",
-  agresion: "Agresión", extorsion: "Extorsión",
-};
-function crimeLabel(k: string) {
-  return CRIME_LABELS[k] ?? k.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
+import { getCantonRankings, getStats } from "@/lib/data";
+import CantonesClient from "./CantonesClient";
 
 export const metadata: Metadata = { title: "Cantones" };
 
 export default function CantonesPage() {
-  const cantons = getCantonRankings();
-  const stats   = getStats();
+  const cantons  = getCantonRankings();
+  const stats    = getStats();
   const maxTotal = cantons[0]?.total ?? 1;
 
-  // Group by province for province filter counts
   const byProv: Record<string, number> = {};
   cantons.forEach((c) => { byProv[c.province] = (byProv[c.province] ?? 0) + 1; });
   const crimeTypes = [...new Set(cantons.flatMap((c) => Object.keys(c.crimes)))].sort();
@@ -28,7 +16,6 @@ export default function CantonesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 space-y-6">
 
-      {/* Header */}
       <div className="border-b border-slate-800 pb-6">
         <h1 className="text-2xl font-bold text-white mb-1">Rankings por Cantón</h1>
         <p className="text-slate-400 text-sm">
@@ -42,7 +29,6 @@ export default function CantonesPage() {
         )}
       </div>
 
-      {/* Summary strip */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {Object.entries(byProv).sort((a, b) => b[1] - a[1]).map(([prov, count]) => (
           <div key={prov} className="rounded-lg border border-slate-800 bg-slate-900/50 p-3">
@@ -52,52 +38,7 @@ export default function CantonesPage() {
         ))}
       </div>
 
-      {/* Canton table — ALL cantons */}
-      <div className="rounded-xl border border-slate-800 overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead className="bg-slate-800/60 text-slate-400 text-left sticky top-0">
-            <tr>
-              <th className="px-3 py-3 font-medium w-8">#</th>
-              <th className="px-4 py-3 font-medium">Cantón</th>
-              <th className="px-4 py-3 font-medium">Provincia</th>
-              {crimeTypes.map((ct) => (
-                <th key={ct} className="px-3 py-3 font-medium text-center text-xs"
-                  style={{ color: CRIME_COLORS[ct] ?? "#94a3b8" }}>{crimeLabel(ct)}</th>
-              ))}
-              <th className="px-4 py-3 font-medium text-right">Total</th>
-              <th className="px-4 py-3 font-medium">Barra</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-800">
-            {cantons.map((c, i) => (
-              <tr key={`${c.province}-${c.canton}`} className="hover:bg-slate-800/30 transition-colors">
-                <td className="px-3 py-2.5 text-slate-600 text-xs tabular-nums">{i + 1}</td>
-                <td className="px-4 py-2.5 font-medium text-white">{c.canton}</td>
-                <td className="px-4 py-2.5 text-slate-400 text-xs">
-                  {KNOWN_PROVINCES.has(c.province)
-                    ? <Link href={`/provincias/${provinceSlug(c.province)}`}
-                        className="hover:text-red-400 transition-colors">{c.province}</Link>
-                    : <span className="text-slate-600">{c.province}</span>}
-                </td>
-                {crimeTypes.map((ct) => (
-                  <td key={ct} className="px-3 py-2.5 text-center text-xs tabular-nums text-slate-300">
-                    {(c.crimes[ct] ?? 0) > 0 ? (c.crimes[ct] ?? 0).toLocaleString("es-CR") : <span className="text-slate-700">—</span>}
-                  </td>
-                ))}
-                <td className="px-4 py-2.5 text-right font-semibold tabular-nums text-white">
-                  {c.total.toLocaleString("es-CR")}
-                </td>
-                <td className="px-4 py-2.5">
-                  <div className="w-28 h-1.5 rounded-full bg-slate-800">
-                    <div className="h-full rounded-full bg-red-500/70"
-                      style={{ width: `${(c.total / maxTotal) * 100}%` }} />
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <CantonesClient cantons={cantons} crimeTypes={crimeTypes} maxTotal={maxTotal} />
 
       <p className="text-xs text-slate-600">
         Datos acumulados de {stats.sourceFiles} publicaciones del Observatorio de la Violencia.

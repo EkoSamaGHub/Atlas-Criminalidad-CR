@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import dynamic from "next/dynamic";
 import type { ProvinceData, CrimeCategory } from "@/lib/categories";
 import type { DataStats } from "@/lib/data";
@@ -21,16 +21,52 @@ const CrimeMap = dynamic(() => import("@/components/CrimeMap"), {
 interface Props {
   provinces: ProvinceData[];
   stats: DataStats;
+  yearData: Record<number, ProvinceData[]>;
+  rateYears: number[];
 }
 
-export default function AtlasClient({ provinces, stats }: Props) {
-  const [category, setCategory] = useState<CrimeCategory>("homicidio");
-
-  const sorted = [...provinces].sort(
-    (a, b) => (b.crimes[category] ?? 0) - (a.crimes[category] ?? 0)
+function Sparkline({ values, color }: { values: number[]; color: string }) {
+  if (values.length < 2) return null;
+  const max = Math.max(...values);
+  const min = Math.min(...values);
+  const range = max - min || 1;
+  const W = 44, H = 14;
+  const pts = values
+    .map((v, i) => `${(i / (values.length - 1)) * W},${H - ((v - min) / range) * H}`)
+    .join(" ");
+  return (
+    <svg width={W} height={H} className="overflow-visible shrink-0">
+      <polyline points={pts} fill="none" stroke={color} strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
+}
+
+export default function AtlasClient({ provinces: defaultProvinces, stats, yearData, rateYears }: Props) {
+  const rateYearSet = new Set(rateYears);
+  const [category, setCategory] = useState<CrimeCategory>("homicidio");
+  const years = Object.keys(yearData).map(Number).sort((a, b) => a - b);
+  const latestYear = years[years.length - 1] ?? (stats.countYearRange?.[1] ?? stats.yearRange[1]);
+  const [selectedYear, setSelectedYear] = useState<number>(latestYear);
+
+  const provinces = useMemo(
+    () => yearData[selectedYear] ?? defaultProvinces,
+    [selectedYear, yearData, defaultProvinces]
+  );
+
+  const sorted = [...provinces].sort((a, b) => (b.crimes[category] ?? 0) - (a.crimes[category] ?? 0));
   const maxVal = sorted[0]?.crimes[category] ?? 1;
-  const latestYear = stats.countYearRange?.[1] ?? stats.yearRange[1];
+
+  // Per-province sparkline data across years
+  const sparkData = useMemo(() => {
+    const map: Record<string, number[]> = {};
+    for (const yr of years) {
+      for (const p of yearData[yr] ?? []) {
+        if (!map[p.name]) map[p.name] = [];
+        map[p.name].push(p.crimes[category] ?? 0);
+      }
+    }
+    return map;
+  }, [years, yearData, category]);
 
   return (
     <div className="flex flex-col h-[calc(100vh-56px)]">
@@ -52,12 +88,40 @@ export default function AtlasClient({ provinces, stats }: Props) {
             {cat.label}
           </button>
         ))}
+
+        {/* Year selector */}
+        {years.length > 1 && (
+          <>
+            <div className="w-px h-4 bg-slate-700 mx-1" />
+            <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Año:</span>
+            {years.map((yr) => {
+              const isRate = rateYearSet.has(yr);
+              return (
+                <button
+                  key={yr}
+                  onClick={() => setSelectedYear(yr)}
+                  className={`px-2.5 py-1 rounded-full text-xs font-semibold border transition-all ${
+                    selectedYear === yr
+                      ? isRate
+                        ? "bg-amber-700/60 border-amber-600 text-amber-200"
+                        : "bg-slate-600 border-slate-500 text-white"
+                      : "text-slate-500 border-slate-700 hover:border-slate-500 hover:text-slate-300"
+                  }`}
+                  title={isRate ? "Tasa por 10,000 hab." : "Conteos reales"}
+                >
+                  {yr}{isRate && <span className="ml-1 opacity-60 text-[9px]">tasa</span>}
+                </button>
+              );
+            })}
+          </>
+        )}
+
         <div className="ml-auto flex items-center gap-4 text-xs text-slate-500">
           <span>7 provincias · {stats.cantonCount} cantones</span>
           <span className="border-l border-slate-700 pl-4">
-            {stats.countYearRange
-              ? `Datos ${latestYear} · conteos reales`
-              : `Datos ${latestYear} · tasas /10k`}
+            {rateYearSet.has(selectedYear)
+              ? `Datos ${selectedYear} · tasas /10k hab.`
+              : `Datos ${selectedYear} · conteos reales`}
           </span>
           <Link href="/dashboard" className="text-red-400 hover:text-red-300 font-medium">Dashboard →</Link>
         </div>
@@ -81,6 +145,7 @@ export default function AtlasClient({ provinces, stats }: Props) {
               const val = p.crimes[category] ?? 0;
               const pct = (val / maxVal) * 100;
               const cat = CATEGORIES.find((c) => c.key === category);
+              const spark = sparkData[p.name] ?? [];
               return (
                 <Link
                   key={p.code}
@@ -102,11 +167,15 @@ export default function AtlasClient({ provinces, stats }: Props) {
                       style={{ width: `${Math.max(pct, 2)}%`, background: cat?.color ?? "#ef4444" }}
                     />
                   </div>
-                  <div className="flex justify-between mt-1">
+                  <div className="flex items-center justify-between mt-1.5">
                     <span className="text-[10px] text-slate-600">Tasa /100k: {p.rate}</span>
-                    <span className={`text-[10px] font-medium ${p.trend > 0 ? "text-red-400" : p.trend < 0 ? "text-emerald-400" : "text-slate-600"}`}>
-                      {p.trend !== 0 ? `${p.trend > 0 ? "+" : ""}${p.trend}%` : ""}
-                    </span>
+                    {spark.length >= 2 ? (
+                      <Sparkline values={spark} color={cat?.color ?? "#ef4444"} />
+                    ) : (
+                      <span className={`text-[10px] font-medium ${p.trend > 0 ? "text-red-400" : p.trend < 0 ? "text-emerald-400" : "text-slate-600"}`}>
+                        {p.trend !== 0 ? `${p.trend > 0 ? "+" : ""}${p.trend}%` : ""}
+                      </span>
+                    )}
                   </div>
                 </Link>
               );

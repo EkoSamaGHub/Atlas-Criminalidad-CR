@@ -225,6 +225,67 @@ export default function DashboardClient({ trend, cantons, provinces, crimeTotals
         </ResponsiveContainer>
       </ChartCard>
 
+      {/* Safest areas */}
+      <div className="grid lg:grid-cols-2 gap-6">
+        <ChartCard title="Zonas Más Seguras" subtitle="Provincias con menor tasa de criminalidad por 100k hab.">
+          <div className="space-y-3 mt-1">
+            {[...provinces].sort((a, b) => a.rate - b.rate).map((p, i) => {
+              const maxRate = Math.max(...provinces.map((x) => x.rate));
+              const pct = (p.rate / maxRate) * 100;
+              const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : null;
+              return (
+                <div key={p.code}>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      {medal && <span className="text-sm">{medal}</span>}
+                      <span className={`text-sm font-medium ${i < 3 ? "text-emerald-300" : "text-slate-300"}`}>{p.name}</span>
+                    </div>
+                    <span className="text-xs tabular-nums text-slate-400">{p.rate.toLocaleString("es-CR")} /100k</span>
+                  </div>
+                  <div className="w-full h-1.5 rounded-full bg-slate-800">
+                    <div
+                      className="h-full rounded-full transition-all duration-500"
+                      style={{ width: `${Math.max(pct, 2)}%`, background: i < 3 ? "#22c55e" : i < 5 ? "#f97316" : "#ef4444" }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="text-[10px] text-slate-600 mt-4">
+            Tasa basada en total de delitos ÷ población provincial. Datos del año más reciente disponible.
+          </p>
+        </ChartCard>
+
+        <ChartCard title="Top 5 Cantones Más Activos" subtitle="Cantones con mayor volumen de delitos registrados">
+          <div className="space-y-3 mt-1">
+            {cantons.slice(0, 5).map((c, i) => {
+              const maxT = cantons[0]?.total ?? 1;
+              const pct = (c.total / maxT) * 100;
+              return (
+                <div key={`${c.province}-${c.canton}`}>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-slate-600 w-4 shrink-0">{i + 1}</span>
+                      <span className="text-sm font-medium text-slate-200">{c.canton}</span>
+                      <span className="text-[10px] text-slate-500">{c.province}</span>
+                    </div>
+                    <span className="text-xs tabular-nums font-semibold text-red-400">{c.total.toLocaleString("es-CR")}</span>
+                  </div>
+                  <div className="w-full h-1.5 rounded-full bg-slate-800">
+                    <div className="h-full rounded-full bg-red-500/70 transition-all duration-500"
+                      style={{ width: `${Math.max(pct, 2)}%` }} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <p className="text-[10px] text-slate-600 mt-4">
+            Totales acumulados de todos los años disponibles. No ajustado por población.
+          </p>
+        </ChartCard>
+      </div>
+
       {/* Province × crime-type table */}
       <div>
         <h2 className="text-sm font-semibold text-white uppercase tracking-wider mb-3">Desglose Completo por Provincia y Categoría</h2>

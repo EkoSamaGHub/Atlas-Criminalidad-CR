@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldAlert, Code2, ExternalLink } from "lucide-react";
+import { ShieldAlert, Code2, ExternalLink, Coffee, Globe } from "lucide-react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -24,6 +24,15 @@ export default function Footer() {
           <p className="text-xs text-slate-600 mt-3">
             © {year} · Proyecto de código abierto
           </p>
+          <a
+            href="https://ko-fi.com/ekodev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 mt-4 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs hover:bg-amber-500/20 transition-colors"
+          >
+            <Coffee size={12} />
+            Apoya en Ko-fi
+          </a>
         </div>
 
         {/* Navigation */}
@@ -84,19 +93,83 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Tech stack */}
+      <div className="border-t border-slate-800/40 max-w-7xl mx-auto px-6 py-6">
+        <p className="text-[10px] text-slate-600 uppercase tracking-widest font-medium mb-4">Stack tecnológico</p>
+        <div className="flex flex-wrap gap-y-3 gap-x-6">
+          {[
+            {
+              label: "Frontend",
+              color: "text-blue-400 border-blue-900/60 bg-blue-950/30",
+              items: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS 4", "Lucide Icons"],
+            },
+            {
+              label: "Mapas & Gráficos",
+              color: "text-cyan-400 border-cyan-900/60 bg-cyan-950/30",
+              items: ["Leaflet", "React Leaflet", "Recharts", "GeoJSON"],
+            },
+            {
+              label: "Inteligencia Artificial",
+              color: "text-violet-400 border-violet-900/60 bg-violet-950/30",
+              items: ["Anthropic Claude API", "claude-sonnet-4-6"],
+            },
+            {
+              label: "Procesamiento de datos",
+              color: "text-amber-400 border-amber-900/60 bg-amber-950/30",
+              items: ["Python 3", "pdfplumber", "Node.js", "XLSX", "Cheerio"],
+            },
+            {
+              label: "Infraestructura",
+              color: "text-emerald-400 border-emerald-900/60 bg-emerald-950/30",
+              items: ["Vercel", "GitHub", "GitHub Actions", "CI/CD semanal"],
+            },
+            {
+              label: "Privacidad & Seguridad",
+              color: "text-slate-400 border-slate-700/60 bg-slate-800/30",
+              items: ["Sin cookies", "Sin tracking", "Sin publicidad", "Código abierto"],
+            },
+          ].map((group) => (
+            <div key={group.label} className="flex items-start gap-2 flex-wrap">
+              <span className="text-[10px] text-slate-600 pt-0.5 shrink-0 w-24">{group.label}</span>
+              <div className="flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${group.color}`}
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="border-t border-slate-800/60 max-w-7xl mx-auto px-6 py-3 flex flex-wrap items-center justify-between gap-2">
         <p className="text-[10px] text-slate-600">
           Datos: 2018–2025 · OIJ / Observatorio de la Violencia MJP
         </p>
-        <a
-          href="https://github.com/EkoSamaGHub/atlas-criminalidad-cr"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors"
-        >
-          <Code2 size={12} />
-          Código abierto en GitHub
-        </a>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://eko-dev-page.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors"
+          >
+            <Globe size={12} />
+            eko-dev-page.vercel.app
+          </a>
+          <a
+            href="https://github.com/EkoSamaGHub/atlas-criminalidad-cr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-[10px] text-slate-600 hover:text-slate-400 transition-colors"
+          >
+            <Code2 size={12} />
+            Código abierto en GitHub
+          </a>
+        </div>
       </div>
     </footer>
   );
