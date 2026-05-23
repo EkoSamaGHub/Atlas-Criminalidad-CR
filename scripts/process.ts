@@ -242,13 +242,15 @@ function processSheet(
       const count = toNumber(val);
       if (count <= 0) continue;
 
-      const isProvince = PROVINCES.includes(cantonLabel);
+      // Province header rows (col0=province, col1=empty) are already caught above
+      // and skipped with `continue`, so any row reaching here is a canton/district
+      // row. cantonLabel is always a canton name — never a province-level record.
       records.push({
         year,
         period,
-        province: isProvince ? cantonLabel : currentProvince,
-        canton:   isProvince ? null : cantonLabel,
-        district: isProvince ? null : districtLabel,
+        province: currentProvince,
+        canton:   cantonLabel,
+        district: districtLabel,
         crimeType,
         count,
         unit: "rate_per_10k",  // All OIJ/MSP Excel files are rates per 10,000 inhabitants
