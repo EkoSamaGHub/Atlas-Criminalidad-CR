@@ -10,7 +10,8 @@
     "scrape": "tsx scripts/scrape.ts",
     "process": "tsx scripts/process.ts",
     "extract-pdfs": "python scripts/extract_pdfs.py",
-    "update-data": "tsx scripts/scrape.ts && python scripts/extract_pdfs.py && tsx scripts/process.ts"
+    "update-data": "tsx scripts/scrape.ts && python scripts/extract_pdfs.py && tsx scripts/process.ts",
+    "validate": "tsx scripts/validate-data.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.97.1",

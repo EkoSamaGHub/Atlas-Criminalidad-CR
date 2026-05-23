@@ -164,7 +164,8 @@ export function getStats(): DataStats {
   const rateRecs  = records.filter(isRate);
   const countYears = [...new Set(countRecs.map((r) => r.year))].sort((a, b) => a - b);
 
-  const totalCount = countRecs.reduce((s, r) => s + r.count, 0);
+  // Exclude canton records from totalCount: province-level totals already include them.
+  const totalCount = countRecs.filter((r) => !r.canton).reduce((s, r) => s + r.count, 0);
   const validCantonRecs = (recs: CrimeRecord[]) =>
     recs.filter((r) => r.canton && isValidCantonName(r.canton) && KNOWN_PROVINCES.has(r.province));
   const cantonCount = new Set(
@@ -298,10 +299,11 @@ export function getYearTrend(): YearTrendPoint[] {
   const json = loadCrimesJson();
   if (!json) return [];
 
-  // Group by year, respecting unit type
+  // Group by year, respecting unit type.
+  // Exclude canton-level records: province-level totals already include them.
   const byYear = new Map<number, { counts: Record<string, number>; rates: Record<string, number> }>();
 
-  for (const r of json.records) {
+  for (const r of json.records.filter((r) => !r.canton)) {
     if (!byYear.has(r.year)) byYear.set(r.year, { counts: {}, rates: {} });
     const entry = byYear.get(r.year)!;
     if (isCount(r)) {
@@ -338,11 +340,17 @@ export function getCantonRankings(): CantonData[] {
   const json = loadCrimesJson();
   if (!json) return [];
 
-  const cantonRecs = json.records.filter((r) =>
+  // Use rate records exclusively: 99%+ of canton data comes from Excel rate records.
+  // Mixing count (absolute) and rate (per-10k) records produces meaningless totals.
+  const allCantonRecs = json.records.filter((r) =>
     r.canton &&
     isValidCantonName(r.canton) &&
     KNOWN_PROVINCES.has(r.province)
   );
+  const hasRateCantons = allCantonRecs.some(isRate);
+  const cantonRecs = hasRateCantons
+    ? allCantonRecs.filter(isRate)
+    : allCantonRecs.filter(isCount);
 
   const map = new Map<string, CantonData>();
   for (const r of cantonRecs) {
@@ -412,7 +420,8 @@ export function getCrimeTotals(): Record<string, number> {
   const json = loadCrimesJson();
   if (!json) return {};
   const totals: Record<string, number> = {};
-  for (const r of json.records.filter(isCount)) {
+  // Exclude canton records: province-level totals already include them.
+  for (const r of json.records.filter((r) => isCount(r) && !r.canton)) {
     totals[r.crimeType] = (totals[r.crimeType] ?? 0) + r.count;
   }
   _crimeTotalsCache = totals;

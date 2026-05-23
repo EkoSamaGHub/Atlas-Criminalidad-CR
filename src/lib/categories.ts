@@ -19,13 +19,14 @@ export const CATEGORIES: { key: CrimeCategory; label: string; color: string }[] 
 ];
 
 export const CRIME_COLORS: Record<string, string> = {
-  homicidio:    "#ef4444",
-  robo:         "#f97316",
-  hurto:        "#3b82f6",
-  narcotrafico: "#8b5cf6",
-  violacion:    "#ec4899",
-  agresion:     "#eab308",
-  extorsion:    "#f43f5e",
+  homicidio:               "#ef4444",
+  robo:                    "#f97316",
+  hurto:                   "#3b82f6",
+  narcotrafico:            "#8b5cf6",
+  violacion:               "#ec4899",
+  armas:                   "#eab308",
+  violencia_domestica:     "#f43f5e",
+  penalizacion_violencia:  "#06b6d4",
 };
 
 export function provinceSlug(name: string): string {
