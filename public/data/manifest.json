@@ -1,96 +1,96 @@
 {
-  "updatedAt": "2026-05-21T08:35:20.225982Z",
-  "count": 121,
+  "updatedAt": "2026-05-25T10:21:14.033465Z",
+  "count": 115,
   "files": [
     {
-      "title": "Anexo estadÃ­stico de infracciones MSP. 2022",
+      "title": "Anexo estadístico de infracciones MSP. 2022",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_msp_2022.xls",
       "filename": "anexo_msp_2022.json",
       "year": 2022,
       "sheets": [
         "Anexo MSP 2022"
       ],
-      "downloadedAt": "2026-05-20T17:11:11.331Z"
+      "downloadedAt": "2026-05-25T10:17:04.028Z"
     },
     {
-      "title": "Anexo EstadÃ­stico del atlas de delitos 2022",
+      "title": "Anexo Estadístico del atlas de delitos 2022",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_2022.xlsx",
       "filename": "anexo_estadistico_oij_2022.json",
       "year": 2022,
       "sheets": [
         "Anexo Atlas OIJ 2022"
       ],
-      "downloadedAt": "2026-05-20T17:11:12.240Z"
+      "downloadedAt": "2026-05-25T10:17:05.213Z"
     },
     {
-      "title": "Anexo EstadÃ­stico de delitos 2021",
+      "title": "Anexo Estadístico de delitos 2021",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_2021.xlsx",
       "filename": "anexo_estadistico_oij_2021.json",
       "year": 2021,
       "sheets": [
         "Anexo "
       ],
-      "downloadedAt": "2026-05-20T17:11:11.795Z"
+      "downloadedAt": "2026-05-25T10:17:04.635Z"
     },
     {
-      "title": "Anexo EstadÃ­stico, Atlas de ocurrencia de Deltios MSP 2021",
+      "title": "Anexo Estadístico, Atlas de ocurrencia de Deltios MSP 2021",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_msp_2021_0.xls",
       "filename": "anexo_msp_2021_0.json",
       "year": 2021,
       "sheets": [
         "Anexo MSP 2021"
       ],
-      "downloadedAt": "2026-05-20T17:11:12.676Z"
+      "downloadedAt": "2026-05-25T10:17:05.887Z"
     },
     {
-      "title": "Anexo EstadÃ­stico Atlas OIJ 2021",
+      "title": "Anexo Estadístico Atlas OIJ 2021",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_21_0.xlsx",
       "filename": "anexo_estadistico_oij_21_0.json",
       "year": 2021,
       "sheets": [
         "Anexo "
       ],
-      "downloadedAt": "2026-05-20T17:11:13.119Z"
+      "downloadedAt": "2026-05-25T10:17:06.449Z"
     },
     {
-      "title": "Anexo EstadÃ­stico del Atlas de delitos 2020",
+      "title": "Anexo Estadístico del Atlas de delitos 2020",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_oij_2020_0.xlsx",
       "filename": "anexo_estadistico_oij_2020_0.json",
       "year": 2020,
       "sheets": [
         "Anexo Estadistico"
       ],
-      "downloadedAt": "2026-05-20T17:11:13.641Z"
+      "downloadedAt": "2026-05-25T10:17:07.120Z"
     },
     {
-      "title": "Anexo EstadÃ­stico del Atlas de delitos I Sem. 2020",
+      "title": "Anexo Estadístico del Atlas de delitos I Sem. 2020",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_atlas_oij_i_semestre_2020_0.xls",
       "filename": "anexo_atlas_oij_i_semestre_2020_0.json",
       "year": 2020,
       "sheets": [
         "Anexo Excel"
       ],
-      "downloadedAt": "2026-05-20T17:11:14.079Z"
+      "downloadedAt": "2026-05-25T10:17:07.776Z"
     },
     {
-      "title": "Anexo EstadÃ­stico Atlas de ocurrencia de delitos 2019",
+      "title": "Anexo Estadístico Atlas de ocurrencia de delitos 2019",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_mapas_de_conglomerados_1.xlsx",
       "filename": "anexo_mapas_de_conglomerados_1.json",
       "year": 2019,
       "sheets": [
         "Anexo Atlas OIJ 2019"
       ],
-      "downloadedAt": "2026-05-20T17:11:14.517Z"
+      "downloadedAt": "2026-05-25T10:17:08.327Z"
     },
     {
-      "title": "Anexo estadÃ­stico del Atlas MSP 2018",
+      "title": "Anexo estadístico del Atlas MSP 2018",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/anexo_estadistico_msp_2018_0.xlsx",
       "filename": "anexo_estadistico_msp_2018_0.json",
       "year": 2018,
       "sheets": [
         "Anexo Final MSP 2018"
       ],
-      "downloadedAt": "2026-05-20T17:11:14.951Z"
+      "downloadedAt": "2026-05-25T10:17:08.869Z"
     },
     {
       "title": "Anexo al Atlas de Delitos 2018",
@@ -100,7 +100,99 @@
       "sheets": [
         "ANEXO ATLAS OIJ 2018"
       ],
-      "downloadedAt": "2026-05-20T17:11:15.392Z"
+      "downloadedAt": "2026-05-25T10:17:09.525Z"
+    },
+    {
+      "title": "Análisis de Delitos I Cuatrimestre 2026",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20delitos%20varios%2C%20I%20cuatrimestre%20de%202026.pdf",
+      "filename": "Análisis de delitos varios, I cuatrimestre de 2026.pdf",
+      "year": 2026,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:12.581484Z"
+    },
+    {
+      "title": "Atlas de Incidencia de Infracciones MSP 2025",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20MSP%202025_1.pdf",
+      "filename": "ATLAS MSP 2025_1.pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:17.055895Z"
+    },
+    {
+      "title": "Atlas de Incidencia de Delitos 2025",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%202025_total_1.pdf",
+      "filename": "ATLAS 2025_total_1.pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:23.548931Z"
+    },
+    {
+      "title": "Infracciones a Diversas Leyes MSP 2025",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20Infracciones%20a%20las%20Leyes%2C%20MSP_VF.pdf",
+      "filename": "Análisis de Infracciones a las Leyes, MSP_VF.pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:25.798662Z"
+    },
+    {
+      "title": "Análisis de Delitos contra la Propiedad 2025",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20delitos%20contra%20la%20propiedad%2C%202025.pdf",
+      "filename": "Análisis de delitos contra la propiedad, 2025.pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:28.933191Z"
+    },
+    {
+      "title": "Análisis de Homicidios Dolosos 2025",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20Homicidios%20Dolosos%2C%202025%20%282%29.pdf",
+      "filename": "Análisis de Homicidios Dolosos, 2025 (2).pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:31.037403Z"
+    },
+    {
+      "title": "Atlas de Infracciones a Leyes MSP 2025 (v0)",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20MSP%202025_0.pdf",
+      "filename": "ATLAS MSP 2025_0.pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:33.180932Z"
+    },
+    {
+      "title": "Presentación Informe Anual de Suicidios 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/PPT_%20Informe%20anual_Investigaci%C3%B3n%20de%20casos%20de%20suicidios_2024_web.pdf",
+      "filename": "PPT_ Informe anual_Investigación de casos de suicidios_2024_web.pdf",
+      "year": 2025,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:17:33.181016Z"
+    },
+    {
+      "title": "Informe Anual de Casos de Suicidios 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Informe_casos_de_suicidios_del_a%C3%B1o_2024_0.pdf",
+      "filename": "Informe_casos_de_suicidios_del_año_2024_0.pdf",
+      "year": 2025,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:17:33.181038Z"
+    },
+    {
+      "title": "ICSC 2024 — Informe Final",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ICSC%202025_0.pdf",
+      "filename": "ICSC 2025_0.pdf",
+      "year": 2025,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:17:33.181055Z"
+    },
+    {
+      "title": "ICSC 2024 — Resumen Metodológico",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ICSC_2025_RESUMEN_METODOLOGICO.pdf",
+      "filename": "ICSC_2025_RESUMEN_METODOLOGICO.pdf",
+      "year": 2025,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:17:33.181068Z"
     },
     {
       "title": "Atlas + Anexo Estadístico I Semestre 2025",
@@ -110,7 +202,48 @@
       "sheets": [
         "pdf_extracted"
       ],
-      "downloadedAt": "2026-05-20T17:45:50.029975Z"
+      "downloadedAt": "2026-05-25T10:17:40.110353Z"
+    },
+    {
+      "title": "Tráfico y Consumo de Sustancias Ilícitas y Jóvenes 2025",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Trafico%20y%20consumo%20de%20sustancis%20ilicitas%20COMESCO%202025_0.pdf",
+      "filename": "Trafico y consumo de sustancis ilicitas COMESCO 2025_0.pdf",
+      "year": 2025,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:17:40.110404Z"
+    },
+    {
+      "title": "Análisis de Delitos I Semestre 2025 OIJ",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20delitos%20OIJ%20I%20trimestre%202025.pdf",
+      "filename": "Análisis de delitos OIJ I trimestre 2025.pdf",
+      "year": 2025,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:41.269323Z"
+    },
+    {
+      "title": "Análisis Estadístico Delitos contra la Propiedad 2019-2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Delitos%20contra%20la%20propiedad%202019-2024.pdf",
+      "filename": "Delitos contra la propiedad 2019-2024.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:43.697430Z"
+    },
+    {
+      "title": "Atlas + Anexo MSP 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20Y%20ANEXO%20MSP%202024.pdf",
+      "filename": "ATLAS Y ANEXO MSP 2024.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:48.205688Z"
+    },
+    {
+      "title": "Análisis de Homicidios Dolosos 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/homicidios_dolosos_2024.pdf",
+      "filename": "homicidios_dolosos_2024.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:17:50.019915Z"
     },
     {
       "title": "Atlas + Anexo Estadístico 2024",
@@ -120,7 +253,40 @@
       "sheets": [
         "pdf_extracted"
       ],
-      "downloadedAt": "2026-05-20T17:46:10.481029Z"
+      "downloadedAt": "2026-05-25T10:18:04.749632Z"
+    },
+    {
+      "title": "Índice Cantonal de Seguridad Ciudadana 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ISC_2024.pdf",
+      "filename": "ISC_2024.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:18:22.536280Z"
+    },
+    {
+      "title": "Indicadores Seguridad Ciudadana en Costa Rica 2018-2023",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Documento%20Indicadores%20COMESCO_2024_0.pdf",
+      "filename": "Documento Indicadores COMESCO_2024_0.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:18:29.760892Z"
+    },
+    {
+      "title": "Análisis Homicidios Dolosos Enero-Junio 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/homicidios%20dolosos%2020204_v09%20de%20septiembre.pdf",
+      "filename": "homicidios dolosos 20204_v09 de septiembre.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:18:31.507613Z"
+    },
+    {
+      "title": "Juventudes y Violencia 2019-2023",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/JUVENTUDES_Y_VIOLENCIAS_2019_2023_COMESCO.pdf",
+      "filename": "JUVENTUDES_Y_VIOLENCIAS_2019_2023_COMESCO.pdf",
+      "year": 2024,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:31.507647Z"
     },
     {
       "title": "Anexo Estadístico I Semestre 2024",
@@ -130,17 +296,41 @@
       "sheets": [
         "pdf_extracted"
       ],
-      "downloadedAt": "2026-05-20T17:46:17.708203Z"
+      "downloadedAt": "2026-05-25T10:18:36.215799Z"
     },
     {
-      "title": "Anexo Estadístico Atlas OIJ 2023",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Anexo%20OIJ%202023.pdf",
-      "filename": "Anexo OIJ 2023_pdf.json",
+      "title": "Atlas I Semestre 2024",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20I%20Sem%202024.pdf",
+      "filename": "ATLAS I Sem 2024.pdf",
+      "year": 2024,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:18:39.268811Z"
+    },
+    {
+      "title": "Presentación Ruta Integración Fallecidos Accidentes de Tránsito",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Mesa%20T%C3%A9cnica%20Muertes%20Accidentes%20de%20Tr%C3%A1nsito_Presentaci%C3%B3n.pdf",
+      "filename": "Mesa Técnica Muertes Accidentes de Tránsito_Presentación.pdf",
+      "year": 2024,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:39.268865Z"
+    },
+    {
+      "title": "Informe Mesa Técnica Muertes por Accidentes de Tránsito",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Mesa%20T%C3%A9cnica%20Muertes%20Accidentes_Final_2.pdf",
+      "filename": "Mesa Técnica Muertes Accidentes_Final_2.pdf",
+      "year": 2024,
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:39.268886Z"
+    },
+    {
+      "title": "Atlas de Aprehensiones por Infracciones MSP 2023",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20APREHENSIONES%20MSP%202023.pdf",
+      "filename": "ATLAS APREHENSIONES MSP 2023.pdf",
       "year": 2023,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T17:46:20.808436Z"
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:18:41.229774Z"
     },
     {
       "title": "Anexo Estadístico Atlas Aprehensiones MSP 2023",
@@ -150,199 +340,17 @@
       "sheets": [
         "pdf_extracted"
       ],
-      "downloadedAt": "2026-05-20T17:46:23.652530Z"
+      "downloadedAt": "2026-05-25T10:18:44.527081Z"
     },
     {
-      "title": "Análisis de Delitos I Cuatrimestre 2026",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20delitos%20varios%2C%20I%20cuatrimestre%20de%202026.pdf",
-      "filename": "Análisis de delitos varios, I cuatrimestre de 2026.pdf",
-      "year": 2026,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:39.682549Z"
-    },
-    {
-      "title": "Atlas de Incidencia de Infracciones MSP 2025",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20MSP%202025_1.pdf",
-      "filename": "ATLAS MSP 2025_1.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:42.800970Z"
-    },
-    {
-      "title": "Atlas de Incidencia de Delitos 2025",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%202025_total_1.pdf",
-      "filename": "ATLAS 2025_total_1.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:47.124855Z"
-    },
-    {
-      "title": "Infracciones a Diversas Leyes MSP 2025",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20Infracciones%20a%20las%20Leyes%2C%20MSP_VF.pdf",
-      "filename": "Análisis de Infracciones a las Leyes, MSP_VF.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:48.337630Z"
-    },
-    {
-      "title": "Análisis de Delitos contra la Propiedad 2025",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20delitos%20contra%20la%20propiedad%2C%202025.pdf",
-      "filename": "Análisis de delitos contra la propiedad, 2025.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:50.219761Z"
-    },
-    {
-      "title": "Análisis de Homicidios Dolosos 2025",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20Homicidios%20Dolosos%2C%202025%20%282%29.pdf",
-      "filename": "Análisis de Homicidios Dolosos, 2025 (2).pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:51.042995Z"
-    },
-    {
-      "title": "Atlas de Infracciones a Leyes MSP 2025 (v0)",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20MSP%202025_0.pdf",
-      "filename": "ATLAS MSP 2025_0.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:51.657045Z"
-    },
-    {
-      "title": "Presentación Informe Anual de Suicidios 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/PPT_%20Informe%20anual_Investigaci%C3%B3n%20de%20casos%20de%20suicidios_2024_web.pdf",
-      "filename": "PPT_ Informe anual_Investigación de casos de suicidios_2024_web.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:52.738710Z"
-    },
-    {
-      "title": "Informe Anual de Casos de Suicidios 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Informe_casos_de_suicidios_del_a%C3%B1o_2024_0.pdf",
-      "filename": "Informe_casos_de_suicidios_del_año_2024_0.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:58.083594Z"
-    },
-    {
-      "title": "ICSC 2024 — Informe Final",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ICSC%202025_0.pdf",
-      "filename": "ICSC 2025_0.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:59.277456Z"
-    },
-    {
-      "title": "ICSC 2024 — Resumen Metodológico",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ICSC_2025_RESUMEN_METODOLOGICO.pdf",
-      "filename": "ICSC_2025_RESUMEN_METODOLOGICO.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:57:59.934057Z"
-    },
-    {
-      "title": "Tráfico y Consumo de Sustancias Ilícitas y Jóvenes 2025",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Trafico%20y%20consumo%20de%20sustancis%20ilicitas%20COMESCO%202025_0.pdf",
-      "filename": "Trafico y consumo de sustancis ilicitas COMESCO 2025_0.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:08.933301Z"
-    },
-    {
-      "title": "Análisis de Delitos I Semestre 2025 OIJ",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/An%C3%A1lisis%20de%20delitos%20OIJ%20I%20trimestre%202025.pdf",
-      "filename": "Análisis de delitos OIJ I trimestre 2025.pdf",
-      "year": 2025,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:09.168241Z"
-    },
-    {
-      "title": "Análisis Estadístico Delitos contra la Propiedad 2019-2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Delitos%20contra%20la%20propiedad%202019-2024.pdf",
-      "filename": "Delitos contra la propiedad 2019-2024.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:10.209345Z"
-    },
-    {
-      "title": "Atlas + Anexo MSP 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20Y%20ANEXO%20MSP%202024.pdf",
-      "filename": "ATLAS Y ANEXO MSP 2024.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:12.815196Z"
-    },
-    {
-      "title": "Análisis de Homicidios Dolosos 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/homicidios_dolosos_2024.pdf",
-      "filename": "homicidios_dolosos_2024.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:13.309408Z"
-    },
-    {
-      "title": "Índice Cantonal de Seguridad Ciudadana 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ISC_2024.pdf",
-      "filename": "ISC_2024.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:40.790440Z"
-    },
-    {
-      "title": "Indicadores Seguridad Ciudadana en Costa Rica 2018-2023",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Documento%20Indicadores%20COMESCO_2024_0.pdf",
-      "filename": "Documento Indicadores COMESCO_2024_0.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:46.365408Z"
-    },
-    {
-      "title": "Análisis Homicidios Dolosos Enero-Junio 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/homicidios%20dolosos%2020204_v09%20de%20septiembre.pdf",
-      "filename": "homicidios dolosos 20204_v09 de septiembre.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:46.682277Z"
-    },
-    {
-      "title": "Juventudes y Violencia 2019-2023",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/JUVENTUDES_Y_VIOLENCIAS_2019_2023_COMESCO.pdf",
-      "filename": "JUVENTUDES_Y_VIOLENCIAS_2019_2023_COMESCO.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:53.392404Z"
-    },
-    {
-      "title": "Atlas I Semestre 2024",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20I%20Sem%202024.pdf",
-      "filename": "ATLAS I Sem 2024.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:57.436163Z"
-    },
-    {
-      "title": "Presentación Ruta Integración Fallecidos Accidentes de Tránsito",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Mesa%20T%C3%A9cnica%20Muertes%20Accidentes%20de%20Tr%C3%A1nsito_Presentaci%C3%B3n.pdf",
-      "filename": "Mesa Técnica Muertes Accidentes de Tránsito_Presentación.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:58:58.756381Z"
-    },
-    {
-      "title": "Informe Mesa Técnica Muertes por Accidentes de Tránsito",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Mesa%20T%C3%A9cnica%20Muertes%20Accidentes_Final_2.pdf",
-      "filename": "Mesa Técnica Muertes Accidentes_Final_2.pdf",
-      "year": 2024,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:00.208620Z"
-    },
-    {
-      "title": "Atlas de Aprehensiones por Infracciones MSP 2023",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/ATLAS%20APREHENSIONES%20MSP%202023.pdf",
-      "filename": "ATLAS APREHENSIONES MSP 2023.pdf",
+      "title": "Anexo Estadístico Atlas OIJ 2023",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/Anexo%20OIJ%202023.pdf",
+      "filename": "Anexo OIJ 2023_pdf.json",
       "year": 2023,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:00.761603Z"
+      "sheets": [
+        "pdf_extracted"
+      ],
+      "downloadedAt": "2026-05-25T10:18:48.879579Z"
     },
     {
       "title": "Atlas de Incidencia de Delitos 2023",
@@ -350,7 +358,7 @@
       "filename": "ATLAS 2023.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:07.139502Z"
+      "downloadedAt": "2026-05-25T10:18:51.280752Z"
     },
     {
       "title": "Análisis Homicidios Dolosos Enero-Diciembre 2023",
@@ -358,7 +366,7 @@
       "filename": "op-homicidios-4t-2023-cr-esp[1].pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:08.505572Z"
+      "downloadedAt": "2026-05-25T10:18:53.933123Z"
     },
     {
       "title": "Presentación Indicadores Seguridad y Convivencia 2018-2022",
@@ -366,7 +374,8 @@
       "filename": "Presentación_Indicadores_seguridad_ciudadana_2024.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:09.227563Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:53.933170Z"
     },
     {
       "title": "Indicadores Seguridad Ciudadana en Costa Rica 2018-2022",
@@ -374,7 +383,8 @@
       "filename": "indicadores_seguimiento_violencia_Costa_Rica_web_1.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:15.172315Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:53.933183Z"
     },
     {
       "title": "Homicidios Dolosos Delincuencia Organizada 2010-2023",
@@ -382,7 +392,7 @@
       "filename": "Atlas Cartográfico Homicidios Delincuencia organizada, 2010-2023.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:16.237903Z"
+      "downloadedAt": "2026-05-25T10:18:56.841894Z"
     },
     {
       "title": "La Victimización Delictiva en Costa Rica 2023",
@@ -390,7 +400,8 @@
       "filename": "pnud_modulo_de_victimizacion_de_la_encuesta_nacional_de_hogares_compressed_12octubre.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:33.588480Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:56.841930Z"
     },
     {
       "title": "Presentación Violencia contra las Mujeres 2020-2022",
@@ -398,7 +409,8 @@
       "filename": "Violencia_contra_las_mujeres_2020_2022_ppt.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:33.844277Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:56.841943Z"
     },
     {
       "title": "Violencia contra las Mujeres en Costa Rica 2020-2022",
@@ -406,7 +418,8 @@
       "filename": "Violencia_contra_las_mujeres_2020_2022_1.pdf",
       "year": 2023,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:41.644256Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:56.841971Z"
     },
     {
       "title": "Atlas de Incidencia de Delitos MSP 2022",
@@ -414,7 +427,7 @@
       "filename": "atlas_msp.pdf",
       "year": 2022,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:42.352211Z"
+      "downloadedAt": "2026-05-25T10:18:58.751757Z"
     },
     {
       "title": "Análisis sobre Situación de Seguridad Ciudadana 2022",
@@ -422,7 +435,8 @@
       "filename": "ppt_dataccion_6t.pdf",
       "year": 2022,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:43.589933Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:18:58.751794Z"
     },
     {
       "title": "Atlas de Delitos 2022 — Conglomerados",
@@ -430,7 +444,7 @@
       "filename": "atlas_conglomerados_oij_2022.pdf",
       "year": 2022,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:44.062796Z"
+      "downloadedAt": "2026-05-25T10:19:01.035730Z"
     },
     {
       "title": "Atlas de Delitos 2022 — Puntos Agregados",
@@ -438,7 +452,7 @@
       "filename": "atlas_puntos_oij_2023.pdf",
       "year": 2022,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:44.367183Z"
+      "downloadedAt": "2026-05-25T10:19:02.966288Z"
     },
     {
       "title": "Listado de Indicadores y Metadatos",
@@ -446,7 +460,8 @@
       "filename": "fichasfinales_metadatos_ultima_version_0.pdf",
       "year": 2022,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:52.923872Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:02.966323Z"
     },
     {
       "title": "Análisis sobre Situación de Seguridad Ciudadana 2021",
@@ -454,7 +469,8 @@
       "filename": "ppt_cr_dataccion_5_julio_2022_0.pdf",
       "year": 2021,
       "sheets": [],
-      "downloadedAt": "2026-05-20T22:59:55.913184Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:02.966336Z"
     },
     {
       "title": "Atlas de Ocurrencia de Delitos MSP 2021",
@@ -462,7 +478,7 @@
       "filename": "atlas_msp_2021_final_0.pdf",
       "year": 2021,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:01.439016Z"
+      "downloadedAt": "2026-05-25T10:19:10.632366Z"
     },
     {
       "title": "Atlas de Incidencia de Delitos OIJ 2021",
@@ -470,7 +486,7 @@
       "filename": "atlas_oij_2021_final_0.pdf",
       "year": 2021,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:09.086246Z"
+      "downloadedAt": "2026-05-25T10:19:19.555873Z"
     },
     {
       "title": "Situación de Violencia en Costa Rica 2020",
@@ -478,7 +494,8 @@
       "filename": "ppt_dataccion_fase3_cr_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:10.742014Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:19.555908Z"
     },
     {
       "title": "Atlas de Ocurrencia de Delitos OIJ 2020",
@@ -486,7 +503,7 @@
       "filename": "atlas_oij_2020_web_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:13.826009Z"
+      "downloadedAt": "2026-05-25T10:19:24.328054Z"
     },
     {
       "title": "Atlas de Ocurrencia de Delitos I Semestre 2020",
@@ -494,7 +511,7 @@
       "filename": "atlas_i_semestre_2020_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:14.179316Z"
+      "downloadedAt": "2026-05-25T10:19:26.200075Z"
     },
     {
       "title": "Victimización Región Chorotega 2014-2018 (PPT)",
@@ -502,7 +519,8 @@
       "filename": "victimizacion_en_la_region_chorotega_2014-2018ppt_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:14.998304Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:26.200113Z"
     },
     {
       "title": "Victimización Región Chorotega 2014-2018",
@@ -510,7 +528,8 @@
       "filename": "victimizacion_en_la_region_chorotega_2014-2018_24-10-2020_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:20.794466Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:26.200125Z"
     },
     {
       "title": "Seguridad Ciudadana Enero-Junio 2020",
@@ -518,7 +537,7 @@
       "filename": "seguridad_ciudadana_enero_junio_2020_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:21.274154Z"
+      "downloadedAt": "2026-05-25T10:19:27.850505Z"
     },
     {
       "title": "Situación de Violencia I Semestre 2020",
@@ -526,7 +545,7 @@
       "filename": "analisis_i_semestre_2020_0.pdf",
       "year": 2020,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:21.869260Z"
+      "downloadedAt": "2026-05-25T10:19:29.598244Z"
     },
     {
       "title": "Atlas de Ocurrencia de Delitos 2019 — II Parte",
@@ -534,7 +553,7 @@
       "filename": "atlas_2019_ii_parte_0.pdf",
       "year": 2019,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:23.604133Z"
+      "downloadedAt": "2026-05-25T10:19:32.942893Z"
     },
     {
       "title": "Atlas de Ocurrencia de Delitos 2019 — I Parte",
@@ -542,7 +561,7 @@
       "filename": "atlas_2019_i_parte_0_0.pdf",
       "year": 2019,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:24.059490Z"
+      "downloadedAt": "2026-05-25T10:19:35.123193Z"
     },
     {
       "title": "Resumen Gráfico del Suicidio en Costa Rica",
@@ -550,7 +569,8 @@
       "filename": "resumen_grafico_de_suicidio_en_costa_rica_0.pdf",
       "year": 2019,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:25.831317Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:35.123228Z"
     },
     {
       "title": "Estado del Suicidio en Costa Rica",
@@ -558,7 +578,8 @@
       "filename": "estado_suicidio_cr_0.pdf",
       "year": 2019,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:33.791089Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:35.123240Z"
     },
     {
       "title": "Infográfico Masculinidades y Violencia",
@@ -566,7 +587,8 @@
       "filename": "comesco_desplegable_11x17.cleaned_0.pdf",
       "year": 2019,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:34.277661Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:35.123250Z"
     },
     {
       "title": "Masculinidades y Tendencias Delictivas en Costa Rica 2015-2018",
@@ -574,7 +596,8 @@
       "filename": "masculinidades_y_tendencias_delictivas_en_costa_rica_1.pdf",
       "year": 2019,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:42.593504Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:35.123259Z"
     },
     {
       "title": "Atlas de Actuaciones Policiales MSP 2018",
@@ -582,7 +605,7 @@
       "filename": "atlas_de_actuaciones_policiales_2018_0.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:43.171400Z"
+      "downloadedAt": "2026-05-25T10:19:36.863273Z"
     },
     {
       "title": "Atlas de Delitos OIJ 2018",
@@ -590,7 +613,7 @@
       "filename": "atlas_2018_0_0.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:43.675697Z"
+      "downloadedAt": "2026-05-25T10:19:38.822324Z"
     },
     {
       "title": "ODS: Metas e Indicadores Violencia contra las Mujeres",
@@ -598,7 +621,8 @@
       "filename": "figura-1-ods-a2_2.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:43.950172Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822360Z"
     },
     {
       "title": "Infografía Violencia contra las Mujeres 2015-2017",
@@ -606,7 +630,8 @@
       "filename": "infografia-violencia_contra_las_mujeres_13.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:45.611237Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822374Z"
     },
     {
       "title": "Violencia Contra las Mujeres en Costa Rica 2015-2017",
@@ -614,7 +639,8 @@
       "filename": "violencia_contra_mujeres_2015-2017_1.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:50.671091Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822384Z"
     },
     {
       "title": "Infografía ICCS",
@@ -622,7 +648,8 @@
       "filename": "infografia_iccs_1.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:00:51.837307Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822395Z"
     },
     {
       "title": "Clasificación Internacional del Delito (ICCS)",
@@ -630,7 +657,8 @@
       "filename": "iccs_spanish_2016_web_0.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:01:09.423122Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822404Z"
     },
     {
       "title": "Consulta Nacional Post 2015",
@@ -638,7 +666,8 @@
       "filename": "odm_mundo_que_queremos_1_0.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:01:55.783809Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822413Z"
     },
     {
       "title": "Conceptualización Agenda 2030",
@@ -646,7 +675,8 @@
       "filename": "conceptualizacion_agenda_18_abril_2018_0.pdf",
       "year": 2018,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:01:59.434331Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822423Z"
     },
     {
       "title": "Continuum de la Violencia contra las Mujeres",
@@ -654,7 +684,8 @@
       "filename": "grant-continuum-30-marzo-2017_0.pdf",
       "year": 2017,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:30.045077Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822432Z"
     },
     {
       "title": "Violencia y Delito en el Espacio Urbano",
@@ -662,7 +693,8 @@
       "filename": "violencia_y_delito_en_el_espacio_urbano_0.pdf",
       "year": 2017,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:31.721810Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822441Z"
     },
     {
       "title": "Presentación Juventudes y Violencia",
@@ -670,7 +702,8 @@
       "filename": "juventud_y_violencia_0.pdf",
       "year": 2017,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:32.219201Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822450Z"
     },
     {
       "title": "Infografía Juventud y Violencia",
@@ -678,27 +711,26 @@
       "filename": "infografia_juventud_y_violencia_0.pdf",
       "year": 2017,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:32.351996Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822458Z"
     },
     {
       "title": "Algunos Datos sobre Violencia en el Sector de Juventudes 2016",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0.pdf",
-      "filename": "algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0_pdf.json",
+      "filename": "algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0.pdf",
       "year": 2016,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T23:02:35.783386Z"
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822466Z"
     },
     {
       "title": "Homicidios Dolosos Delincuencia Organizada 2010-2016",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/analisis_homicidios_dolosos_y_delincuencia_organizada_0.pdf",
-      "filename": "analisis_homicidios_dolosos_y_delincuencia_organizada_0_pdf.json",
+      "filename": "analisis_homicidios_dolosos_y_delincuencia_organizada_0.pdf",
       "year": 2016,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T23:02:39.061344Z"
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822474Z"
     },
     {
       "title": "Situaciones de Violencia contra Personas Menores de Edad 2016",
@@ -706,17 +738,16 @@
       "filename": "hnn_2016_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:39.230261Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:38.822482Z"
     },
     {
       "title": "Informe Estadístico N°12",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/31-informe12_0.pdf",
-      "filename": "31-informe12_0_pdf.json",
+      "filename": "31-informe12_0.pdf",
       "year": 2016,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T23:02:41.379446Z"
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:19:42.241314Z"
     },
     {
       "title": "Atlas Cartográfico de Delitos OIJ 2016",
@@ -726,7 +757,7 @@
       "sheets": [
         "pdf_extracted"
       ],
-      "downloadedAt": "2026-05-20T23:02:45.651066Z"
+      "downloadedAt": "2026-05-25T10:19:47.926488Z"
     },
     {
       "title": "Perfil del Victimario y Casos de Homicidios",
@@ -734,17 +765,16 @@
       "filename": "1-perfil_del_victimario_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:46.270966Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:47.926527Z"
     },
     {
       "title": "Informe Estadístico N°11",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/30-informe11_0.pdf",
-      "filename": "30-informe11_0_pdf.json",
+      "filename": "30-informe11_0.pdf",
       "year": 2016,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T23:02:48.700543Z"
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:19:51.391366Z"
     },
     {
       "title": "Infografía Homicidios 2016",
@@ -752,7 +782,8 @@
       "filename": "11-infografia_homicidios_2016_0_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:48.735092Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:51.391405Z"
     },
     {
       "title": "Atlas OIJ de Delitos 2016 — I Semestre",
@@ -760,17 +791,16 @@
       "filename": "13-atlas_oij_2016_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:02:52.330042Z"
+      "downloadedAt": "2026-05-25T10:19:56.855720Z"
     },
     {
       "title": "Compendio de Investigaciones sobre Convivencia y Seguridad Ciudadana",
       "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/12-compendio_comesco_0.pdf",
-      "filename": "12-compendio_comesco_0_pdf.json",
+      "filename": "12-compendio_comesco_0.pdf",
       "year": 2016,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T23:03:03.140810Z"
+      "sheets": [],
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:56.855765Z"
     },
     {
       "title": "Perfil del Homicidio en Costa Rica — Las Víctimas 2008-2016",
@@ -778,7 +808,8 @@
       "filename": "8-perfil_homicidios_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:03.927301Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:56.855779Z"
     },
     {
       "title": "Infografía: No Dejar a Nadie Atrás (IDH 2016)",
@@ -786,7 +817,8 @@
       "filename": "7-idh2016_na_f_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:03.998038Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:56.855790Z"
     },
     {
       "title": "Infografía: Desarrollo Humano de las Mujeres (IDH 2016)",
@@ -794,7 +826,8 @@
       "filename": "6-idh2016_mujeres_f_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:04.070878Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:56.855799Z"
     },
     {
       "title": "Infografía: Costa Rica Respecto a la Región (IDH 2016)",
@@ -802,7 +835,8 @@
       "filename": "4-idh2016_alc_f_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:04.149929Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:56.855809Z"
     },
     {
       "title": "Infografía: Índice de Desarrollo Humano 2015 (IDH 2016)",
@@ -810,7 +844,8 @@
       "filename": "5-idh2016_f_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:04.251062Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:19:56.855819Z"
     },
     {
       "title": "Atlas Cartográfico de Ocurrencia de Delitos 2016",
@@ -820,7 +855,7 @@
       "sheets": [
         "pdf_extracted"
       ],
-      "downloadedAt": "2026-05-20T23:03:09.624641Z"
+      "downloadedAt": "2026-05-25T10:20:03.399888Z"
     },
     {
       "title": "Perfil del Homicidio en Costa Rica",
@@ -828,7 +863,8 @@
       "filename": "2-perfil_del_victimario_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:10.253090Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:20:03.399929Z"
     },
     {
       "title": "Violaciones y Extorsiones Sexuales vía Facebook",
@@ -836,7 +872,8 @@
       "filename": "9-paper_oij_0.pdf",
       "year": 2016,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:10.716415Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:20:03.399942Z"
     },
     {
       "title": "Anexo de Conglomerados Atlas 2015",
@@ -844,7 +881,7 @@
       "filename": "19-anexo_atlas_distrital_0.pdf",
       "year": 2015,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:27.337308Z"
+      "downloadedAt": "2026-05-25T10:20:21.447251Z"
     },
     {
       "title": "Atlas Cartográfico Delitos y Acciones de Prevención 2015",
@@ -852,7 +889,7 @@
       "filename": "18-atlas_de_delitos_y_acciones_2015_0.pdf",
       "year": 2015,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:29.131600Z"
+      "downloadedAt": "2026-05-25T10:20:25.070820Z"
     },
     {
       "title": "Atlas de Delitos 2015",
@@ -860,7 +897,7 @@
       "filename": "14-atlas_delitos_2015_0.pdf",
       "year": 2015,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:34.875580Z"
+      "downloadedAt": "2026-05-25T10:20:32.609199Z"
     },
     {
       "title": "Mapas de Violencia contra Personas Menores de Edad",
@@ -868,7 +905,7 @@
       "filename": "17-pme_ampliado_0.pdf",
       "year": 2015,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:39.328783Z"
+      "downloadedAt": "2026-05-25T10:20:38.104900Z"
     },
     {
       "title": "Directorio de Organismos No Gubernamentales (ONG)",
@@ -876,7 +913,8 @@
       "filename": "16-directorio_de_ong_por_la_paz_0.pdf",
       "year": 2015,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:55.545939Z"
+      "reference_only": true,
+      "downloadedAt": "2026-05-25T10:20:38.104934Z"
     },
     {
       "title": "Homicidios Registrados por Año y Mes — Costa Rica",
@@ -884,132 +922,8 @@
       "filename": "15-infografia_homicidios_0.pdf",
       "year": 2015,
       "sheets": [],
-      "downloadedAt": "2026-05-20T23:03:55.601820Z"
-    },
-    {
-      "title": "Informe Estadístico N°10",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/29-informe10_0.pdf",
-      "filename": "29-informe10_0_pdf.json",
-      "year": 2013,
-      "sheets": [
-        "pdf_extracted"
-      ],
-      "downloadedAt": "2026-05-20T23:03:57.579844Z"
-    },
-    {
-      "title": "Informe Estadístico N°9",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/28-informe9_0.pdf",
-      "filename": "28-informe9_0.pdf",
-      "year": 2013,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:00.094898Z"
-    },
-    {
-      "title": "Informe Estadístico N°8",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/27-informe8_0.pdf",
-      "filename": "27-informe8_0.pdf",
-      "year": 2012,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:02.390913Z"
-    },
-    {
-      "title": "Informe Estadístico N°7",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/26-informe7_0.pdf",
-      "filename": "26-informe7_0.pdf",
-      "year": 2012,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:05.511069Z"
-    },
-    {
-      "title": "Informe Estadístico N°6",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/25-informe6_0.pdf",
-      "filename": "25-informe6_0.pdf",
-      "year": 2011,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:07.544813Z"
-    },
-    {
-      "title": "Informe Estadístico N°5",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/24-informe5_0.pdf",
-      "filename": "24-informe5_0.pdf",
-      "year": 2010,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:09.653031Z"
-    },
-    {
-      "title": "Informe Estadístico N°4",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/23-informe4_0.pdf",
-      "filename": "23-informe4_0.pdf",
-      "year": 2009,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:12.815057Z"
-    },
-    {
-      "title": "Informe Estadístico N°3",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/22-informe3_0.pdf",
-      "filename": "22-informe3_0.pdf",
-      "year": 2009,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:14.870894Z"
-    },
-    {
-      "title": "Informe Estadístico N°2",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/21-informe2_0.pdf",
-      "filename": "21-informe2_0.pdf",
-      "year": 2008,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:16.934208Z"
-    },
-    {
-      "title": "Informe Estadístico N°1",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/20-informe1_0.pdf",
-      "filename": "20-informe1_0.pdf",
-      "year": 2008,
-      "sheets": [],
-      "downloadedAt": "2026-05-20T23:04:18.769254Z"
-    },
-    {
-      "title": "Algunos Datos sobre Violencia en el Sector de Juventudes 2016",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0.pdf",
-      "filename": "algunos_datos_y_acercamiento_a_la_violencia_en_el_sector_de_juventudes_2016_0.pdf",
-      "year": 2016,
-      "sheets": [],
       "reference_only": true,
-      "downloadedAt": "2026-05-21T08:29:24.301765Z"
-    },
-    {
-      "title": "Homicidios Dolosos Delincuencia Organizada 2010-2016",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/analisis_homicidios_dolosos_y_delincuencia_organizada_0.pdf",
-      "filename": "analisis_homicidios_dolosos_y_delincuencia_organizada_0.pdf",
-      "year": 2016,
-      "sheets": [],
-      "reference_only": true,
-      "downloadedAt": "2026-05-21T08:29:24.301765Z"
-    },
-    {
-      "title": "Informe Estadístico N°12",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/31-informe12_0.pdf",
-      "filename": "31-informe12_0.pdf",
-      "year": 2016,
-      "sheets": [],
-      "downloadedAt": "2026-05-21T08:29:26.215564Z"
-    },
-    {
-      "title": "Informe Estadístico N°11",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/30-informe11_0.pdf",
-      "filename": "30-informe11_0.pdf",
-      "year": 2016,
-      "sheets": [],
-      "downloadedAt": "2026-05-21T08:29:32.934972Z"
-    },
-    {
-      "title": "Compendio de Investigaciones sobre Convivencia y Seguridad Ciudadana",
-      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/12-compendio_comesco_0.pdf",
-      "filename": "12-compendio_comesco_0.pdf",
-      "year": 2016,
-      "sheets": [],
-      "reference_only": true,
-      "downloadedAt": "2026-05-21T08:29:36.130860Z"
+      "downloadedAt": "2026-05-25T10:20:38.104947Z"
     },
     {
       "title": "Informe Estadístico N°10",
@@ -1017,7 +931,79 @@
       "filename": "29-informe10_0.pdf",
       "year": 2013,
       "sheets": [],
-      "downloadedAt": "2026-05-21T08:30:11.333192Z"
+      "downloadedAt": "2026-05-25T10:20:41.869677Z"
+    },
+    {
+      "title": "Informe Estadístico N°9",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/28-informe9_0.pdf",
+      "filename": "28-informe9_0.pdf",
+      "year": 2013,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:20:45.113405Z"
+    },
+    {
+      "title": "Informe Estadístico N°8",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/27-informe8_0.pdf",
+      "filename": "27-informe8_0.pdf",
+      "year": 2012,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:20:48.960494Z"
+    },
+    {
+      "title": "Informe Estadístico N°7",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/26-informe7_0.pdf",
+      "filename": "26-informe7_0.pdf",
+      "year": 2012,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:20:53.504067Z"
+    },
+    {
+      "title": "Informe Estadístico N°6",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/25-informe6_0.pdf",
+      "filename": "25-informe6_0.pdf",
+      "year": 2011,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:20:56.658512Z"
+    },
+    {
+      "title": "Informe Estadístico N°5",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/24-informe5_0.pdf",
+      "filename": "24-informe5_0.pdf",
+      "year": 2010,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:21:00.296733Z"
+    },
+    {
+      "title": "Informe Estadístico N°4",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/23-informe4_0.pdf",
+      "filename": "23-informe4_0.pdf",
+      "year": 2009,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:21:04.596637Z"
+    },
+    {
+      "title": "Informe Estadístico N°3",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/22-informe3_0.pdf",
+      "filename": "22-informe3_0.pdf",
+      "year": 2009,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:21:07.649719Z"
+    },
+    {
+      "title": "Informe Estadístico N°2",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/21-informe2_0.pdf",
+      "filename": "21-informe2_0.pdf",
+      "year": 2008,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:21:10.913045Z"
+    },
+    {
+      "title": "Informe Estadístico N°1",
+      "originalUrl": "https://observatorio.mj.go.cr/sites/default/files/docs/20-informe1_0.pdf",
+      "filename": "20-informe1_0.pdf",
+      "year": 2008,
+      "sheets": [],
+      "downloadedAt": "2026-05-25T10:21:13.856330Z"
     }
   ]
 }
